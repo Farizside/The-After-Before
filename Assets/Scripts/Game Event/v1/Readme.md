@@ -33,6 +33,7 @@ void PublishEvent(GameEvent event, object data){
 }
 ```
   Perlu dicatat bahwa _event_ yang ingin digunakan perlu dimasukkan melalui _inspector_.
+  
 4. Pada _subscriber_, buat _script_ berikut untuk mendengarkan _event_ tersebut
 ```
     public void ListenEvent(Component sender, object data)
