@@ -45,6 +45,7 @@ void PublishEvent(GameEvent event, object data){
     }
 ```
   Perlu dicatat bahwa kode tersebut mengecek apakah pengirim _event_ merupakan kelas `Publisher` dan data yang dikirimkan merupakan `int`. Sesuaikan dengan kebutuhan.
+  
 5. Terakhir, tambahkan komponen `GameEventListener` pada subscriber.
   - Pada _field_ `Game Event`, _drag and drop event_ yang ingin digunakan ke _field_ ini
   - Pada _field_ `Response(Component, Object)`
