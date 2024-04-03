@@ -30,16 +30,32 @@ public class SoulManager : MonoBehaviour
     private void Update()
     {
         UpdateTargetTransform();
-        Move();
     }
 
     private void AttractSoul(GameObject soul)
     {
-        if(soul.tag == "Soul")
+        if(soul.tag == "Soul" && !_soulsAttracted.Contains(soul))
         {
             soul.GetComponent<SoulMovementController>().IsAttracted = true;
             _soulsAttracted.Add(soul);
             _soulsUnattracted.Remove(soul);
+        }
+    }
+
+    // somehow this is not working idk why
+    private void AttractSoulByPlayerPosition(Vector3 playerPosition)
+    {
+        List<GameObject> soulToAttract = new();
+        foreach(GameObject soul in _soulsUnattracted)
+        {
+            if(Vector3.Distance(soul.transform.position, playerPosition) < _minDist)
+            {
+                soulToAttract.Add(soul);
+            }
+        }
+        foreach(GameObject soul in soulToAttract)
+        {
+            AttractSoul(soul);
         }
     }
 
@@ -57,34 +73,12 @@ public class SoulManager : MonoBehaviour
     [ContextMenu("Attract All Soul")]
     private void AttractAllSoul()
     {
-        foreach(GameObject soul in _soulsUnattracted)
+        List<GameObject> soulToAttract = new List<GameObject>(_soulsUnattracted);
+        foreach(GameObject soul in soulToAttract)
         {
             AttractSoul(soul);
         }
         _soulsUnattracted.Clear();
-    }
-
-    private void Move()
-    {
-        //Transform targetTransform = _playerTransform;
-        //for (int i= 0; i < _soulsAttracted.Count; i++)
-        //{
-        //    GameObject soul = _soulsAttracted[i];
-        //    float dist = Vector3.Distance(soul.transform.position, targetTransform.position);
-        //    if (dist > _minDist)
-        //    {
-        //        float step = (dist - _minDist + 0.1f)* _speed * Time.deltaTime;
-        //        soul.transform.position = Vector3.MoveTowards(soul.transform.position, targetTransform.position, step);
-        //    }
-
-
-        //    targetTransform = _soulsAttracted[i].transform;
-        //}
-        //for(int i=0; i<_soulsUnattracted.Count; i++)
-        //{
-        //    GameObject soul = _soulsUnattracted[i];
-        //    soul.GetComponent<SoulMovementController>().MoveWhileUnattracted();
-        //}
     }
     
     private void UpdateTargetTransform()
@@ -94,6 +88,32 @@ public class SoulManager : MonoBehaviour
         {
             _soulsAttracted[i].GetComponent<SoulMovementController>().TargetPosition = _targetPosition;
             _targetPosition = _soulsAttracted[i].transform.position;
+        }
+    }
+
+    public void OnAttract(Component sender, object data)
+    {
+        Debug.Log(sender is SoulDetectorController);
+        if (sender is SoulDetectorController && data is List<GameObject>)
+        {
+            foreach (GameObject soul in (List<GameObject>)data)
+            {
+                AttractSoul(soul);
+            }
+        }
+
+        // This approach can be used if soul's rigidbody is removed
+        //if (sender is SoulDetectorController && data is Vector3)
+        //{
+        //    AttractSoulByPlayerPosition((Vector3)data);
+        //}
+    }
+
+    public void OnDeattract(Component sender, object data)
+    {
+        if (sender is SoulDetectorController)
+        {
+            DeattractSoul();
         }
     }
 }

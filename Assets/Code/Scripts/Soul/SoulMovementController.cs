@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SoulMovementController : MonoBehaviour
 {
+    const float EPS = 1e-4f;
     public Vector3 TargetPosition;
 
     [Header("Soul status")]
@@ -12,16 +13,17 @@ public class SoulMovementController : MonoBehaviour
 
     [Header("Attracted soul variables")]
     [SerializeField] private float _minDist = 1.5f;
-    [SerializeField] private float _speed = 1.0f;
+    [SerializeField] private float _speed = 2.0f;
 
     [Header("Unattracted soul variables")]
-    [SerializeField] private float _rangeDist = 3.0f;
+    [SerializeField] private float _rangeDist = 5.0f;
     private bool _isTargetReached = false;
     private bool _isLookingForTarget = true;
     private float _idleDuration = 3.0f;
     private float _randomMoveSpeed = 1.0f;
 
-    private float eps = 1e-4f;
+
+    public float Velocity = 0f;
 
     private void Start()
     {
@@ -52,21 +54,26 @@ public class SoulMovementController : MonoBehaviour
 
     public void MoveWhileUnattracted()
     {
+        // Move to Target Position
         if (!_isTargetReached)
         {
-            transform.position = Vector3.MoveTowards(transform.position, TargetPosition, _randomMoveSpeed * Time.deltaTime);
-            if(Vector3.Distance(transform.position, TargetPosition) < eps)
+            Vector3 stepPosition = Vector3.MoveTowards(transform.position, TargetPosition, _randomMoveSpeed * Time.deltaTime);
+            Velocity = Vector3.Distance(stepPosition, transform.position);
+            transform.position = stepPosition;
+            if(Vector3.Distance(transform.position, TargetPosition) < EPS)
             {
                 _isTargetReached = true;
                 _isLookingForTarget = false;
             }
-        }
+        } // After reaching target position, idling for some seconds
         else if (!_isLookingForTarget)
         {
+            Velocity = 0f;
             StartCoroutine(Idling(_idleDuration));
-        }
+        } // After idling, soul is looking for random target position. After found the target position, souls is moving toward the target position
         else
         {
+            Velocity = 0f;
             float angleDirection = Random.Range(0.0f, 2 * Mathf.PI);
             TargetPosition = transform.position + new Vector3(Mathf.Sin(angleDirection), 0.0f, Mathf.Cos(angleDirection)) * Random.Range(0.0f, _rangeDist);
             _isTargetReached = false;
@@ -77,24 +84,5 @@ public class SoulMovementController : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         _isLookingForTarget = true;
-    }
-
-    public void OnAttract(Component sender, object data)
-    {
-        if(sender.gameObject.tag == "Player" && data is int)
-        {
-            if((int) data == gameObject.GetInstanceID())
-            {
-                IsAttracted = true;
-            }
-        }
-    }
-
-    public void OnDeattract(Component sender, object data)
-    {
-        if(sender.gameObject.tag == "Player")
-        {
-            IsAttracted = false;
-        }
     }
 }
