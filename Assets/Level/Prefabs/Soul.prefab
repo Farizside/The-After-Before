@@ -121,8 +121,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetPosition: {x: 0, y: 0, z: 0}
   IsAttracted: 0
-  _minDist: 1.5
-  _speed: 2
+  _minDist: 1
+  _speed: 5
   _rangeDist: 5
   Velocity: 0
 --- !u!54 &8585531753299345657
