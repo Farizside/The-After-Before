@@ -13,7 +13,7 @@ public class SoulMovementController : MonoBehaviour
 
     [Header("Attracted soul variables")]
     [SerializeField] private float _minDist = 1.5f;
-    [SerializeField] private float _speed = 2.0f;
+    [SerializeField] private float _speed = 5.0f;
 
     [Header("Unattracted soul variables")]
     [SerializeField] private float _rangeDist = 5.0f;

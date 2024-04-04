@@ -116,4 +116,12 @@ public class SoulManager : MonoBehaviour
             DeattractSoul();
         }
     }
+
+    public void OnSpawned(Component sender, object data)
+    {
+        if(sender is SoulSpawner && data is GameObject && ((GameObject)data).tag == "Soul")
+        {
+            _soulsUnattracted.Add((GameObject)data);
+        }
+    }
 }
