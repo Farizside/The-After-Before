@@ -7,11 +7,19 @@ public class SoulSpawner : MonoBehaviour
     [SerializeField] private float _spawnRate = 5f;
     [SerializeField] private GameObject _soulGO;
     [SerializeField] private GameEvent _onSoulSpawned;
+    public int MaxSouls = 5;
+    private List<GameObject> _souls;
     private bool canSpawn = true;
     // Start is called before the first frame update
     void Start()
     {
-        Spawn(1);
+        for (int i = 0; i < MaxSouls; i++)
+        {
+            GameObject soul = Instantiate(_soulGO, transform.position, Quaternion.identity);
+            _souls.Add(soul);
+            soul.SetActive(false);
+        }
+        Spawn();
     }
 
     // Update is called once per frame
@@ -20,13 +28,18 @@ public class SoulSpawner : MonoBehaviour
         if(canSpawn) StartCoroutine(Spawner());
     }
 
-    void Spawn(int numberOfSoulsSpawned)
+    void Spawn()
     {
-        for(int i=0; i<numberOfSoulsSpawned; i++)
+        foreach(GameObject soul in _souls)
         {
-            GameObject soul = Instantiate(_soulGO, transform.position, Quaternion.identity);
-            _onSoulSpawned.Raise(this, soul);
+            if (!soul.activeSelf)
+            {
+                soul.SetActive(true);
+                _onSoulSpawned.Raise(this, soul);
+                return;
+            }
         }
+        canSpawn = false;
     }
 
     private IEnumerator Spawner()
@@ -34,6 +47,6 @@ public class SoulSpawner : MonoBehaviour
         canSpawn = false;
         yield return new WaitForSeconds(_spawnRate);
         canSpawn = true;
-        Spawn(1);
+        Spawn();
     }
 }
