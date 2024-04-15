@@ -8,7 +8,7 @@ public class SoulSpawner : MonoBehaviour
     [SerializeField] private GameObject _soulGO;
     [SerializeField] private GameEvent _onSoulSpawned;
     public int MaxSouls = 5;
-    private List<GameObject> _souls;
+    [SerializeField] private List<GameObject> _souls;
     private bool canSpawn = true;
     // Start is called before the first frame update
     void Start()

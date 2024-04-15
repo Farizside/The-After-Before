@@ -227,6 +227,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 351626748}
+  - {fileID: 827850418}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &351626747
@@ -330,6 +331,7 @@ MonoBehaviour:
   _spawnRate: 5
   _soulGO: {fileID: 6601205454832783462, guid: 3e609d55f703e4648ae7b40915100082, type: 3}
   _onSoulSpawned: {fileID: 11400000, guid: 00b9d4283f47f844082f3d7494722d76, type: 2}
+  MaxSouls: 5
 --- !u!4 &794404103
 Transform:
   m_ObjectHideFlags: 0
@@ -390,12 +392,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827850416}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 201.39996, y: 219.8, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 202.64996, y: 219.8, z: -2.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 50485854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &827850419
 MonoBehaviour:
@@ -780,6 +782,5 @@ SceneRoots:
   - {fileID: 1354019933}
   - {fileID: 1626095471}
   - {fileID: 50485854}
-  - {fileID: 827850418}
   - {fileID: 1875166823}
   - {fileID: 794404103}
