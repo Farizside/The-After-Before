@@ -9,6 +9,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private InputManager _input;
     [SerializeField] private float _movemenentSpeed;
     [SerializeField] private float _rotationSpeed;
+    [SerializeField] private float _movementSpeedLimit;
+
+    public float MovementSpeed
+    {
+        get => _movemenentSpeed;
+        set => _movemenentSpeed = value;
+    }
+    public float MovementSpeedLimit => _movementSpeedLimit;
 
     private Animator _animator;
     private CharacterController _characterController;

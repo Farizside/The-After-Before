@@ -44,6 +44,24 @@ public partial class @InputAssets: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attract"",
+                    ""type"": ""Button"",
+                    ""id"": ""a9f7f976-67c1-49b6-8d51-95ac07590b49"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Deattract"",
+                    ""type"": ""Button"",
+                    ""id"": ""a6a0435b-fac2-4d61-802f-8c8eb4125ebc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -134,6 +152,28 @@ public partial class @InputAssets: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c2a33cd1-00e3-4c7f-ba65-304f8752dba3"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""59e92e3a-b13e-4f24-8f60-3bcda2958b46"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Deattract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -183,6 +223,8 @@ public partial class @InputAssets: IInputActionCollection2, IDisposable
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
+        m_Gameplay_Attract = m_Gameplay.FindAction("Attract", throwIfNotFound: true);
+        m_Gameplay_Deattract = m_Gameplay.FindAction("Deattract", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Resume = m_UI.FindAction("Resume", throwIfNotFound: true);
@@ -249,12 +291,16 @@ public partial class @InputAssets: IInputActionCollection2, IDisposable
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Move;
     private readonly InputAction m_Gameplay_Pause;
+    private readonly InputAction m_Gameplay_Attract;
+    private readonly InputAction m_Gameplay_Deattract;
     public struct GameplayActions
     {
         private @InputAssets m_Wrapper;
         public GameplayActions(@InputAssets wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
+        public InputAction @Attract => m_Wrapper.m_Gameplay_Attract;
+        public InputAction @Deattract => m_Wrapper.m_Gameplay_Deattract;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -270,6 +316,12 @@ public partial class @InputAssets: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @Attract.started += instance.OnAttract;
+            @Attract.performed += instance.OnAttract;
+            @Attract.canceled += instance.OnAttract;
+            @Deattract.started += instance.OnDeattract;
+            @Deattract.performed += instance.OnDeattract;
+            @Deattract.canceled += instance.OnDeattract;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -280,6 +332,12 @@ public partial class @InputAssets: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @Attract.started -= instance.OnAttract;
+            @Attract.performed -= instance.OnAttract;
+            @Attract.canceled -= instance.OnAttract;
+            @Deattract.started -= instance.OnDeattract;
+            @Deattract.performed -= instance.OnDeattract;
+            @Deattract.canceled -= instance.OnDeattract;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -347,6 +405,8 @@ public partial class @InputAssets: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnAttract(InputAction.CallbackContext context);
+        void OnDeattract(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
