@@ -1,7 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
+using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 public class PlayerSoulGuidance : MonoBehaviour
 {
@@ -41,6 +45,10 @@ public class PlayerSoulGuidance : MonoBehaviour
         {
             _currSoul = other.GetComponent<SoulMovementController>();
             _input.AttractEvent += Attract;
+            if (!_currSoul.IsAttracted)
+            {
+                AddOutline(other);   
+            }
         }
     }
 
@@ -50,6 +58,7 @@ public class PlayerSoulGuidance : MonoBehaviour
         {
             _currSoul = null;
             _input.AttractEvent -= Attract;
+            RemoveOutline(other);
         }
     }
 
@@ -91,5 +100,18 @@ public class PlayerSoulGuidance : MonoBehaviour
             _soulsAttracted[i].TargetPosition = targetPosition;
             targetPosition = _soulsAttracted[i].transform.position;
         }
+    }
+
+    private void AddOutline(Collider other)
+    {
+        var outline = other.GetComponent<Outline>() ? other.GetComponent<Outline>() : other.AddComponent<Outline>();
+        outline.enabled = true;
+        outline.OutlineWidth = 7f;
+    }
+
+    private void RemoveOutline(Collider other)
+    {
+        var outline = other.GetComponent<Outline>() ? other.GetComponent<Outline>() : other.AddComponent<Outline>();
+        outline.enabled = false;
     }
 }
