@@ -99,8 +99,16 @@ public class PlayerSoulGuidance : MonoBehaviour
         
         foreach(SoulMovementController soul in _soulsAttracted)
         {
-            soul.IsAttracted = false;
-            Destroy(soul.gameObject);
+            if (soul.GetComponent<SoulTypeController>().SoulType == SoulType.PURE)
+            {
+                soul.IsAttracted = false;
+                soul.gameObject.SetActive(false);
+            }
+            else
+            {
+                Debug.Log("Soul is not pure");
+                return;
+            }
         }
         
         _soulsAttracted.Clear();

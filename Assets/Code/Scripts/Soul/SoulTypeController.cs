@@ -15,17 +15,19 @@ public class SoulTypeController : MonoBehaviour
     [SerializeField] private Material _lostMaterial;
 
     [SerializeField] private SoulType _soulType;
+    private MeshRenderer _mesh => GetComponent<MeshRenderer>();
+    
     public SoulType SoulType {
         get => _soulType;
         set
         {
             if(value == SoulType.PURE)
             {
-                GetComponent<MeshRenderer>().material = _pureMaterial;
+                _mesh.material = _pureMaterial;
             }
             else
             {
-                GetComponent<MeshRenderer>().material = _lostMaterial;
+                _mesh.material = _lostMaterial;
             }
             _soulType = value;
         }
