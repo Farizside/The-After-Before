@@ -91,6 +91,20 @@ public class PlayerSoulGuidance : MonoBehaviour
         _playerMovement.MovementSpeed += _soulsAttracted.Count;
         _soulsAttracted.Clear();
     }
+
+    public void SubmitSoul()
+    {
+        _playerMovement.MovementSpeed += _soulsAttracted.Count;
+        GameManager.Instance.SoulCollected += _soulsAttracted.Count;
+        
+        foreach(SoulMovementController soul in _soulsAttracted)
+        {
+            soul.IsAttracted = false;
+            Destroy(soul.gameObject);
+        }
+        
+        _soulsAttracted.Clear();
+    }
     
     private void UpdateTargetTransform()
     {
