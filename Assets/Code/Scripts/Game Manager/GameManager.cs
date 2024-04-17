@@ -8,6 +8,31 @@ public class GameManager : MonoBehaviour
     [SerializeField] private InputManager _input;
 
     private bool _isPaused = false;
+    private int _soulCollected { get; set; } = 0;
+
+    public int SoulCollected
+    {
+        get => _soulCollected;
+        set
+        {
+            _soulCollected = value;
+            Debug.Log(_soulCollected);
+        }
+    }
+
+    public static GameManager Instance { get; set; }
+
+    private void Awake() 
+    { 
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(this); 
+        } 
+        else 
+        { 
+            Instance = this; 
+        } 
+    }
 
     private void Start()
     {

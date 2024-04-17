@@ -36,13 +36,30 @@ public class InputManager : ScriptableObject, InputAssets.IGameplayActions, Inpu
     }
     
     public event Action<Vector2> MoveEvent;
-
+    public event Action AttractEvent;
+    public event Action DeattractEvent;
     public event Action PauseEvent;
     public event Action ResumeEvent;
 
     public void OnMove(InputAction.CallbackContext context)
     {
         MoveEvent?.Invoke(context.ReadValue<Vector2>());
+    }
+
+    public void OnAttract(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            AttractEvent?.Invoke();
+        }
+    }
+
+    public void OnDeattract(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            DeattractEvent?.Invoke();
+        }
     }
 
     public void OnPause(InputAction.CallbackContext context)
