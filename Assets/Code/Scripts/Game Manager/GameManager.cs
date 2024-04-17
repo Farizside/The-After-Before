@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
         { 
             Instance = this; 
         } 
+        
+        DontDestroyOnLoad(this);
     }
 
     private void Start()
@@ -43,10 +45,12 @@ public class GameManager : MonoBehaviour
     private void HandlePause()
     {
         Debug.Log("Paused");
+        Time.timeScale = 0;
     }
 
     private void HandleResume()
     {
         Debug.Log("Resumed");
+        Time.timeScale = 1;
     }
 }
