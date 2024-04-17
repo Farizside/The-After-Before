@@ -42,6 +42,19 @@ public class SoulManager : MonoBehaviour
         }
     }
 
+    private void AttackSoulByIndex(int index)
+    {
+        List<GameObject> lostSouls = _soulsAttracted.GetRange(index, _soulsAttracted.Count - index);
+        foreach(GameObject soul in lostSouls)
+        {
+            soul.GetComponent<SoulMovementController>().IsAttracted = false;
+            soul.GetComponent<SoulTypeController>().SoulType = SoulType.LOST;
+            _soulsUnattracted.Add(soul);
+        }
+        _soulsAttracted.RemoveRange(index, _soulsAttracted.Count - index);
+
+    }
+
     // somehow this is not working idk why
     private void AttractSoulByPlayerPosition(Vector3 playerPosition)
     {
@@ -91,6 +104,7 @@ public class SoulManager : MonoBehaviour
         }
     }
 
+    // Event Listener
     public void OnAttract(Component sender, object data)
     {
         Debug.Log(sender is SoulDetectorController);
@@ -122,6 +136,35 @@ public class SoulManager : MonoBehaviour
         if(sender is SoulSpawner && data is GameObject && ((GameObject)data).tag == "Soul")
         {
             _soulsUnattracted.Add((GameObject)data);
+        }
+    }
+
+    public void OnSubmitted(Component sender, object data)
+    {
+        List<GameObject> submittedSoul = new(_soulsAttracted);
+        _soulsAttracted.Clear();
+        foreach(GameObject soul in submittedSoul)
+        {
+            soul.GetComponent<SoulMovementController>().IsAttracted = false;
+            soul.SetActive(false);
+        }
+    }
+
+    public void OnSoulAttacked(Component sender, object data)
+    {
+        if(data is GameObject && ((GameObject)data).tag == "Soul")
+        {
+            GameObject soul = (GameObject)data;
+            int idx = _soulsAttracted.IndexOf(soul);
+            AttackSoulByIndex(idx);
+        }
+    }
+
+    public void OnSoulPurified(Component sender, object data)
+    {
+        foreach(GameObject soul in _soulsAttracted)
+        {
+            soul.GetComponent<SoulTypeController>().SoulType = SoulType.PURE;
         }
     }
 }

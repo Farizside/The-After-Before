@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5947278070226234160}
   - component: {fileID: 5603942740251015293}
   - component: {fileID: 8585531753299345657}
+  - component: {fileID: 4724947651532835063}
   m_Layer: 0
   m_Name: Soul
   m_TagString: Soul
@@ -147,8 +148,22 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4724947651532835063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6601205454832783462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b556e174ee7f1d408762bb085568372, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pureMaterial: {fileID: 2100000, guid: e569daaf574d7ef4d8cf82003a96b36b, type: 2}
+  _lostMaterial: {fileID: 2100000, guid: 825db3ee6ab81f34e8f1db34fff60e85, type: 2}

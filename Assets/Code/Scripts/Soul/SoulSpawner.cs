@@ -35,6 +35,8 @@ public class SoulSpawner : MonoBehaviour
             if (!soul.activeSelf)
             {
                 soul.SetActive(true);
+                soul.transform.position = transform.position;
+                soul.GetComponent<SoulTypeController>().SoulType = SoulType.LOST;
                 _onSoulSpawned.Raise(this, soul);
                 return;
             }
@@ -48,5 +50,10 @@ public class SoulSpawner : MonoBehaviour
         yield return new WaitForSeconds(_spawnRate);
         canSpawn = true;
         Spawn();
+    }
+
+    public void onSubmitSoul(Component sender, object data)
+    {
+        canSpawn = true;
     }
 }
