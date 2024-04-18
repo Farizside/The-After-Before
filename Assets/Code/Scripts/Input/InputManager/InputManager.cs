@@ -19,8 +19,10 @@ public class InputManager : ScriptableObject, InputAssets.IGameplayActions, Inpu
             _inputAssets.UI.SetCallbacks(this);
             
             // To Do: Change this later
-            // SetGameplay();
             SetUI();
+#if UNITY_EDITOR
+            SetGameplay();
+#endif
         }
     }
 
