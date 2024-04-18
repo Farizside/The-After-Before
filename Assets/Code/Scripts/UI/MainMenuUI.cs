@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
+    [SerializeField] private InputManager _input;
     public Button BtnGamePlay;
     public Button BtnSetting;
     public Button BtnAbout;
@@ -30,6 +31,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void GamePlay()
     {
+        _input.SetGameplay();
         SceneManager.LoadScene("Gameplay");
     }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f417b79a3af7b4990836a71383d38c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _input: {fileID: 11400000, guid: 4cb132790b2b4824da141100eb3db2e2, type: 2}
   BtnGamePlay: {fileID: 1711379316}
   BtnSetting: {fileID: 1786262798}
   BtnAbout: {fileID: 1426064979}
@@ -889,7 +890,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1715,7 +1716,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1786,7 +1787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1516228729}
   - component: {fileID: 1516228728}
-  - component: {fileID: 1516228727}
+  - component: {fileID: 1516228730}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1794,26 +1795,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1516228727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1516228726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!114 &1516228728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1826,7 +1807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1711379314}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1516228729
@@ -1844,6 +1825,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1516228730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516228726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 6f25a8d39d4c16e4e85eaab37ed336e5, type: 3}
+  m_PointAction: {fileID: -1731181417476218915, guid: 6f25a8d39d4c16e4e85eaab37ed336e5, type: 3}
+  m_MoveAction: {fileID: 2834483654809222142, guid: 6f25a8d39d4c16e4e85eaab37ed336e5, type: 3}
+  m_SubmitAction: {fileID: 5062154261405300582, guid: 6f25a8d39d4c16e4e85eaab37ed336e5, type: 3}
+  m_CancelAction: {fileID: -8674022692161693508, guid: 6f25a8d39d4c16e4e85eaab37ed336e5, type: 3}
+  m_LeftClickAction: {fileID: 4637219557456287212, guid: 6f25a8d39d4c16e4e85eaab37ed336e5, type: 3}
+  m_MiddleClickAction: {fileID: -1421332019204411448, guid: 6f25a8d39d4c16e4e85eaab37ed336e5, type: 3}
+  m_RightClickAction: {fileID: -910229292794601795, guid: 6f25a8d39d4c16e4e85eaab37ed336e5, type: 3}
+  m_ScrollWheelAction: {fileID: 1442650568538261321, guid: 6f25a8d39d4c16e4e85eaab37ed336e5, type: 3}
+  m_TrackedDevicePositionAction: {fileID: -6129661802450155996, guid: 6f25a8d39d4c16e4e85eaab37ed336e5, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 8621404669082605035, guid: 6f25a8d39d4c16e4e85eaab37ed336e5, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1 &1688744704
 GameObject:
   m_ObjectHideFlags: 0
@@ -2030,7 +2041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: -1
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -2038,7 +2049,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2060,7 +2071,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1711379317}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1711379317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2159,7 +2182,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}

@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Unity.VisualScripting;
-using UnityEditor.VersionControl;
 using UnityEngine;
-using UnityEngine.Rendering.UI;
 
 public class PlayerSoulGuidance : MonoBehaviour
 {
@@ -35,7 +30,6 @@ public class PlayerSoulGuidance : MonoBehaviour
         if (!_currSoul.IsAttracted)
         {
             AttractSoul(_currSoul);
-            Debug.Log("Attracted");
         }
     }
 
@@ -94,19 +88,17 @@ public class PlayerSoulGuidance : MonoBehaviour
 
     public void SubmitSoul()
     {
-        _playerMovement.MovementSpeed += _soulsAttracted.Count;
-        GameManager.Instance.SoulCollected += _soulsAttracted.Count;
-        
         foreach(SoulMovementController soul in _soulsAttracted)
         {
             if (soul.GetComponent<SoulTypeController>().SoulType == SoulType.PURE)
             {
                 soul.IsAttracted = false;
                 soul.gameObject.SetActive(false);
+                _playerMovement.MovementSpeed += 1;
+                GameManager.Instance.SubmitSoul();
             }
             else
             {
-                Debug.Log("Soul is not pure");
                 return;
             }
         }
