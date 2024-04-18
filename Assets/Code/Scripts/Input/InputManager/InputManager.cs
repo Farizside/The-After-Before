@@ -20,9 +20,9 @@ public class InputManager : ScriptableObject, InputAssets.IGameplayActions, Inpu
             
             // To Do: Change this later
             SetUI();
-#if UNITY_EDITOR
-            SetGameplay();
-#endif
+// #if UNITY_EDITOR
+//             SetGameplay();
+// #endif
         }
     }
 
@@ -43,6 +43,7 @@ public class InputManager : ScriptableObject, InputAssets.IGameplayActions, Inpu
     public event Action DeattractEvent;
     public event Action PauseEvent;
     public event Action ResumeEvent;
+    public event Action BackEvent; 
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -95,7 +96,10 @@ public class InputManager : ScriptableObject, InputAssets.IGameplayActions, Inpu
 
     public void OnCancel(InputAction.CallbackContext context)
     {
-        
+        if (context.phase == InputActionPhase.Performed)
+        {
+            BackEvent?.Invoke();
+        }
     }
 
     public void OnPoint(InputAction.CallbackContext context)

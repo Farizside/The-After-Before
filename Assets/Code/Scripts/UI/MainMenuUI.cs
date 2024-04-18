@@ -14,6 +14,8 @@ public class MainMenuUI : MonoBehaviour
     public GameObject CanvasMenu;
     public GameObject CanvasSetting;
     public GameObject CanvasAbout;
+
+    public BackToMenu setting;
     // Start is called before the first frame update
     void Start()
     {
