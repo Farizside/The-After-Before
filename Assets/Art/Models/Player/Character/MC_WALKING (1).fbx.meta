@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e047f90a9aa315f4c90f4b49bb9c304d
+guid: 67af128783cf81c4d9b73b6ffe7f5782
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: rig_Young Man|rig_Young WomanAction.001
-      takeName: rig_Young Man|rig_Young WomanAction.001
-      internalID: 1375596227619428582
+      name: rig_MC|rig_MCAction
+      takeName: rig_MC|rig_MCAction
+      internalID: -5011940421722133129
       firstFrame: 0
-      lastFrame: 54
+      lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -61,12 +61,12 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importPhysicalCameras: 1
