@@ -118,4 +118,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640c1712b1379ea4d9b2e7b6840393eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onSubmitSoul: {fileID: 11400000, guid: 00b9d4283f47f844082f3d7494722d76, type: 2}
+  onSubmitSoul: {fileID: 11400000, guid: 5b0f6aad4016f214f9300464189397cd, type: 2}
