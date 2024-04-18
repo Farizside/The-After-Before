@@ -99,8 +99,13 @@ public class SoulManager : MonoBehaviour
         Vector3 _targetPosition = _playerGO.transform.position;
         for(int i=0; i<_soulsAttracted.Count; i++)
         {
-            _soulsAttracted[i].GetComponent<SoulMovementController>().TargetPosition = _targetPosition;
-            _targetPosition = _soulsAttracted[i].transform.position;
+            GameObject soul = _soulsAttracted[i];
+            SoulMovementController soulMovementController = soul.GetComponent<SoulMovementController>();
+            if (Vector3.Distance(soulMovementController.TargetPosition, _targetPosition) > 0.1f)
+            {
+                soulMovementController.TargetPosition = _targetPosition;
+            }
+            _targetPosition = soul.transform.position;
         }
     }
 
