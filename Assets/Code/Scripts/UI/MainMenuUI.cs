@@ -19,6 +19,7 @@ public class MainMenuUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _input.BackEvent += setting.Back;
         BtnGamePlay.onClick.AddListener(GamePlay);
         BtnSetting.onClick.AddListener(Setting);
         BtnAbout.onClick.AddListener(About);

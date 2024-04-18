@@ -134,7 +134,18 @@
                 {
                     "name": "",
                     "id": "c2a33cd1-00e3-4c7f-ba65-304f8752dba3",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6039c456-66f5-4bc3-ae70-2ba8b31774bb",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -145,7 +156,18 @@
                 {
                     "name": "",
                     "id": "59e92e3a-b13e-4f24-8f60-3bcda2958b46",
-                    "path": "<Keyboard>/g",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Deattract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a01653a7-19ba-4fdd-8508-0d54062b7f50",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

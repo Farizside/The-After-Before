@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,11 +16,7 @@ public class InputManager : ScriptableObject, InputAssets.IGameplayActions, Inpu
             _inputAssets.Gameplay.SetCallbacks(this);
             _inputAssets.UI.SetCallbacks(this);
             
-            // To Do: Change this later
             SetUI();
-// #if UNITY_EDITOR
-//             SetGameplay();
-// #endif
         }
     }
 

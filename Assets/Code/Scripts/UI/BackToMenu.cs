@@ -14,7 +14,7 @@ public class BackToMenu : MonoBehaviour
     
     public Button BtnMenu;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         if (!_currCanvas)
         {
@@ -26,22 +26,15 @@ public class BackToMenu : MonoBehaviour
             _input.BackEvent += Back;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void Menu()
     {
         GameManager.Instance.HandleResume();
         SceneManager.LoadScene("Mainmenu");
     }
 
-    private void Back()
+    public void Back()
     {
-        _currCanvas.SetActive(false);
-        _mainMenuCanvas.SetActive(true);
+        if (_currCanvas != null) _currCanvas.SetActive(false);
+        if (_mainMenuCanvas != null) _mainMenuCanvas.SetActive(true);
     }
 }
