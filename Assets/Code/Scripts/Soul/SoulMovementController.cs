@@ -6,7 +6,17 @@ using UnityEngine;
 public class SoulMovementController : MonoBehaviour
 {
     const float EPS = 1e-4f;
-    public Vector3 TargetPosition;
+    private Vector3 _targetPosition;
+    public Vector3 TargetPosition {
+        get => _targetPosition;
+        set {
+            _targetPosition = value;
+            if(Vector3.Distance(value, transform.position) > EPS)
+            {
+                transform.LookAt(value);
+            }
+        }
+    }
 
     [Header("Soul status")]
     public bool IsAttracted = false;
@@ -44,16 +54,23 @@ public class SoulMovementController : MonoBehaviour
     }
     public void MoveWhileAttracted()
     {
+        Animator animator = GetComponent<SoulTypeController>().Animator;
         float dist = Vector3.Distance(transform.position, TargetPosition);
         if (dist > _minDist)
         {
             float step = (dist - _minDist + 0.1f) * _speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, TargetPosition, step);
+            animator.SetBool("isMoving", true);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
         }
     }
 
     public void MoveWhileUnattracted()
     {
+        Animator animator = GetComponent<SoulTypeController>().Animator;
         // Move to Target Position
         if (!_isTargetReached)
         {
@@ -68,6 +85,7 @@ public class SoulMovementController : MonoBehaviour
         } // After reaching target position, idling for some seconds
         else if (!_isLookingForTarget)
         {
+            animator.SetBool("isMoving", false);
             Velocity = 0f;
             StartCoroutine(Idling(_idleDuration));
         } // After idling, soul is looking for random target position. After found the target position, souls is moving toward the target position
@@ -77,6 +95,7 @@ public class SoulMovementController : MonoBehaviour
             float angleDirection = Random.Range(0.0f, 2 * Mathf.PI);
             TargetPosition = transform.position + new Vector3(Mathf.Sin(angleDirection), 0.0f, Mathf.Cos(angleDirection)) * Random.Range(0.0f, _rangeDist);
             _isTargetReached = false;
+            animator.SetBool("isMoving", true);
         }
     }
 
