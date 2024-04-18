@@ -167,3 +167,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pureMaterial: {fileID: 2100000, guid: e569daaf574d7ef4d8cf82003a96b36b, type: 2}
   _lostMaterial: {fileID: 2100000, guid: 825db3ee6ab81f34e8f1db34fff60e85, type: 2}
+  _soulType: 0
+  _timeToLost: 5

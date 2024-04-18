@@ -15,6 +15,8 @@ public class SoulTypeController : MonoBehaviour
     [SerializeField] private Material _lostMaterial;
 
     [SerializeField] private SoulType _soulType;
+    [SerializeField] private float _timeToLost;
+    private float _timeRemaining;
     private MeshRenderer _mesh => GetComponent<MeshRenderer>();
     
     public SoulType SoulType {
@@ -24,6 +26,7 @@ public class SoulTypeController : MonoBehaviour
             if(value == SoulType.PURE)
             {
                 _mesh.material = _pureMaterial;
+                _timeRemaining = _timeToLost;
             }
             else
             {
@@ -36,5 +39,21 @@ public class SoulTypeController : MonoBehaviour
     void Start()
     {
         SoulType = SoulType.LOST;
+        _timeRemaining = _timeToLost;
+    }
+
+    private void Update()
+    {
+        if (SoulType == SoulType.PURE && !GetComponent<SoulMovementController>().IsAttracted)
+        {
+            if(_timeRemaining > 0f)
+            {
+                _timeRemaining -= Time.deltaTime;
+            }
+            else
+            {
+                SoulType = SoulType.LOST;
+            }
+        }
     }
 }
