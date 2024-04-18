@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class BackToMenu : MonoBehaviour
 {
+    [SerializeField] private InputManager _input;
+    
     public Button BtnMenu;
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,7 @@ public class BackToMenu : MonoBehaviour
 
     private void Menu()
     {
+        GameManager.Instance.HandleResume();
         SceneManager.LoadScene("Mainmenu");
     }
 }

@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
             Instance = this; 
         } 
         
-        DontDestroyOnLoad(this);
+        // DontDestroyOnLoad(this);
     }
 
     private void Start()
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
     }
 
-    private void HandleResume()
+    public void HandleResume()
     {
         _uiCanvas.SetActive(false);
         Time.timeScale = 1;
