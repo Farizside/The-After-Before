@@ -46,7 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnRate: 5
-  _soulGO: {fileID: 6601205454832783462, guid: 3e609d55f703e4648ae7b40915100082, type: 3}
+  _soulGOList:
+  - {fileID: 6601205454832783462, guid: 3e609d55f703e4648ae7b40915100082, type: 3}
+  - {fileID: 6601205454832783462, guid: f001e08c4a99ced4c877f8ed0b6ec496, type: 3}
   _onSoulSpawned: {fileID: 11400000, guid: 00b9d4283f47f844082f3d7494722d76, type: 2}
   MaxSouls: 5
   _souls: []

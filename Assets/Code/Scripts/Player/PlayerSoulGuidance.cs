@@ -29,6 +29,10 @@ public class PlayerSoulGuidance : MonoBehaviour
     {
         if (!_currSoul.IsAttracted)
         {
+            if(_soulsAttracted.Count == 0)
+            {
+                _currSoul.IsFirst = true;
+            }
             AttractSoul(_currSoul);
         }
     }
