@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ConeVision : MonoBehaviour
+public class EnemyConeVision : MonoBehaviour
 {
     [Header("Settings")]
     public Material VisionMaterial;

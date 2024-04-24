@@ -4,27 +4,22 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    [SerializeField] private float _delayAttackDuration;
     private bool _isAttacking;
+
     void Start ()
     {
         _isAttacking = false;
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Soul") && !_isAttacking)
+        if (other.CompareTag("Soul") )
         {
-            StartCoroutine(AttackRoutine(_delayAttackDuration));
-        }
-    }
+            if (other.GetComponent<SoulMovementController>().IsAttracted)
+            {  
+                // other.GetComponent<SoulTypeController>().SoulType = SoulType.LOST;
+                // other.GetComponent<SoulMovementController>().IsAttracted = false;
 
-    private IEnumerator AttackRoutine(float duration)
-    {
-        _isAttacking = true;
-        while (_isAttacking)
-        {
-            //enemy attack
-            yield return new WaitForSeconds(duration);
+            }
         }
     }
 

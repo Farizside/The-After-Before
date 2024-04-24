@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class EnemyAIVision : MonoBehaviour
 {
     [Header("Settings")]
-    public GameObject PureSoul;
+    private GameObject PureSoul;
     public EnemyAIMovement EnemyAgent;
     public float Radius;
     public float ViewDistance;
@@ -17,6 +17,7 @@ public class EnemyAIVision : MonoBehaviour
     void Start()
     {
         EnemyAgent = GetComponent<EnemyAIMovement>();
+        PureSoul = GameObject.FindWithTag("Soul");
     }
 
     void Update()
@@ -35,10 +36,15 @@ public class EnemyAIVision : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(transform.position, _different, out hit, ViewDistance))
             {
-                if (hit.collider.gameObject == PureSoul)
+                if (hit.collider.gameObject.CompareTag("Soul"))
                 {
-                    EnemyAgent.SetPureSoulDetected(true);
-                    EnemyAgent.SetNewDestination(PureSoul.transform.position);
+                    if (hit.collider.gameObject.GetComponent<SoulMovementController>().IsAttracted&&hit.collider.gameObject.GetComponent<SoulTypeController>().SoulType == SoulType.PURE)
+                    {
+                        EnemyAgent.SetPureSoulDetected(true);
+                        EnemyAgent.SetNewDestination(PureSoul.transform.position);
+                    
+                    }
+                    
                 }
             }
         }
@@ -52,12 +58,15 @@ public class EnemyAIVision : MonoBehaviour
 
     private void StopDistance(float distance)
     {
-        float distanceToTarget = _different.magnitude;
-        if (distanceToTarget <= distance)
+        if(PureSoul.gameObject.GetComponent<SoulTypeController>().SoulType == SoulType.PURE)
         {
-            EnemyAgent.IsStopped(true);
-            EnemyRotate(_rotationSpeed);
- 
+            float distanceToTarget = _different.magnitude;
+            if (distanceToTarget <= distance)
+            {
+                EnemyAgent.IsStopped(true);
+                EnemyRotate(_rotationSpeed);
+    
+            }
         }
     }
 
