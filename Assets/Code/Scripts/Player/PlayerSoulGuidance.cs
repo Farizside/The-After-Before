@@ -29,6 +29,10 @@ public class PlayerSoulGuidance : MonoBehaviour
     {
         if (!_currSoul.IsAttracted)
         {
+            if(_soulsAttracted.Count == 0)
+            {
+                _currSoul.IsFirst = true;
+            }
             AttractSoul(_currSoul);
         }
     }
@@ -84,6 +88,19 @@ public class PlayerSoulGuidance : MonoBehaviour
 
         _playerMovement.MovementSpeed += _soulsAttracted.Count;
         _soulsAttracted.Clear();
+    }
+
+    public void AttackSoul(SoulMovementController soulMovementController)
+    {
+        int index = _soulsAttracted.IndexOf(soulMovementController);
+        List<SoulMovementController> attackedSouls = _soulsAttracted.GetRange(index, _soulsAttracted.Count - index);
+        foreach (SoulMovementController soul in attackedSouls)
+        {
+            soul.IsAttracted = false;
+            soul.GetComponent<SoulTypeController>().SoulType = SoulType.LOST;
+        }
+        _soulsAttracted.RemoveRange(index, _soulsAttracted.Count - index);
+
     }
 
     public void SubmitSoul()

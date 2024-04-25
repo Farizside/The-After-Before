@@ -24,6 +24,8 @@ public class SoulMovementController : MonoBehaviour
     [Header("Attracted soul variables")]
     [SerializeField] private float _minDist = 1.5f;
     [SerializeField] private float _speed = 5.0f;
+    [SerializeField] private float playerOffset = 0.75f;
+    public bool IsFirst = false;
 
     [Header("Unattracted soul variables")]
     [SerializeField] private float _rangeDist = 5.0f;
@@ -56,11 +58,11 @@ public class SoulMovementController : MonoBehaviour
     {
         Animator animator = GetComponent<SoulTypeController>().Animator;
         float dist = Vector3.Distance(transform.position, TargetPosition);
-        if (dist > _minDist)
+        if (dist > _minDist + (IsFirst ? 1:0)*playerOffset)
         {
             float step = (dist - _minDist + 0.1f) * _speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, TargetPosition, step);
-            animator.SetBool("isMoving", true);
+            animator.SetBool("isMoving", dist - _minDist > EPS);
         }
         else
         {
