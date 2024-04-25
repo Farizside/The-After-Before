@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoulSpawner : MonoBehaviour
 {
     [SerializeField] private float _spawnRate = 5f;
-    [SerializeField] private GameObject _soulGO;
+    [SerializeField] private List<GameObject> _soulGOList;
     [SerializeField] private GameEvent _onSoulSpawned;
     public int MaxSouls = 5;
     [SerializeField] private List<GameObject> _souls;
@@ -15,7 +15,8 @@ public class SoulSpawner : MonoBehaviour
     {
         for (int i = 0; i < MaxSouls; i++)
         {
-            GameObject soul = Instantiate(_soulGO, transform.position, Quaternion.identity);
+            GameObject soulGO = _soulGOList[Random.Range(0, _soulGOList.Count)];
+            GameObject soul = Instantiate(soulGO, transform.position, Quaternion.identity);
             _souls.Add(soul);
             soul.SetActive(false);
         }
