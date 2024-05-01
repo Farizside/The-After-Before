@@ -1,29 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private InputManager _input;
-    [SerializeField] private GameObject _uiCanvas;
-    [SerializeField] private TMP_Text _soulCollectedText;
+    [SerializeField] [CanBeNull] private GameObject _uiCanvas;
+    [SerializeField] [CanBeNull] private TMP_Text _soulCollectedText;
 
-    private bool _isPaused = false;
-    private int _soulCollected { get; set; } = 0;
+    public static event Action<GameState> OnGameStateChanged; 
+    
+    public GameState State;
+    
+    private int _soulCollected = 0;
 
-    public int SoulCollected
-    {
-        get => _soulCollected;
-        set
-        {
-            _soulCollected = value;
-            Debug.Log(_soulCollected);
-        }
-    }
+    public int SoulCollected => _soulCollected;
 
-    public static GameManager Instance { get; set; }
+    public static GameManager Instance;
 
     private void Awake() 
     { 
@@ -41,6 +38,48 @@ public class GameManager : MonoBehaviour
     {
         _input.PauseEvent += HandlePause;
         _input.ResumeEvent += HandleResume;
+        
+        UpdateGameState(GameState.Gameplay);
+    }
+
+    public void UpdateGameState(GameState newState)
+    {
+        State = newState;
+
+        switch (newState)
+        {
+            case GameState.Gameplay:
+                HandleGameplay();
+                break;
+            case GameState.UI:
+                break;
+            case GameState.Upgrade:
+                Debug.Log("Upgrade");
+                HandleUpgrade();
+                break;
+            case GameState.Victory:
+                Debug.Log("Victory");
+                break;
+            case GameState.Lose:
+                Debug.Log("Lose");
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
+        }
+        
+        OnGameStateChanged?.Invoke(newState);
+    }
+
+    private async void HandleUpgrade()
+    {
+        await Task.Delay(5000);
+        
+        UpdateGameState(GameState.Gameplay);
+    }
+
+    private void HandleGameplay()
+    {
+        
     }
 
     private void HandlePause()
@@ -60,4 +99,13 @@ public class GameManager : MonoBehaviour
         _soulCollected += 1;
         _soulCollectedText.text = _soulCollected.ToString();
     }
+}
+
+public enum GameState
+{
+    Gameplay,
+    UI,
+    Upgrade,
+    Victory,
+    Lose
 }
