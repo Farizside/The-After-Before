@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ExtraTime : MonoBehaviour
 {
-    [SerializeField] private float extraTimeAmount = 10f;
+    [SerializeField] private float _extraTimeAmount = 10f;
 
     private void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player")){
@@ -12,7 +12,7 @@ public class ExtraTime : MonoBehaviour
             
             if (waveManager != null)
             {
-                waveManager.AddExtraTime(extraTimeAmount); // Memanggil fungsi untuk menambah waktu ekstra
+                waveManager.AddExtraTime(_extraTimeAmount); // Memanggil fungsi untuk menambah waktu ekstra
             }
 
             Debug.Log("Wave Time is Increased");

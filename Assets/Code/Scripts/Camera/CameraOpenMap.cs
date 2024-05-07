@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class CameraOpenMap : MonoBehaviour
 {
-    [SerializeField] private GameObject cameraZoom;
+    [SerializeField] private GameObject _cameraZoom;
 
     public void ZoomCamera(){
-        if(!cameraZoom.activeSelf){
-            cameraZoom.SetActive(true);
+        if(!_cameraZoom.activeSelf){
+            _cameraZoom.SetActive(true);
 
             StartCoroutine(DeactivateAfterDelay(2f));
         }
@@ -16,6 +16,6 @@ public class CameraOpenMap : MonoBehaviour
     IEnumerator DeactivateAfterDelay(float delay){
         yield return new WaitForSeconds(delay);
 
-        cameraZoom.SetActive(false);
+        _cameraZoom.SetActive(false);
     }
 }

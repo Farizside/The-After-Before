@@ -618,7 +618,7 @@ MonoBehaviour:
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 2
+    m_Time: 1
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -644,7 +644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1b5f38e041ee64f8f63c19002679b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraZoom: {fileID: 661783180}
+  _cameraZoom: {fileID: 661783180}
 --- !u!1 &548978428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,18 +1163,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100910707ff004c47978dbf97ec528ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PowerUp:
+  _powerUp:
   - {fileID: 1496404087643328577, guid: 958bfe509c3c2c24d857f03e8b929d25, type: 3}
   - {fileID: 7338119756040585596, guid: 4377e7dc3694ff842b302bc4cf9ad808, type: 3}
   - {fileID: 6533395972480417096, guid: 7b3ec97c8860d6f4cbf185cfea1b311e, type: 3}
-  point:
+  _point:
   - {fileID: 1353227006}
   - {fileID: 1893848437}
   - {fileID: 1289372067}
   - {fileID: 254720927}
   - {fileID: 548978428}
   - {fileID: 890315479}
-  time: 5
+  _time: 5
 --- !u!1 &1893848437
 GameObject:
   m_ObjectHideFlags: 0

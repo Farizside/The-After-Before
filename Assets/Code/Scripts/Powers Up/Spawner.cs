@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] PowerUp;
-    [SerializeField] private GameObject[] point;
-    [SerializeField] private float time = 5f;
-    private GameObject spawnedObject;
+    [SerializeField] private GameObject[] _powerUp;
+    [SerializeField] private GameObject[] _point;
+    [SerializeField] private float _time = 5f;
+    private GameObject _spawnedObject;
     
     private void Start(){
         StartCoroutine(SpawnObjectWithDelay());
@@ -15,20 +15,20 @@ public class Spawner : MonoBehaviour
     private IEnumerator SpawnObjectWithDelay()
     {
         while (true){
-            yield return new WaitForSeconds(time);
-            if (spawnedObject == null){
-                int randomNumber = Random.Range(0, PowerUp.Length);
-                int randomIndex = Random.Range(0, point.Length);
-                GameObject randomPoint = point[randomIndex];
-                GameObject randomPowerUp = PowerUp[randomNumber];
+            yield return new WaitForSeconds(_time);
+            if (_spawnedObject == null){
+                int randomNumber = Random.Range(0, _powerUp.Length);
+                int randomIndex = Random.Range(0, _point.Length);
+                GameObject randomPoint = _point[randomIndex];
+                GameObject randomPowerUp = _powerUp[randomNumber];
 
-                spawnedObject = Instantiate(randomPowerUp, randomPoint.transform.position, Quaternion.identity);
+                _spawnedObject = Instantiate(randomPowerUp, randomPoint.transform.position, Quaternion.identity);
             }
         }
     }
 
     public void ObjectHitByPlayer(){
-        Destroy(spawnedObject);
+        Destroy(_spawnedObject);
 
         StartCoroutine(SpawnObjectWithDelay());
     }
