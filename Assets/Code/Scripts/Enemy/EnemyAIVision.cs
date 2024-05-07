@@ -8,6 +8,7 @@ public class EnemyAIVision : MonoBehaviour
     public EnemyAIMovement EnemyAgent;
     public float Radius;
     public float ViewDistance;
+
     [SerializeField] private float _stoppingDistance;
     [SerializeField] private float _rotationSpeed;
 
@@ -15,7 +16,6 @@ public class EnemyAIVision : MonoBehaviour
     void Start()
     {
         EnemyAgent = GetComponent<EnemyAIMovement>();
-        //_target = FindClosestSoul();
     }
 
     void Update()
@@ -25,10 +25,22 @@ public class EnemyAIVision : MonoBehaviour
         {
             Vision();
             StopDistance(_stoppingDistance);
+            if(!EnemyAgent.IsStunned())
+            {
+                EnemyAgent.IsStopped(false);
+            }
+            else if(EnemyAgent.IsStunned())
+            {
+                EnemyAgent.IsStopped(true);
+            }
         }
         else
         {
             EnemyAgent.SetPureSoulDetected(false);
+            if(!EnemyAgent.IsStunned())
+            {
+                EnemyAgent.IsStopped(false);
+            }
         }
     }
 
@@ -74,7 +86,19 @@ public class EnemyAIVision : MonoBehaviour
                     EnemyAgent.IsStopped(true);
                     EnemyRotate(_rotationSpeed);
                 }
+                else
+                {
+                    EnemyAgent.IsStopped(false);
+                }
             }
+            else if (soulType.SoulType == SoulType.LOST)
+            {
+                EnemyAgent.IsStopped(false);
+            }
+        }
+        else
+        {
+            EnemyAgent.IsStopped(false);
         }
     }
 
@@ -84,7 +108,7 @@ public class EnemyAIVision : MonoBehaviour
         targetRotation.x = 0; 
         targetRotation.z = 0; 
 
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, speed * Time.deltaTime);
     }
 
     private Transform FindClosestSoul()
