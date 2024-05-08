@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!28 &-7338960302307291638
+--- !u!28 &-2584308823356186091
 Texture2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,7 +48,7 @@ Texture2D:
     offset: 0
     size: 0
     path: 
---- !u!21 &-1807311053462933552
+--- !u!21 &-1690526609503221436
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -84,7 +84,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: -7338960302307291638}
+        m_Texture: {fileID: -2584308823356186091}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OutlineTex:
@@ -169,11 +169,11 @@ MonoBehaviour:
   m_Name: kecil SDF
   m_EditorClassIdentifier: 
   hashCode: -178721127
-  material: {fileID: -1807311053462933552}
+  material: {fileID: -1690526609503221436}
   materialHashCode: 1241037209
   m_Version: 1.1.0
-  m_SourceFontFileGUID: 944dc4b217ca41d4a868edfaa42629ce
-  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 944dc4b217ca41d4a868edfaa42629ce, type: 3}
+  m_SourceFontFileGUID: 7256769c0e4487644b15708ecbc31c7c
+  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 7256769c0e4487644b15708ecbc31c7c, type: 3}
   m_SourceFontFile: {fileID: 0}
   m_AtlasPopulationMode: 0
   m_FaceInfo:
@@ -2025,7 +2025,7 @@ MonoBehaviour:
     m_GlyphIndex: 136
     m_Scale: 1
   m_AtlasTextures:
-  - {fileID: -7338960302307291638}
+  - {fileID: -2584308823356186091}
   m_AtlasTextureIndex: 0
   m_IsMultiAtlasTexturesEnabled: 0
   m_ClearDynamicDataOnBuild: 0
@@ -2755,7 +2755,7 @@ MonoBehaviour:
   m_FallbackFontAssetTable: []
   m_CreationSettings:
     sourceFontFileName: 
-    sourceFontFileGUID: 944dc4b217ca41d4a868edfaa42629ce
+    sourceFontFileGUID: 7256769c0e4487644b15708ecbc31c7c
     pointSizeSamplingMode: 0
     pointSize: 71
     padding: 5
