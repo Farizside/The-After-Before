@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoulAttackController : MonoBehaviour
 {
     // Soul is getting attacked
-    void Attack()
+    public void Attack()
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerSoulGuidance>().AttackSoul(GetComponent<SoulMovementController>());
     }
