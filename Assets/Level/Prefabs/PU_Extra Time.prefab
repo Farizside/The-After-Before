@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1402572882461584510}
   - component: {fileID: 614976000128056123}
   m_Layer: 0
-  m_Name: PW_Extra Time
+  m_Name: PU_Extra Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

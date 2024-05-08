@@ -1,35 +1,66 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _powerUp;
-    [SerializeField] private GameObject[] _point;
-    [SerializeField] private float _time = 5f;
-    private GameObject _spawnedObject;
-    
-    private void Start(){
-        StartCoroutine(SpawnObjectWithDelay());
+    [SerializeField] private GameObject[] _powersUpPrefabs;
+    [SerializeField] private Transform[] _spawnPoints;
+    [SerializeField] private int _curPowersUp;
+
+    private List<int> _selectedSpawnPointIndexes = new List<int>();
+
+    private void Start()
+    {
+        InitializeSelectedSpawnPoints();
+        SpawnPowersUpForWave();
     }
 
-    private IEnumerator SpawnObjectWithDelay()
+    private void OnEnable()
     {
-        while (true){
-            yield return new WaitForSeconds(_time);
-            if (_spawnedObject == null){
-                int randomNumber = Random.Range(0, _powerUp.Length);
-                int randomIndex = Random.Range(0, _point.Length);
-                GameObject randomPoint = _point[randomIndex];
-                GameObject randomPowerUp = _powerUp[randomNumber];
+        GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
+    }
 
-                _spawnedObject = Instantiate(randomPowerUp, randomPoint.transform.position, Quaternion.identity);
-            }
+    private void OnDisable()
+    {
+        GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
+    }
+
+    private void GameManagerOnGameStateChanged(GameState state)
+    {
+        if (state == GameState.Gameplay)
+        {
+            SpawnPowersUpForWave();
         }
     }
 
-    public void ObjectHitByPlayer(){
-        Destroy(_spawnedObject);
+    private void InitializeSelectedSpawnPoints()
+    {
+        _selectedSpawnPointIndexes.Clear();
+    }
 
-        StartCoroutine(SpawnObjectWithDelay());
+    private void SpawnPowersUpForWave()
+    {
+        for (int i = 0; i < _curPowersUp; i++)
+        {
+            int randomIndex;
+
+            if (_selectedSpawnPointIndexes.Count == _spawnPoints.Length)
+            {
+                Debug.Log("All spawn points have been used!");
+                return;
+            }
+
+            do
+            {
+                randomIndex = Random.Range(0, _spawnPoints.Length);
+            } while (_selectedSpawnPointIndexes.Contains(randomIndex));
+
+            _selectedSpawnPointIndexes.Add(randomIndex);
+
+            GameObject powerUpPrefab = _powersUpPrefabs[Random.Range(0, _powersUpPrefabs.Length)];
+            Transform spawnPoint = _spawnPoints[randomIndex];
+
+            Instantiate(powerUpPrefab, spawnPoint.position, Quaternion.identity);
+        }
     }
 }

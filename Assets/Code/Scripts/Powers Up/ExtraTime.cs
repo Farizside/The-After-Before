@@ -6,17 +6,14 @@ public class ExtraTime : MonoBehaviour
 
     private void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player")){
-            Spawner spawner = FindObjectOfType<Spawner>();
-            
-            WaveManager waveManager = FindObjectOfType<WaveManager>(); // Mencari objek WaveManager
-            
+            WaveManager waveManager = FindObjectOfType<WaveManager>();
             if (waveManager != null)
             {
-                waveManager.AddExtraTime(_extraTimeAmount); // Memanggil fungsi untuk menambah waktu ekstra
+                waveManager.AddExtraTime(_extraTimeAmount);
             }
 
             Debug.Log("Wave Time is Increased");
-            spawner.ObjectHitByPlayer();
+            Destroy(gameObject);
         }
     }
 }
