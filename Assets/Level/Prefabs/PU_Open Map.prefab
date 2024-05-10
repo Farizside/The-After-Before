@@ -118,3 +118,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f97af44ac22fd45929f8132730615d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _openMapTimer: 2

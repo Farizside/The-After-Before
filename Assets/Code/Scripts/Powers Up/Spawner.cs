@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour
     private void Start()
     {
         InitializeSelectedSpawnPoints();
-        SpawnPowersUpForWave();
+        //SpawnPowersUpForWave();
     }
 
     private void OnEnable()
@@ -46,7 +46,7 @@ public class Spawner : MonoBehaviour
 
             if (_selectedSpawnPointIndexes.Count == _spawnPoints.Length)
             {
-                Debug.Log("All spawn points have been used!");
+                Debug.Log("All spawn points used!");
                 return;
             }
 

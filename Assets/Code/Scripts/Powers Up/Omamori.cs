@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class Omamori : MonoBehaviour
 {
-    [SerializeField] private float _stunTime = 5f;
+    [SerializeField] private float _stunTime;
+    private EnemyAIMovement enemyAIMovement;
+
+    private void Start() 
+    {
+        enemyAIMovement = FindObjectOfType<EnemyAIMovement>();
+    }
 
     private void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player")){
-            EnemyAIMovement enemyAIMovement = FindObjectOfType<EnemyAIMovement>();
             //enemyAIMovement.Stunned(true, _stunTime);
 
             Debug.Log("Enemy Stunned");
