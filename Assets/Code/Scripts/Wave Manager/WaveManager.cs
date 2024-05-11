@@ -8,7 +8,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private WaveData _waveData;
 
     private int _curWaveId = 0;
-    private float _curWaveTime;
+    private float _curWaveTime = 30f;
     private int _curWaveTarget;
     private int _curWaveInitialSoul;
     private float _curWaveInterval;
@@ -18,6 +18,12 @@ public class WaveManager : MonoBehaviour
     private void Awake()
     {
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
+        //StartCoroutine(WaveTimer());
+    }
+
+    private void Update() 
+    {
+        //Debug.Log(_curWaveTime);    
     }
 
     private void GameManagerOnGameStateChanged(GameState state)
@@ -60,5 +66,10 @@ public class WaveManager : MonoBehaviour
         {
             GameManager.Instance.UpdateGameState(GameState.Lose);
         }
+    }
+
+    public void AddExtraTime(float extraTime)
+    {
+        _curWaveTime += extraTime;
     }
 }
