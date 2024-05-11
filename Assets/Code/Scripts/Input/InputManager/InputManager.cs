@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 [CreateAssetMenu(menuName = "InputAsset")]
 public class InputManager : ScriptableObject, InputAssets.IGameplayActions, InputAssets.IUIActions
 {
-    private InputAssets _inputAssets;
+    private static InputAssets _inputAssets;
 
     private void OnEnable()
     {
@@ -16,18 +16,20 @@ public class InputManager : ScriptableObject, InputAssets.IGameplayActions, Inpu
             _inputAssets.Gameplay.SetCallbacks(this);
             _inputAssets.UI.SetCallbacks(this);
             
-            SetUI();
+            SetGameplay();
         }
     }
 
-    public void SetGameplay()
+    public static void SetGameplay()
     {
+        Debug.Log("Input Gameplay");
         _inputAssets.Gameplay.Enable();
         _inputAssets.UI.Disable();
     }
     
-    public void SetUI()
+    public static void SetUI()
     {
+        Debug.Log("Input UI");
         _inputAssets.Gameplay.Disable();
         _inputAssets.UI.Enable();
     }
@@ -65,7 +67,7 @@ public class InputManager : ScriptableObject, InputAssets.IGameplayActions, Inpu
         if (context.phase == InputActionPhase.Performed)
         {
             PauseEvent?.Invoke();
-            SetUI();
+            // SetUI();
         }
     }
 
@@ -74,7 +76,7 @@ public class InputManager : ScriptableObject, InputAssets.IGameplayActions, Inpu
         if (context.phase == InputActionPhase.Performed)
         {
             ResumeEvent?.Invoke();
-            SetGameplay();
+            // SetGameplay();
         }
     }
 

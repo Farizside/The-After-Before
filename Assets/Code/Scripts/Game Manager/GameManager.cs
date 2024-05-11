@@ -5,10 +5,15 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private InputManager _input;
+    
+    private WaveManager _wave;
+    
+    // To Do: Pindahin ke UI Manager
     [SerializeField] [CanBeNull] private GameObject _uiCanvas;
     [SerializeField] [CanBeNull] private TMP_Text _soulCollectedText;
 
@@ -31,6 +36,7 @@ public class GameManager : MonoBehaviour
         else 
         { 
             Instance = this; 
+            DontDestroyOnLoad(this);
         } 
     }
 
@@ -38,6 +44,8 @@ public class GameManager : MonoBehaviour
     {
         _input.PauseEvent += HandlePause;
         _input.ResumeEvent += HandleResume;
+
+        _wave = WaveManager.Instance;
         
         UpdateGameState(GameState.Gameplay);
     }
@@ -52,9 +60,9 @@ public class GameManager : MonoBehaviour
                 HandleGameplay();
                 break;
             case GameState.UI:
+                HandleUI();
                 break;
             case GameState.Upgrade:
-                Debug.Log("Upgrade");
                 HandleUpgrade();
                 break;
             case GameState.Victory:
@@ -70,34 +78,59 @@ public class GameManager : MonoBehaviour
         OnGameStateChanged?.Invoke(newState);
     }
 
-    private async void HandleUpgrade()
+    private void HandleLose()
     {
-        await Task.Delay(5000);
         
-        UpdateGameState(GameState.Gameplay);
+    }
+    
+    private void HandleVictory()
+    {
+        
+    }
+    
+    private void HandleUpgrade()
+    {
+        InputManager.SetUI();
+        if (_uiCanvas) _uiCanvas.SetActive(true);
+        Time.timeScale = 0;
     }
 
     private void HandleGameplay()
     {
-        
+        if (_uiCanvas) _uiCanvas.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    private void HandleUI()
+    {
+        if (_uiCanvas) _uiCanvas.SetActive(true);
+        Time.timeScale = 0;
     }
 
     private void HandlePause()
     {
-        if (_uiCanvas != null) _uiCanvas.SetActive(true);
-        Time.timeScale = 0;
+        UpdateGameState(GameState.UI);
+        InputManager.SetUI();
     }
 
     public void HandleResume()
     {
-        if (_uiCanvas != null) _uiCanvas.SetActive(false);
-        Time.timeScale = 1;
+        if (State == GameState.Upgrade) return;
+        UpdateGameState(GameState.Gameplay);
+        InputManager.SetGameplay();
     }
 
     public void SubmitSoul()
     {
         _soulCollected += 1;
         _soulCollectedText.text = _soulCollected.ToString();
+    }
+
+    public void OnNextWaveClicked()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        InputManager.SetGameplay();
+        UpdateGameState(GameState.Gameplay);
     }
 }
 
