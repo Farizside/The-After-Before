@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -93,13 +94,16 @@ public class PlayerSoulGuidance : MonoBehaviour
     public void AttackSoul(SoulMovementController soulMovementController)
     {
         int index = _soulsAttracted.IndexOf(soulMovementController);
-        List<SoulMovementController> attackedSouls = _soulsAttracted.GetRange(index, _soulsAttracted.Count - index);
-        foreach (SoulMovementController soul in attackedSouls)
+        if (index != -1)
         {
-            soul.IsAttracted = false;
-            soul.GetComponent<SoulTypeController>().SoulType = SoulType.LOST;
+            List<SoulMovementController> attackedSouls = _soulsAttracted.GetRange(index, _soulsAttracted.Count - index);
+            foreach (SoulMovementController soul in attackedSouls)
+            {
+                soul.IsAttracted = false;
+                soul.GetComponent<SoulTypeController>().SoulType = SoulType.LOST;
+            }
+            _soulsAttracted.RemoveRange(index, _soulsAttracted.Count - index);
         }
-        _soulsAttracted.RemoveRange(index, _soulsAttracted.Count - index);
 
     }
 
