@@ -74,18 +74,40 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
-    public bool ChooseUpgrade(UpgradeData upgradeData)
+    public void ChooseUpgrade(UpgradeData upgradeData)
     {
         int idx = Upgrades.IndexOf(upgradeData);
-        if (UpgradeLevel[idx] >= MaxUpgrade) return false;
+        if (UpgradeLevel[idx] >= MaxUpgrade) return;
         
+        foreach(UpgradeEffect effect in upgradeData.upgradeEffects)
+        {
+            switch (effect.EffectType)
+            {
+                case UpgradeEffectType.AddWaveTime:
+                    Debug.Log("Add Wave Time");
+                    break;
+                case UpgradeEffectType.IncreasePlayerSpeed:
+                    Debug.Log("Increase Player Speed");
+                    break;
+                case UpgradeEffectType.IncreasePlayerLightRadius:
+                    Debug.Log("Increase Player Light Radius");
+                    break;
+                case UpgradeEffectType.DecreasePlayerSlowedSpeed:
+                    Debug.Log("Decrease Player Slowed Speed");
+                    break;
+                case UpgradeEffectType.AddPowerUps:
+                    Debug.Log("Add Power Ups");
+                    break;
+                default:
+                    break;
+            }
+        }
         UpgradeLevel[idx]++;
 
         if (UpgradeLevel[idx] >= MaxUpgrade)
         {
             _upgradeable.Remove(idx);
         }
-        return true;
     }
 
     [ContextMenu("Test Get 3 Upgrades")]
@@ -97,6 +119,6 @@ public class UpgradeManager : MonoBehaviour
     [ContextMenu("Test Get first Upgrade")]
     public void GetFirstUpgrade()
     {
-        if(ChooseUpgrade(UpgradesToChoose[0])) UpgradesToChoose[0].ResolveEffect();
+        ChooseUpgrade(UpgradesToChoose[0]);
     }
 }

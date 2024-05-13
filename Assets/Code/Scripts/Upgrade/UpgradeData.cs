@@ -11,12 +11,4 @@ public class UpgradeData : ScriptableObject
     [TextArea(15,20)]
     public string description;
     public List<UpgradeEffect> upgradeEffects;
-
-    public void ResolveEffect()
-    {
-        foreach(UpgradeEffect effect in upgradeEffects)
-        {
-            effect.Run();
-        }
-    }
 }
