@@ -23,10 +23,17 @@ public class UpgradeManager : MonoBehaviour
             }
             return _instance;
         }
+        set
+        {
+            _instance = value;
+        }
     }
     public List<UpgradeData> Upgrades;
-    public readonly List<int> UpgradeLevel;
-    public readonly List<int> Upgradeable;
+    public List<int> UpgradeLevel;
+    private List<int> _upgradeable;
+
+    [Header("Upgrades To Choose")]
+    public List<UpgradeData> UpgradesToChoose;
     private void Awake()
     {
         if (_instance == null)
@@ -41,59 +48,55 @@ public class UpgradeManager : MonoBehaviour
     }
     private void Start()
     {
+        UpgradeLevel = new();
+        _upgradeable = new();
+
         if(UpgradeLevel.Count == 0)
         {
             for(int i=0; i<Upgrades.Count; i++)
             {
                 UpgradeLevel.Add(0);
-                Upgradeable.Add(i);
+                _upgradeable.Add(i);
             }
         }
     }
 
-    public List<int> GetOptionsIndex(int numberOfOptions)
+    public void SetUpgradeOptions(int numberOfOptions)
     {
-        List<int> optionsIndex = new();
-        for(int i=0; i<numberOfOptions; i++)
+        UpgradesToChoose = new();
+        int n = Mathf.Min(numberOfOptions, _upgradeable.Count);
+        List<int> possibleRandomIndex = new List<int>(_upgradeable);
+        for (int i = 0; i < n; i++)
         {
-            int idx = Random.Range(0, Upgradeable.Count);
-            optionsIndex.Add(Upgradeable[idx]);
+            int idx = Random.Range(0, possibleRandomIndex.Count);
+            UpgradesToChoose.Add(Upgrades[possibleRandomIndex[idx]]);
+            possibleRandomIndex.RemoveAt(idx);
         }
-        return optionsIndex;
     }
 
-    public void ChooseUpgrade(int upgradeIndex)
+    public bool ChooseUpgrade(UpgradeData upgradeData)
     {
-        UpgradeData upgrade = Upgrades[upgradeIndex];
+        int idx = Upgrades.IndexOf(upgradeData);
+        if (UpgradeLevel[idx] >= MaxUpgrade) return false;
         
-        List<UpgradeEffect> effects = upgrade.upgradeEffects;
-        foreach(UpgradeEffect effect in effects)
+        UpgradeLevel[idx]++;
+
+        if (UpgradeLevel[idx] >= MaxUpgrade)
         {
-            switch (effect.EffectType)
-            {
-                case UpgradeEffectType.AddWaveTime:
-                    // Nambah Wave Time saat ini
-                    break;
-                case UpgradeEffectType.IncreasePlayerSpeed:
-
-                    break;
-                case UpgradeEffectType.IncreasePlayerLightRadius:
-                    break;
-                case UpgradeEffectType.DecreasePlayerSlowedSpeed:
-                    break;
-                case UpgradeEffectType.AddPowerUps:
-                    break;
-                default:
-                    break;
-            }
+            _upgradeable.Remove(idx);
         }
-
-        UpgradeLevel[upgradeIndex]++;
-        if (UpgradeLevel[upgradeIndex] >= MaxUpgrade)
-        {
-            Upgradeable.Remove(upgradeIndex);
-        }
-
+        return true;
     }
-    
+
+    [ContextMenu("Test Get 3 Upgrades")]
+    public void Get3Upgrades()
+    {
+        SetUpgradeOptions(3);
+    }
+
+    [ContextMenu("Test Get first Upgrade")]
+    public void GetFirstUpgrade()
+    {
+        if(ChooseUpgrade(UpgradesToChoose[0])) UpgradesToChoose[0].ResolveEffect();
+    }
 }
