@@ -6,6 +6,10 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject[] _powersUpPrefabs;
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private int _curPowersUp;
+    public int CurPowersUp
+    {
+        get { return _curPowersUp; } set { _curPowersUp = value;}
+    }
 
     private List<int> _selectedSpawnPointIndexes = new List<int>();
 

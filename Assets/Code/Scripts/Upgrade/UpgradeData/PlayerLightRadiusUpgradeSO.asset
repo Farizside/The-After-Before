@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bd0f59079792b3419bb745737728e9f, type: 3}
+  m_Name: PlayerLightRadiusUpgradeSO
+  m_EditorClassIdentifier: 
+  id: 3
+  name: Luminous Lantern
+  description: 'Increase the radius of the player''s light radius by 0.5 '
+  upgradeEffects:
+  - {fileID: 11400000, guid: c9c0c102f6bf02647a5ac10ec137f9f4, type: 2}
