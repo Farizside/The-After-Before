@@ -6,67 +6,63 @@ public class EnemyAIMovement : MonoBehaviour
 {
     [Header("Settings")]
     public NavMeshAgent EnemyAgent;
-    public Transform CenterPoint;
-    [SerializeField] private float _range;
+    public Transform[] Waypoints;
     [SerializeField] private float _moveSpeedEnemy;
     private Animator _animator;
+    private Vector3 _targetWaypoints;
+    private int _index;
     private bool _isStunned;
     private int _isMovingHash;
+    private int _isStunnedHash;
     private bool _isPureSoulDetected;
+    
     void Start()
     {
         EnemyAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         _isMovingHash = Animator.StringToHash("isMoving");
+        _isStunnedHash = Animator.StringToHash("isStunned");
         _isStunned = false;
         _isPureSoulDetected = false;
+        UpdateDestination();
     }
 
     void Update()
     {
         Animation();
         Speed(_moveSpeedEnemy);
+        MovePatrolWaypoints();
     }
 
+    private void MovePatrolWaypoints()
+    {
+        if (!_isStunned && !_isPureSoulDetected && Vector3.Distance(transform.position, _targetWaypoints) < 1)
+        {
+            IterateWaypointIndex();
+            UpdateDestination();
+        }
+    }
+
+    private void IterateWaypointIndex()
+    {
+        _index++;
+        if (_index == Waypoints.Length)
+        {
+            _index = 0;
+        }
+    }
+
+    private void UpdateDestination()
+    {
+        _targetWaypoints = Waypoints[_index].position;
+        EnemyAgent.SetDestination(_targetWaypoints);
+    }
     private void Animation()
     {
         bool isMoving = EnemyAgent.velocity.magnitude > 0.1f && !_isStunned;
         _animator.SetBool(_isMovingHash, isMoving);
-    }
+        _animator.SetBool(_isStunnedHash, _isStunned);
 
-    private void MovePatrolRandom()
-    {
-
-        if(IsDestination())
-        {
-            Vector3 point;
-            if(SetRandomPoint(CenterPoint.position, _range, out point))
-            {
-                EnemyAgent.SetDestination(point);
-            }
-        }
-    }
-
-    private bool IsDestination()
-    {
-        bool isDestination = !_isPureSoulDetected || EnemyAgent.remainingDistance <= EnemyAgent.stoppingDistance;
-        return isDestination;
-    }
-
-    private bool SetRandomPoint(Vector3 center, float range, out Vector3 result)
-    {
-        Vector3 randomPositionInSphere = Random.insideUnitSphere * range;
-        Vector3 randomPoint = center + randomPositionInSphere ;
-        
-        NavMeshHit hit;
-        if(NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
-        {
-            
-            result = hit.position;
-            return true;
-        }
-        result = Vector3.zero;
-        return false;
     }
 
     private void Speed(float moveSpeedEnemy)
@@ -77,14 +73,10 @@ public class EnemyAIMovement : MonoBehaviour
     public void Stunned(bool stun, float duration)
     {
         _isStunned = stun;
+        IsStopped(stun);
         if(_isStunned)
         {
-            IsStopped(true);
             StartCoroutine(StunnedDuration(duration));
-        }
-        else
-        {
-            IsStopped(false);
         }
     }
 
@@ -105,18 +97,20 @@ public class EnemyAIMovement : MonoBehaviour
         _isPureSoulDetected = detected;
         if (!_isPureSoulDetected)
         {
-            IsStopped(false);
-            MovePatrolRandom();
+            // IsStopped(false);
+            // MovePatrolRandom();
+            UpdateDestination();
+            MovePatrolWaypoints();
         }
-        else
-        {
-            IsStopped(false);
-        }
-        
     }
 
     public void IsStopped(bool stop)
     {
         EnemyAgent.isStopped = stop;
+    }
+
+    public bool IsStunned()
+    {
+        return _isStunned;
     }
 }

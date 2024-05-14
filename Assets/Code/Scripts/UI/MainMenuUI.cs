@@ -34,7 +34,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void GamePlay()
     {
-        _input.SetGameplay();
+        // _input.SetGameplay();
         SceneManager.LoadScene("Gameplay");
     }
 
