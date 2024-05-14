@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: IncreasePlayerLightRadius
   m_EditorClassIdentifier: 
   EffectType: 2
-  value: 2
+  value: 0.5

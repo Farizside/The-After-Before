@@ -98,10 +98,13 @@ public class UpgradeManager : MonoBehaviour
             _upgradeable.Remove(idx);
         }
     }
-
+    [ContextMenu("Start Wave")]
     public void StartWave()
     {
-        for(int i=0; i<Upgrades.Count; i++)
+        _powerUpSpawner = FindAnyObjectByType<Spawner>();
+        _playerSoulGuidance = FindAnyObjectByType<PlayerSoulGuidance>();
+        _playerMovement = FindAnyObjectByType<PlayerMovement>();
+        for (int i=0; i<Upgrades.Count; i++)
         {
             UpgradeData upgradeData = Upgrades[i];
             int n = UpgradeLevel[i];
@@ -116,14 +119,13 @@ public class UpgradeManager : MonoBehaviour
                         // TODO: Implement light radius effect
                         break;
                     case UpgradeEffectType.IncreasePlayerSpeed:
-                        float extraMovement = _playerMovement.MovementSpeed / 100;
-                        _playerMovement.MovementSpeed += extraMovement * effect.value * n;
+                        _playerMovement.MovementSpeed += effect.value * n;
                         break;
                     case UpgradeEffectType.DecreasePlayerSlowedSpeed:
                         _playerSoulGuidance.SlowingSpeed += effect.value * n;
                         break;
                     case UpgradeEffectType.AddPowerUps:
-                        _powerUpSpawner.CurPowersUp += (int)effect.value * n;
+                        _powerUpSpawner.CurPowersUp = (int)effect.value * n;
                         break;
                     default:
                         break;
@@ -142,6 +144,5 @@ public class UpgradeManager : MonoBehaviour
     public void GetFirstUpgrade()
     {
         ChooseUpgrade(UpgradesToChoose[0]);
-        StartWave();
     }
 }
