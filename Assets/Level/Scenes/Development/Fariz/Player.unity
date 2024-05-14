@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44927424, g: 0.49609005, b: 0.5582083, a: 1}
+  m_IndirectSpecularColor: {r: 0.4492746, g: 0.4960909, b: 0.5582094, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6592,6 +6592,106 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8c6d8cd22b66c14b8e6d8b6e45f5958, type: 3}
+--- !u!1 &1675974640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1675974642}
+  - component: {fileID: 1675974641}
+  m_Layer: 0
+  m_Name: Power Up Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1675974641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675974640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8a647bc6ffa207449846863e5428271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _powersUpPrefabs: []
+  _spawnPoints: []
+  _curPowersUp: 0
+--- !u!4 &1675974642
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675974640}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 225.39996, y: 206.20001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1687016902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1687016904}
+  - component: {fileID: 1687016903}
+  m_Layer: 0
+  m_Name: Upgrade Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1687016903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687016902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38ff5ed284142cf41a4baedc52448c22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxUpgrade: 6
+  Upgrades:
+  - {fileID: 11400000, guid: bc7a9391d1768d542b2f25adda95047e, type: 2}
+  - {fileID: 11400000, guid: 030c38395f6bc9847a29bfd02783cedd, type: 2}
+  - {fileID: 11400000, guid: 80ce42d124ae58e49846e0542c9d3968, type: 2}
+  - {fileID: 11400000, guid: 28e71ac80f1e2cc48aa2e3e449395f18, type: 2}
+  - {fileID: 11400000, guid: 93cd7503a0f7c76408d073067e3e9b48, type: 2}
+  UpgradeLevel: 
+  UpgradesToChoose: []
+--- !u!4 &1687016904
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687016902}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 225.39996, y: 206.20001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1810137921
 GameObject:
   m_ObjectHideFlags: 0
@@ -6756,6 +6856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveData: {fileID: 11400000, guid: 57d118248a875e1458637d885b839dbe, type: 2}
+  ExtraWaveTime: 0
 --- !u!4 &1820846849
 Transform:
   m_ObjectHideFlags: 0
@@ -7972,3 +8073,5 @@ SceneRoots:
   - {fileID: 1188899159}
   - {fileID: 414754197}
   - {fileID: 1820846849}
+  - {fileID: 1687016904}
+  - {fileID: 1675974642}
