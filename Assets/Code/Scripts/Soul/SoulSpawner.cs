@@ -13,6 +13,8 @@ public class SoulSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MaxSouls = WaveManager.Instance.CurWaveMaxSouls;
+        _spawnRate = WaveManager.Instance.CurWaveInterval;
         for (int i = 0; i < MaxSouls; i++)
         {
             GameObject soulGO = _soulGOList[Random.Range(0, _soulGOList.Count)];
@@ -20,7 +22,11 @@ public class SoulSpawner : MonoBehaviour
             _souls.Add(soul);
             soul.SetActive(false);
         }
-        Spawn();
+        int initialSoul = WaveManager.Instance.CurWaveInitialSoul;
+        for(int i=0; i<initialSoul; i++)
+        {
+            Spawn();
+        }
     }
 
     // Update is called once per frame

@@ -20,6 +20,7 @@ public class PlayerSoulGuidance : MonoBehaviour
     private PlayerMovement _playerMovement;
     private SoulMovementController _currSoul;
 
+    public float SlowingSpeed;
     private void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
@@ -74,7 +75,7 @@ public class PlayerSoulGuidance : MonoBehaviour
             _soulsAttracted.Add(soul);
             if (_playerMovement.MovementSpeed > _playerMovement.MovementSpeedLimit)
             {
-                _playerMovement.MovementSpeed -= 1;
+                _playerMovement.MovementSpeed -= SlowingSpeed;
             }
         }
     }
@@ -115,7 +116,7 @@ public class PlayerSoulGuidance : MonoBehaviour
             {
                 soul.IsAttracted = false;
                 soul.gameObject.SetActive(false);
-                _playerMovement.MovementSpeed += 1;
+                _playerMovement.MovementSpeed += SlowingSpeed;
                 GameManager.Instance.SubmitSoul();
             }
             else
