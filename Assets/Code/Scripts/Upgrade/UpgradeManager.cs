@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
@@ -34,12 +35,19 @@ public class UpgradeManager : MonoBehaviour
 
     [Header("Upgrades To Choose")]
     public List<UpgradeData> UpgradesToChoose;
+
+    [Header("Dependent Objects")]
+    private Spawner _powerUpSpawner;
+    private WaveManager _waveManager;
+    private PlayerMovement _playerMovement;
+    private PlayerSoulGuidance _playerSoulGuidance;
+
     private void Awake()
     {
         if (_instance == null)
         {
             _instance = this;
-            //DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -59,6 +67,10 @@ public class UpgradeManager : MonoBehaviour
                 _upgradeable.Add(i);
             }
         }
+        _powerUpSpawner = FindAnyObjectByType<Spawner>();
+        _waveManager = FindAnyObjectByType<WaveManager>();
+        _playerSoulGuidance = FindAnyObjectByType<PlayerSoulGuidance>();
+        _playerMovement = FindAnyObjectByType<PlayerMovement>();
     }
 
     public void SetUpgradeOptions(int numberOfOptions)
@@ -79,34 +91,44 @@ public class UpgradeManager : MonoBehaviour
         int idx = Upgrades.IndexOf(upgradeData);
         if (UpgradeLevel[idx] >= MaxUpgrade) return;
         
-        foreach(UpgradeEffect effect in upgradeData.upgradeEffects)
-        {
-            switch (effect.EffectType)
-            {
-                case UpgradeEffectType.AddWaveTime:
-                    Debug.Log("Add Wave Time");
-                    break;
-                case UpgradeEffectType.IncreasePlayerSpeed:
-                    Debug.Log("Increase Player Speed");
-                    break;
-                case UpgradeEffectType.IncreasePlayerLightRadius:
-                    Debug.Log("Increase Player Light Radius");
-                    break;
-                case UpgradeEffectType.DecreasePlayerSlowedSpeed:
-                    Debug.Log("Decrease Player Slowed Speed");
-                    break;
-                case UpgradeEffectType.AddPowerUps:
-                    Debug.Log("Add Power Ups");
-                    break;
-                default:
-                    break;
-            }
-        }
         UpgradeLevel[idx]++;
 
         if (UpgradeLevel[idx] >= MaxUpgrade)
         {
             _upgradeable.Remove(idx);
+        }
+    }
+
+    public void StartWave()
+    {
+        for(int i=0; i<Upgrades.Count; i++)
+        {
+            UpgradeData upgradeData = Upgrades[i];
+            int n = UpgradeLevel[i];
+            foreach(UpgradeEffect effect in upgradeData.upgradeEffects)
+            {
+                switch (effect.EffectType)
+                {
+                    case UpgradeEffectType.AddWaveTime:
+                        _waveManager.ExtraWaveTime = effect.value * n;
+                        break;
+                    case UpgradeEffectType.IncreasePlayerLightRadius:
+                        // TODO: Implement light radius effect
+                        break;
+                    case UpgradeEffectType.IncreasePlayerSpeed:
+                        float extraMovement = _playerMovement.MovementSpeed / 100;
+                        _playerMovement.MovementSpeed += extraMovement * effect.value * n;
+                        break;
+                    case UpgradeEffectType.DecreasePlayerSlowedSpeed:
+                        _playerSoulGuidance.SlowingSpeed += effect.value * n;
+                        break;
+                    case UpgradeEffectType.AddPowerUps:
+                        _powerUpSpawner.CurPowersUp += (int)effect.value * n;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 
@@ -120,5 +142,6 @@ public class UpgradeManager : MonoBehaviour
     public void GetFirstUpgrade()
     {
         ChooseUpgrade(UpgradesToChoose[0]);
+        StartWave();
     }
 }

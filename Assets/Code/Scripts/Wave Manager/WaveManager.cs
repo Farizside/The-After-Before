@@ -26,6 +26,8 @@ public class WaveManager : MonoBehaviour
     }
 
     public static WaveManager Instance;
+
+    public float ExtraWaveTime;
     
     private void Awake()
     {
@@ -90,7 +92,7 @@ public class WaveManager : MonoBehaviour
 
     private void SetCurrentData()
     {
-        _curWaveTime = _waveData.wavesData[_curWaveId].time;
+        _curWaveTime = _waveData.wavesData[_curWaveId].time + ExtraWaveTime;
         _curWaveTarget = _waveData.wavesData[_curWaveId].target;
         _curWaveInitialSoul = _waveData.wavesData[_curWaveId].initialSoul;
         _curWaveInterval = _waveData.wavesData[_curWaveId].interval;
