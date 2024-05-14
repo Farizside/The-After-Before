@@ -25,6 +25,11 @@ public class WaveManager : MonoBehaviour
         set => _curWaveId = value;
     }
 
+    public int CurWaveInitialSoul => _curWaveInitialSoul;
+    public float CurWaveInterval => _curWaveInterval;
+    public float CurWavePureRate => _curWavePureRate;
+    public int CurWaveMaxSouls => _curWaveMaxSouls;
+
     public static WaveManager Instance;
 
     public float ExtraWaveTime;
