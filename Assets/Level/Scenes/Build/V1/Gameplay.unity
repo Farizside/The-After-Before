@@ -434,10 +434,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1597,6 +1597,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: map
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream:Assets/Level/Scenes/Build/V1/Gameplay.unity
+=======
+    - target: {fileID: 919132149155446097, guid: 396a4b38f6502d74a837c26428f9c521, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes:Assets/Level/Scenes/Build/Gameplay.unity
     - target: {fileID: 921391927218321214, guid: 396a4b38f6502d74a837c26428f9c521, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3118,5 +3125,9 @@ SceneRoots:
   - {fileID: 900221575}
   - {fileID: 518430093}
   - {fileID: 1024732020}
+<<<<<<< Updated upstream:Assets/Level/Scenes/Build/V1/Gameplay.unity
   - {fileID: 337914262}
   - {fileID: 682524561}
+=======
+  - {fileID: 944978905}
+>>>>>>> Stashed changes:Assets/Level/Scenes/Build/Gameplay.unity
