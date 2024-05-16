@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 240720285537513572}
   - component: {fileID: 548868659765061687}
   - component: {fileID: 8063544488563165685}
+  - component: {fileID: 5742175119400325369}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -47,42 +48,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6f227ccec03464a98893ae49b65555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffects:
-  - groupID: Attract
+  SoundEffects:
+  - GroupID: Attract
     clips:
     - {fileID: 8300000, guid: 6b49a4fcb86231a42945a693a0c7ae44, type: 3}
-  - groupID: Deattract
-    clips: []
-  - groupID: PU Times
+  - GroupID: Deattract
     clips:
-    - {fileID: 8300000, guid: 4756def95e97444478f018f3d30163a9, type: 3}
-  - groupID: PU Open Map
-    clips:
-    - {fileID: 8300000, guid: 2cb3a65c2c0b97f4c8dca68c6af435cf, type: 3}
-  - groupID: PU Stun
-    clips:
-    - {fileID: 8300000, guid: 93d7d56efac6a8a4192dc7bc2ee577b1, type: 3}
-  - groupID: Times Up
-    clips:
-    - {fileID: 8300000, guid: 8b7ab5900c97a7c4e854ed1dc24313aa, type: 3}
-  - groupID: Upgrade
-    clips:
-    - {fileID: 8300000, guid: f31014af30c1c8847abdc30a918987dd, type: 3}
-  - groupID: Submit
-    clips:
-    - {fileID: 8300000, guid: 70bc53dd05dbc1f47927fc59e4e637e4, type: 3}
-  - groupID: Victory
-    clips:
-    - {fileID: 8300000, guid: b8cfd1de3fc60214f8e26d5525bb621e, type: 3}
-  - groupID: EnemyTouch
+    - {fileID: 8300000, guid: 9607cfc233d4ca540832f803278ed397, type: 3}
+  - GroupID: EnemyTouch
     clips:
     - {fileID: 8300000, guid: 244ff6fbef4833b4cad03959ac65a5ec, type: 3}
-  - groupID: Click
+  - GroupID: Click
     clips:
     - {fileID: 8300000, guid: 332eb66b13cc9ee419177dceaf3456bf, type: 3}
-  - groupID: Hover
+  - GroupID: Hover
     clips:
     - {fileID: 8300000, guid: 2e53ae295ba44894f9adfbc1f969efb3, type: 3}
+  - GroupID: PUTimes
+    clips:
+    - {fileID: 8300000, guid: 4756def95e97444478f018f3d30163a9, type: 3}
+  - GroupID: PUOpenMap
+    clips:
+    - {fileID: 8300000, guid: 2cb3a65c2c0b97f4c8dca68c6af435cf, type: 3}
+  - GroupID: PUStun
+    clips:
+    - {fileID: 8300000, guid: 93d7d56efac6a8a4192dc7bc2ee577b1, type: 3}
+  - GroupID: Submit
+    clips:
+    - {fileID: 8300000, guid: 70bc53dd05dbc1f47927fc59e4e637e4, type: 3}
+  - GroupID: TimesUo
+    clips:
+    - {fileID: 8300000, guid: 8b7ab5900c97a7c4e854ed1dc24313aa, type: 3}
+  - GroupID: Upgrade
+    clips:
+    - {fileID: 8300000, guid: f31014af30c1c8847abdc30a918987dd, type: 3}
+  - GroupID: Victory
+    clips:
+    - {fileID: 8300000, guid: b8cfd1de3fc60214f8e26d5525bb621e, type: 3}
 --- !u!114 &8063544488563165685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,11 +97,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d981526e7f043746a920e6a1515f025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tracks:
-  - trackName: 'MainMenu '
-    clip: {fileID: 8300000, guid: 8b28706439554da499b5bce419f3ab79, type: 3}
-  - trackName: GamePlay
-    clip: {fileID: 8300000, guid: 5f0b0c366d97b8c4e9111deec3d30d1d, type: 3}
+  Tracks:
+  - TrackName: MainMenu
+    Clip: {fileID: 8300000, guid: 8b28706439554da499b5bce419f3ab79, type: 3}
+  - TrackName: GamePlay
+    Clip: {fileID: 8300000, guid: 5f0b0c366d97b8c4e9111deec3d30d1d, type: 3}
+--- !u!114 &5742175119400325369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482484269169857117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb30cbab4388b1043ad0315952c702ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _musicSource: {fileID: 5410764542367358754}
+  _soundEffectSource: {fileID: 3744371262250053656}
+  _musicLibrary: {fileID: 8063544488563165685}
+  _soundLibrary: {fileID: 548868659765061687}
+  _audioMixer: {fileID: 24100000, guid: d46fb3b3e1de4934684a7634a404ddf4, type: 2}
+  Paused: {fileID: 571959443961437878, guid: d46fb3b3e1de4934684a7634a404ddf4, type: 2}
+  Unpaused: {fileID: 24500006, guid: d46fb3b3e1de4934684a7634a404ddf4, type: 2}
 --- !u!1 &2489453073066601627
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +290,7 @@ AudioSource:
   m_GameObject: {fileID: 5221100828822439714}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8812211533202607700, guid: d46fb3b3e1de4934684a7634a404ddf4, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

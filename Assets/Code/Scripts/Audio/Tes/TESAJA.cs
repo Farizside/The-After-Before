@@ -1,39 +1,52 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f; // Kecepatan gerakan kapsul
-    public AudioClip collisionSound; // Suara yang akan dimainkan saat kapsul menabrak
+    public float moveSpeed = 5f;
 
     private Rigidbody rb;
-    private AudioSource audioSource;
+    private AudioManager audioManager;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
+        audioManager = AudioManager.Instance;
     }
 
     void FixedUpdate()
     {
-        // Mendapatkan input keyboard untuk menggerakkan kapsul
+       
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        // Menggerakkan kapsul sesuai dengan input
+       
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rb.AddForce(movement * moveSpeed);
     }
 
-    // Ketika kapsul menabrak objek lain
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Soul")) // Cek apakah objek yang ditabrak adalah kotak
+        if (other.gameObject.CompareTag("Soul"))
         {
-            // Memainkan suara ketika kapsul menabrak
-            if (collisionSound != null && audioSource != null)
+            if (audioManager != null)
             {
-                audioSource.PlayOneShot(collisionSound);
+                audioManager.PlaySound3D("Attract", other.transform.position);
+            }
+            else
+            {
+                Debug.LogWarning("AudioManager instance is not assigned to PlayerController!");
+            }
+        }
+        else if (other.gameObject.CompareTag("Ofuda Room"))
+        {
+            if (audioManager != null)
+            {
+                audioManager.PlaySound3D("Submit", other.transform.position);
+            }
+            else
+            {
+                Debug.LogWarning("AudioManager instance is not assigned to PlayerController!");
             }
         }
     }

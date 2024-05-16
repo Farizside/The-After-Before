@@ -11,16 +11,17 @@ using UnityEditor;
 public class PauseManager : MonoBehaviour
 {
     Canvas canvas;
+    public AudioMixer MasterMixer;
+    public Slider MasterSlider;
     public AudioMixerSnapshot Paused;
     public AudioMixerSnapshot Unpaused;
-    private bool prevTimeScale = true;
+    private bool _prevTimeScale = true;
     void Start()
     {
         canvas = GetComponent<Canvas>();
-        canvas.enabled = false; // Hide the canvas on Start
+        canvas.enabled = false; 
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -40,16 +41,31 @@ public class PauseManager : MonoBehaviour
     {
         bool isPaused = Time.timeScale == 0;
         {
-            prevTimeScale = isPaused;
+            _prevTimeScale = isPaused;
             if (isPaused)
             {
-                Paused.TransitionTo(.01f);
+                Paused.TransitionTo(.001f);
             }
             else
             {
-                Unpaused.TransitionTo(.01f);
+                Unpaused.TransitionTo(.001f);
             }
         }
+    }
+    public void SetMaster(float MasterLvl)
+    {
+        MasterMixer.SetFloat("MasterVol", MasterLvl);
+    }
+    public void SaveVolume()
+    {
+        MasterMixer.GetFloat("MusicVolume", out float musicVolume);
+        PlayerPrefs.SetFloat("MusicVolume", musicVolume);
+    }
+
+    public void LoadVolume()
+    {
+        MasterSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+
     }
 
     public void Quit()

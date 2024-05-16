@@ -2416,27 +2416,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5.0000305, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &2026841025 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1482484269169857117, guid: 5895da15bbd6d6b4d87f64f8e934be5e, type: 3}
-  m_PrefabInstance: {fileID: 4988794113148954040}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2026841031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2026841025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb30cbab4388b1043ad0315952c702ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _musicSource: {fileID: 0}
-  _soundEffectSource: {fileID: 0}
-  _musicLibrary: {fileID: 0}
-  _soundLibrary: {fileID: 0}
 --- !u!1 &2032989380
 GameObject:
   m_ObjectHideFlags: 0
@@ -2561,10 +2540,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 548868659765061687, guid: 5895da15bbd6d6b4d87f64f8e934be5e, type: 3}
-      propertyPath: SoundEffects.Array.size
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 548868659765061687, guid: 5895da15bbd6d6b4d87f64f8e934be5e, type: 3}
       propertyPath: soundEffects.Array.data[1].clips.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2588,17 +2563,10 @@ PrefabInstance:
       propertyPath: OutputAudioMixerGroup
       value: 
       objectReference: {fileID: 8735290020364759594, guid: d46fb3b3e1de4934684a7634a404ddf4, type: 2}
-    - target: {fileID: 8063544488563165685, guid: 5895da15bbd6d6b4d87f64f8e934be5e, type: 3}
-      propertyPath: Tracks.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1482484269169857117, guid: 5895da15bbd6d6b4d87f64f8e934be5e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2026841031}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5895da15bbd6d6b4d87f64f8e934be5e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

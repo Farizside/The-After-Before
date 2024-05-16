@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -32,19 +34,28 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioSource _musicSource;
     [SerializeField]
-    private AudioSource _soundEffectSource; 
+    private AudioSource _soundEffectSource;
 
     #endregion
 
     #region Audio Libraries
 
     [SerializeField]
-    private MusicLibrary _musicLibrary; 
+    private MusicLibrary _musicLibrary;
     [SerializeField]
-    private SoundLibrary _soundLibrary; 
+    private SoundLibrary _soundLibrary;
 
     #endregion
 
+    [SerializeField]
+    private AudioMixer _audioMixer; 
+
+    public AudioMixerSnapshot Paused;
+    public AudioMixerSnapshot Unpaused;
+    private bool _isPaused = false;
+
+    private string _currentMusicClipName;
+    private float _musicSourceTime;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -80,7 +91,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            //Debug.LogError("Sound library not assigned to AudioManager!");
+            Debug.LogError("Sound library not assigned to AudioManager!");
         }
     }
 
@@ -96,7 +107,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            //Debug.LogError("Music library not assigned to AudioManager!");
+            Debug.LogError("Music library not assigned to AudioManager!");
         }
     }
 
@@ -110,10 +121,11 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
 
-        _musicSource.clip = nextTrack;
+        _currentMusicClipName = nextTrack.name; 
         _musicSource.Play();
-        percent = 0f;
+        _musicSourceTime = 0f;
 
+        percent = 0f;
         while (percent < 1f)
         {
             percent += Time.deltaTime / fadeDuration;
@@ -138,14 +150,51 @@ public class AudioManager : MonoBehaviour
             }
             else
             {
-                //Debug.LogError("Invalid library type passed to GetClipFromLibrary!");
+                Debug.LogError("Invalid library type passed to GetClipFromLibrary!");
                 return null;
             }
         }
         else
         {
-            //Debug.LogError("Library not assigned to AudioManager!");
+            Debug.LogError("Library not assigned to AudioManager!");
             return null;
+        }
+    }
+
+    public void PauseAudio()
+    {
+        if (_audioMixer != null)
+        {
+            Paused.TransitionTo(.001f); 
+        }
+        _isPaused = true;
+    }
+    public void ResumeAudio()
+    {
+        if (_audioMixer != null)
+        {
+            Unpaused.TransitionTo(.001f); 
+        }
+        _isPaused = false;
+    }
+
+    public void Update()
+    {
+        if (_audioMixer != null)
+        {
+            string currentSceneName = SceneManager.GetActiveScene().name;
+
+            if (currentSceneName == "Gameplay")
+            {
+                if (_isPaused)
+                {
+                    PauseAudio();
+                }
+                else
+                {
+                    ResumeAudio();
+                }
+            }
         }
     }
 }
