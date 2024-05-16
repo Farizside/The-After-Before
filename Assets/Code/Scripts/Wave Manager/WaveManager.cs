@@ -7,6 +7,8 @@ public class WaveManager : MonoBehaviour
 {
     [SerializeField] private WaveData _waveData;
 
+    public WaveData WaveData => _waveData;
+
     private int _curWaveId;
     
     // To Do : Integrasi ke UI Manager
@@ -25,38 +27,47 @@ public class WaveManager : MonoBehaviour
         set => _curWaveId = value;
     }
 
+    public float CurWaveTime => _curWaveTime;
+    public int CurWaveTarget => _curWaveTarget;
     public int CurWaveInitialSoul => _curWaveInitialSoul;
     public float CurWaveInterval => _curWaveInterval;
     public float CurWavePureRate => _curWavePureRate;
     public int CurWaveMaxSouls => _curWaveMaxSouls;
 
-    public static WaveManager Instance;
-
-    public float ExtraWaveTime;
+    private UIManager _ui;
+    private UpgradeManager _upgrade;
     
+    public static WaveManager Instance;
+    
+    public float ExtraWaveTime;
+
     private void Awake()
     {
-        if (Instance != null && Instance != this) 
-        { 
-            Destroy(this); 
-        } 
-        else 
-        { 
-            Instance = this; 
-            DontDestroyOnLoad(this);
-        } 
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         
         SetCurrentData();
         
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
     }
 
+    private void Start()
+    {
+        _ui = UIManager.Instance;
+        _upgrade = UpgradeManager.Instance;
+    }
+
     private void GameManagerOnGameStateChanged(GameState state)
     {
-        if (state == GameState.Upgrade)
-        {
-            SetCurrentData();
-        }
+        StopAllCoroutines();
+        
         if (state == GameState.Gameplay)
         {
             StartCoroutine(WaveTimer());
@@ -68,25 +79,30 @@ public class WaveManager : MonoBehaviour
         while (_curWaveTime > 0)
         {
             _curWaveTime -= Time.deltaTime;
+
+            if (GameManager.Instance.SoulCollected >= _curWaveTarget)
+            {
+                if (_curWaveId == _waveData.wavesData.Count)
+                {
+                    GameManager.Instance.UpdateGameState(GameState.Victory);
+                    _ui.WinCanvas();
+                }
+                else
+                {
+                    GameManager.Instance.UpdateGameState(GameState.Upgrade);
+                    _curWaveId += 1;
+                    _upgrade.SetUpgradeOptions(3);
+                    _ui.UpgradeCanvas();
+                }
+            }
+
             yield return null;
         }
         
         if (GameManager.Instance.SoulCollected <= _curWaveTarget)
         {
-            if (_curWaveId == _waveData.wavesData.Count)
-            {
-                GameManager.Instance.UpdateGameState(GameState.Victory);
-            }
-            else
-            {
-                GameManager.Instance.UpdateGameState(GameState.Upgrade);
-                _curWaveId += 1;
-                SetCurrentData();
-            }
-        }
-        else
-        {
             GameManager.Instance.UpdateGameState(GameState.Lose);
+            _ui.LoseCanvas();
         }
     }
 
@@ -95,7 +111,7 @@ public class WaveManager : MonoBehaviour
         _curWaveTime += extraTime;
     }
 
-    private void SetCurrentData()
+    public void SetCurrentData()
     {
         _curWaveTime = _waveData.wavesData[_curWaveId].time + ExtraWaveTime;
         _curWaveTarget = _waveData.wavesData[_curWaveId].target;

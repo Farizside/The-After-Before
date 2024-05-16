@@ -12,11 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private InputManager _input;
     
     private WaveManager _wave;
-    
-    // To Do: Pindahin ke UI Manager
-    [SerializeField] [CanBeNull] private GameObject _uiCanvas;
-    [SerializeField] [CanBeNull] private TMP_Text _soulCollectedText;
-
+    private UIManager _ui;
     public static event Action<GameState> OnGameStateChanged; 
     
     public GameState State;
@@ -27,17 +23,17 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-    private void Awake() 
-    { 
-        if (Instance != null && Instance != this) 
-        { 
-            Destroy(this); 
-        } 
-        else 
-        { 
-            Instance = this; 
-            DontDestroyOnLoad(this);
-        } 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()
@@ -46,6 +42,7 @@ public class GameManager : MonoBehaviour
         _input.ResumeEvent += HandleResume;
 
         _wave = WaveManager.Instance;
+        _ui = UIManager.Instance;
         
         UpdateGameState(GameState.Gameplay);
     }
@@ -91,24 +88,23 @@ public class GameManager : MonoBehaviour
     private void HandleUpgrade()
     {
         InputManager.SetUI();
-        if (_uiCanvas) _uiCanvas.SetActive(true);
         Time.timeScale = 0;
     }
 
     private void HandleGameplay()
     {
-        if (_uiCanvas) _uiCanvas.SetActive(false);
+        _ui.HUDCanvas();
         Time.timeScale = 1;
     }
 
     private void HandleUI()
     {
-        if (_uiCanvas) _uiCanvas.SetActive(true);
         Time.timeScale = 0;
     }
 
-    private void HandlePause()
+    public void HandlePause()
     {
+        _ui.PauseCanvas();
         UpdateGameState(GameState.UI);
         InputManager.SetUI();
     }
@@ -123,14 +119,15 @@ public class GameManager : MonoBehaviour
     public void SubmitSoul()
     {
         _soulCollected += 1;
-        _soulCollectedText.text = _soulCollected.ToString();
     }
 
     public void OnNextWaveClicked()
     {
+        _soulCollected = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         InputManager.SetGameplay();
         UpdateGameState(GameState.Gameplay);
+        _wave.SetCurrentData();
     }
 }
 

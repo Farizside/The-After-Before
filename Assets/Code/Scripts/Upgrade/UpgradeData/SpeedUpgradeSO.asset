@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SpeedUpgradeSO
   m_EditorClassIdentifier: 
   id: 2
+  image: {fileID: 21300000, guid: e288d1817daa3054b99068bd3eb867ff, type: 3}
   name: Swift Soul
   description: Increase player speed by 1%
   upgradeEffects:

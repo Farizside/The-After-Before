@@ -22,14 +22,12 @@ public class InputManager : ScriptableObject, InputAssets.IGameplayActions, Inpu
 
     public static void SetGameplay()
     {
-        Debug.Log("Input Gameplay");
         _inputAssets.Gameplay.Enable();
         _inputAssets.UI.Disable();
     }
     
     public static void SetUI()
     {
-        Debug.Log("Input UI");
         _inputAssets.Gameplay.Disable();
         _inputAssets.UI.Enable();
     }

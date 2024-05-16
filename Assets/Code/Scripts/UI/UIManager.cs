@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,57 +20,93 @@ public class UIManager : MonoBehaviour
     public List<Sprite> UpgradeCard;
     public GameObject PrefabCard;
 
-    // Start is called before the first frame update
+    [SerializeField] private TMP_Text _timerText;
+    [SerializeField] private TMP_Text _soulText;
+    [SerializeField] private TMP_Text _waveText;
+    [SerializeField] private List<Button> _upgradeButtons;
+
+    private int _time;
+    private int _soul;
+    private int _target;
+    private int _curWave;
+    private int _waveLength;
+    
+    private WaveManager _wave;
+    private GameManager _gm;
+    private UpgradeManager _upgrade;
+    
+    public static UIManager Instance;
+
+    private void Awake() 
+    { 
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
     void Start()
     {
         HUDCanvas();
-        BtnPause.onClick.AddListener(PauseCanvas);
-        BtnResume.onClick.AddListener(HUDCanvas);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        _wave = WaveManager.Instance;
+        _gm = GameManager.Instance;
+        _upgrade = UpgradeManager.Instance;
+        BtnPause.onClick.AddListener(_gm.HandlePause);
+        BtnResume.onClick.AddListener(_gm.HandleResume);
         
+        _waveLength = _wave.WaveData.wavesData.Count;
     }
 
-    private void PauseCanvas()
+    private void Update()
+    {
+        _curWave = _wave.CurWaveId + 1;
+        _time = (int)Math.Floor(_wave.CurWaveTime);
+        _soul = _gm.SoulCollected;
+        _target = _wave.CurWaveTarget;
+        ShowUIText();
+    }
+
+    public void PauseCanvas()
     {
         HideAllCanvases();
         HUD.enabled = true;
         PauseUI.enabled = true;
     }
 
-    private void HUDCanvas()
+    public void HUDCanvas()
     {
         HideAllCanvases();
         HUD.enabled = true;
     }
 
-    private void LoseCanvas()
+    public void LoseCanvas()
     {
         HideAllCanvases();
         Lose.enabled = true;
     }
 
-    private void WinCanvas()
+    public void WinCanvas()
     {
         HideAllCanvases();
         Win.enabled = true;
     }
 
-    private void UpgradeCanvas()
+    public void UpgradeCanvas()
     {
         HideAllCanvases();
         HUD.enabled = true;
         Upgrade.enabled = true;
-        UpgradeManager.Instance.SetUpgradeOptions(3); //akses upgarde manager
-        List<GameObject> upgradeCard;
+        
         for(int i=0; i<UpgradeManager.Instance.UpgradesToChoose.Count; i++)
         {
-            GameObject card = Instantiate(PrefabCard);
-            card.GetComponent<UpgradeCardController>().dataKartu = UpgradeManager.Instance.UpgradesToChoose[i];
-            card.GetComponent<SpriteRenderer>().sprite = UpgradeCard[UpgradeManager.Instance.UpgradesToChoose[i].id-1];
+            _upgradeButtons[i].image.sprite = _upgrade.UpgradesToChoose[i].image;
+            // _upgradeButtons[i].onClick.AddListener(delegate{_upgrade.ChooseUpgrade(_upgrade.UpgradesToChoose[i]);});
+            _upgradeButtons[i].onClick.AddListener(_gm.OnNextWaveClicked);
         }
     }
 
@@ -93,5 +131,12 @@ public class UIManager : MonoBehaviour
         Upgrade.enabled = false;
         Tutorial1.enabled = false;
         Tutorial2.enabled = false;
+    }
+
+    public void ShowUIText()
+    {
+        _timerText.text = $"{_time}";
+        _soulText.text = $"{_soul}/{_target}";
+        _waveText.text = $"{_curWave}/{_waveLength}";
     }
 }
