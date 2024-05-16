@@ -88,7 +88,7 @@ public class PlayerSoulGuidance : MonoBehaviour
             soul.IsAttracted = false;
         }
 
-        _playerMovement.MovementSpeed += _soulsAttracted.Count;
+        _playerMovement.MovementSpeed += _soulsAttracted.Count * SlowingSpeed;
         _soulsAttracted.Clear();
     }
 

@@ -32,7 +32,7 @@ public class MainMenuUI : MonoBehaviour
     private void GamePlay()
     {
         // _input.SetGameplay();
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
     private void About()

@@ -16,7 +16,7 @@ public class InputManager : ScriptableObject, InputAssets.IGameplayActions, Inpu
             _inputAssets.Gameplay.SetCallbacks(this);
             _inputAssets.UI.SetCallbacks(this);
             
-            SetGameplay();
+            SetUI();
         }
     }
 
@@ -65,7 +65,6 @@ public class InputManager : ScriptableObject, InputAssets.IGameplayActions, Inpu
         if (context.phase == InputActionPhase.Performed)
         {
             PauseEvent?.Invoke();
-            // SetUI();
         }
     }
 
@@ -74,7 +73,6 @@ public class InputManager : ScriptableObject, InputAssets.IGameplayActions, Inpu
         if (context.phase == InputActionPhase.Performed)
         {
             ResumeEvent?.Invoke();
-            // SetGameplay();
         }
     }
 

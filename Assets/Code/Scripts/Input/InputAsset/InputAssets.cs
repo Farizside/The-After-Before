@@ -134,7 +134,7 @@ public partial class @InputAssets: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""421aa547-231f-401f-a13f-d1930285bfa8"",
-                    ""path"": ""<Keyboard>/backquote"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -307,7 +307,7 @@ public partial class @InputAssets: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6cc68f16-018d-4ca5-b790-0f404b464bf6"",
-                    ""path"": ""<Keyboard>/backquote"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

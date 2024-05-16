@@ -58,6 +58,11 @@ public class WaveManager : MonoBehaviour
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
     }
 
+    private void OnDestroy()
+    {
+        GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
+    }
+
     private void Start()
     {
         _ui = UIManager.Instance;
@@ -91,8 +96,6 @@ public class WaveManager : MonoBehaviour
                 {
                     GameManager.Instance.UpdateGameState(GameState.Upgrade);
                     _curWaveId += 1;
-                    _upgrade.SetUpgradeOptions(3);
-                    _ui.UpgradeCanvas();
                 }
             }
 

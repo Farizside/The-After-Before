@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         _wave = WaveManager.Instance;
         _ui = UIManager.Instance;
         
-        UpdateGameState(GameState.Gameplay);
+        UpdateGameState(GameState.Tutorial);
     }
 
     public void UpdateGameState(GameState newState)
@@ -63,10 +63,13 @@ public class GameManager : MonoBehaviour
                 HandleUpgrade();
                 break;
             case GameState.Victory:
-                Debug.Log("Victory");
+                HandleVictory();
                 break;
             case GameState.Lose:
-                Debug.Log("Lose");
+                HandleLose();
+                break;
+            case GameState.Tutorial:
+                HandleTutorial();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -75,18 +78,30 @@ public class GameManager : MonoBehaviour
         OnGameStateChanged?.Invoke(newState);
     }
 
+    private void HandleTutorial()
+    {
+        _ui.Tutorial1Canvas();
+        InputManager.SetUI();
+        Time.timeScale = 0;
+    }
+    
     private void HandleLose()
     {
-        
+        _ui.LoseCanvas();
+        InputManager.SetUI();
+        Time.timeScale = 0;
     }
     
     private void HandleVictory()
     {
-        
+        _ui.WinCanvas();
+        InputManager.SetUI();
+        Time.timeScale = 0;
     }
     
     private void HandleUpgrade()
     {
+        _ui.UpgradeCanvas();
         InputManager.SetUI();
         Time.timeScale = 0;
     }
@@ -99,19 +114,19 @@ public class GameManager : MonoBehaviour
 
     private void HandleUI()
     {
+        _ui.PauseCanvas();
         Time.timeScale = 0;
     }
 
     public void HandlePause()
     {
-        _ui.PauseCanvas();
         UpdateGameState(GameState.UI);
         InputManager.SetUI();
     }
 
     public void HandleResume()
     {
-        if (State == GameState.Upgrade) return;
+        if (State == GameState.Upgrade || State == GameState.Tutorial) return;
         UpdateGameState(GameState.Gameplay);
         InputManager.SetGameplay();
     }
@@ -129,6 +144,14 @@ public class GameManager : MonoBehaviour
         UpdateGameState(GameState.Gameplay);
         _wave.SetCurrentData();
     }
+
+    public void OnTutorialFinished()
+    {
+        UpdateGameState(GameState.Gameplay);
+        InputManager.SetGameplay();
+        _ui.HUDCanvas();
+        Time.timeScale = 1;
+    }
 }
 
 public enum GameState
@@ -137,5 +160,6 @@ public enum GameState
     UI,
     Upgrade,
     Victory,
-    Lose
+    Lose,
+    Tutorial
 }

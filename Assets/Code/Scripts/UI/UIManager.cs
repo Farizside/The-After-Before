@@ -101,8 +101,8 @@ public class UIManager : MonoBehaviour
         HideAllCanvases();
         HUD.enabled = true;
         Upgrade.enabled = true;
-        _upgrade.StartWave();
-        for(int i=0; i<UpgradeManager.Instance.UpgradesToChoose.Count; i++)
+        _upgrade.SetUpgradeOptions(3);
+        for(int i=0; i< _upgrade.UpgradesToChoose.Count; i++)
         {
             _upgradeButtons[i].image.sprite = _upgrade.UpgradesToChoose[i].image;
             // _upgradeButtons[i].onClick.AddListener(delegate{_upgrade.ChooseUpgrade(_upgrade.UpgradesToChoose[i]);});
@@ -114,13 +114,13 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void Tutorial1Canvas()
+    public void Tutorial1Canvas()
     {
         HideAllCanvases();
         Tutorial1.enabled = true;
     }
 
-    private void Tutorial2Canvas()
+    public void Tutorial2Canvas()
     {
         HideAllCanvases();
         Tutorial2.enabled = true;

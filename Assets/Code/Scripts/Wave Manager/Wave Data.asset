@@ -15,7 +15,7 @@ MonoBehaviour:
   wavesData:
   - id: 1
     target: 3
-    time: 90
+    time: 60
     initialSoul: 1
     interval: 5
     pureRate: 0
@@ -27,3 +27,59 @@ MonoBehaviour:
     interval: 5
     pureRate: 0
     maxSouls: 3
+  - id: 3
+    target: 5
+    time: 75
+    initialSoul: 1
+    interval: 5
+    pureRate: 0
+    maxSouls: 4
+  - id: 4
+    target: 6
+    time: 80
+    initialSoul: 1
+    interval: 5
+    pureRate: 0
+    maxSouls: 4
+  - id: 5
+    target: 10
+    time: 90
+    initialSoul: 2
+    interval: 4
+    pureRate: 0
+    maxSouls: 5
+  - id: 6
+    target: 5
+    time: 60
+    initialSoul: 1
+    interval: 4.5
+    pureRate: 1
+    maxSouls: 4
+  - id: 7
+    target: 7
+    time: 70
+    initialSoul: 1
+    interval: 4.5
+    pureRate: 1
+    maxSouls: 4
+  - id: 8
+    target: 9
+    time: 75
+    initialSoul: 1
+    interval: 4.5
+    pureRate: 1
+    maxSouls: 5
+  - id: 9
+    target: 11
+    time: 80
+    initialSoul: 2
+    interval: 4.5
+    pureRate: 1
+    maxSouls: 5
+  - id: 10
+    target: 15
+    time: 90
+    initialSoul: 3
+    interval: 3.5
+    pureRate: 1
+    maxSouls: 6
