@@ -12,7 +12,7 @@ public class Omamori : MonoBehaviour
 
     private void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player")){
-            //enemyAIMovement.Stunned(true, _stunTime);
+            enemyAIMovement.Stunned(true, _stunTime);
 
             Debug.Log("Enemy Stunned");
             Destroy(gameObject);
