@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     public Canvas Tutorial1;
     public Canvas Tutorial2;
 
+    public List<Sprite> UpgradeCard;
+    public GameObject PrefabCard;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +62,14 @@ public class UIManager : MonoBehaviour
         HideAllCanvases();
         HUD.enabled = true;
         Upgrade.enabled = true;
+        UpgradeManager.Instance.SetUpgradeOptions(3); //akses upgarde manager
+        List<GameObject> upgradeCard;
+        for(int i=0; i<UpgradeManager.Instance.UpgradesToChoose.Count; i++)
+        {
+            GameObject card = Instantiate(PrefabCard);
+            card.GetComponent<UpgradeCardController>().dataKartu = UpgradeManager.Instance.UpgradesToChoose[i];
+            card.GetComponent<SpriteRenderer>().sprite = UpgradeCard[UpgradeManager.Instance.UpgradesToChoose[i].id-1];
+        }
     }
 
     private void Tutorial1Canvas()
