@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     
     private WaveManager _wave;
     private UIManager _ui;
+    private UpgradeManager _upgrade;
     public static event Action<GameState> OnGameStateChanged; 
     
     public GameState State;
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
 
         _wave = WaveManager.Instance;
         _ui = UIManager.Instance;
+        _upgrade = UpgradeManager.Instance;
         
         UpdateGameState(GameState.Tutorial);
     }
@@ -142,6 +144,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         InputManager.SetGameplay();
         UpdateGameState(GameState.Gameplay);
+        _upgrade.StartWave();
         _wave.SetCurrentData();
     }
 

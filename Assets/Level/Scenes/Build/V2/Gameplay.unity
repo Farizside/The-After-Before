@@ -220,6 +220,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3810837707488678685}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &69430125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 69430126}
+  m_Layer: 0
+  m_Name: 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &69430126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69430125}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.05, y: 20.5, z: 24.47}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3810837707488678685}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &80066353
 GameObject:
   m_ObjectHideFlags: 3
@@ -4674,7 +4705,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: F
+  m_text: L
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 468d686319e28554887937eebbd0f85a, type: 2}
   m_sharedMaterial: {fileID: -1807311053462933552, guid: 468d686319e28554887937eebbd0f85a, type: 2}
@@ -4808,7 +4839,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: E
+  m_text: K
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 468d686319e28554887937eebbd0f85a, type: 2}
   m_sharedMaterial: {fileID: -1807311053462933552, guid: 468d686319e28554887937eebbd0f85a, type: 2}
@@ -5259,6 +5290,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5177228570047221746, guid: 0904447bf5673dc48ab969c59a56990a, type: 3}
+      propertyPath: _curPowersUp
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177228570047221746, guid: 0904447bf5673dc48ab969c59a56990a, type: 3}
       propertyPath: _spawnPoints.Array.size
       value: 6
       objectReference: {fileID: 0}
@@ -5269,7 +5304,7 @@ PrefabInstance:
     - target: {fileID: 5177228570047221746, guid: 0904447bf5673dc48ab969c59a56990a, type: 3}
       propertyPath: _spawnPoints.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 69430126}
     - target: {fileID: 5177228570047221746, guid: 0904447bf5673dc48ab969c59a56990a, type: 3}
       propertyPath: _spawnPoints.Array.data[2]
       value: 
@@ -7814,7 +7849,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Q
+  m_text: J
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 468d686319e28554887937eebbd0f85a, type: 2}
   m_sharedMaterial: {fileID: -1807311053462933552, guid: 468d686319e28554887937eebbd0f85a, type: 2}
@@ -9165,6 +9200,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 58749336}
+  - {fileID: 69430126}
   - {fileID: 979805124}
   - {fileID: 382607026}
   - {fileID: 1453615689}

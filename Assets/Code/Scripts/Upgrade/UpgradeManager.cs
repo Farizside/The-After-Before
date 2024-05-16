@@ -53,6 +53,11 @@ public class UpgradeManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+        _powerUpSpawner = FindAnyObjectByType<Spawner>();
+        _playerSoulGuidance = FindAnyObjectByType<PlayerSoulGuidance>();
+        _playerMovement = FindAnyObjectByType<PlayerMovement>();
+        _waveManager = FindAnyObjectByType<WaveManager>();
     }
     private void Start()
     {
@@ -67,10 +72,6 @@ public class UpgradeManager : MonoBehaviour
                 _upgradeable.Add(i);
             }
         }
-        _powerUpSpawner = FindAnyObjectByType<Spawner>();
-        _waveManager = FindAnyObjectByType<WaveManager>();
-        _playerSoulGuidance = FindAnyObjectByType<PlayerSoulGuidance>();
-        _playerMovement = FindAnyObjectByType<PlayerMovement>();
     }
 
     public void SetUpgradeOptions(int numberOfOptions)
@@ -101,9 +102,6 @@ public class UpgradeManager : MonoBehaviour
     [ContextMenu("Start Wave")]
     public void StartWave()
     {
-        _powerUpSpawner = FindAnyObjectByType<Spawner>();
-        _playerSoulGuidance = FindAnyObjectByType<PlayerSoulGuidance>();
-        _playerMovement = FindAnyObjectByType<PlayerMovement>();
         for (int i=0; i<Upgrades.Count; i++)
         {
             UpgradeData upgradeData = Upgrades[i];
