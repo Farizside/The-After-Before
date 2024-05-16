@@ -101,11 +101,15 @@ public class UIManager : MonoBehaviour
         HideAllCanvases();
         HUD.enabled = true;
         Upgrade.enabled = true;
-        
+        _upgrade.StartWave();
         for(int i=0; i<UpgradeManager.Instance.UpgradesToChoose.Count; i++)
         {
             _upgradeButtons[i].image.sprite = _upgrade.UpgradesToChoose[i].image;
             // _upgradeButtons[i].onClick.AddListener(delegate{_upgrade.ChooseUpgrade(_upgrade.UpgradesToChoose[i]);});
+            UpgradeData upg = _upgrade.UpgradesToChoose[i];
+            _upgradeButtons[i].onClick.AddListener(delegate {
+                _upgrade.ChooseUpgrade(upg); 
+            }) ;
             _upgradeButtons[i].onClick.AddListener(_gm.OnNextWaveClicked);
         }
     }
