@@ -1,6 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerSoulGuidance : MonoBehaviour
@@ -20,6 +20,7 @@ public class PlayerSoulGuidance : MonoBehaviour
     private PlayerMovement _playerMovement;
     private SoulMovementController _currSoul;
 
+    public float SlowingSpeed;
     private void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
@@ -30,8 +31,11 @@ public class PlayerSoulGuidance : MonoBehaviour
     {
         if (!_currSoul.IsAttracted)
         {
+            if(_soulsAttracted.Count == 0)
+            {
+                _currSoul.IsFirst = true;
+            }
             AttractSoul(_currSoul);
-            Debug.Log("Attracted");
         }
     }
 
@@ -41,6 +45,10 @@ public class PlayerSoulGuidance : MonoBehaviour
         {
             _currSoul = other.GetComponent<SoulMovementController>();
             _input.AttractEvent += Attract;
+            if (!_currSoul.IsAttracted)
+            {
+                AddOutline(other);   
+            }
         }
     }
 
@@ -50,6 +58,7 @@ public class PlayerSoulGuidance : MonoBehaviour
         {
             _currSoul = null;
             _input.AttractEvent -= Attract;
+            RemoveOutline(other);
         }
     }
 
@@ -66,7 +75,7 @@ public class PlayerSoulGuidance : MonoBehaviour
             _soulsAttracted.Add(soul);
             if (_playerMovement.MovementSpeed > _playerMovement.MovementSpeedLimit)
             {
-                _playerMovement.MovementSpeed -= 1;
+                _playerMovement.MovementSpeed -= SlowingSpeed;
             }
         }
     }
@@ -79,7 +88,43 @@ public class PlayerSoulGuidance : MonoBehaviour
             soul.IsAttracted = false;
         }
 
-        _playerMovement.MovementSpeed += _soulsAttracted.Count;
+        _playerMovement.MovementSpeed += _soulsAttracted.Count * SlowingSpeed;
+        _soulsAttracted.Clear();
+    }
+
+    public void AttackSoul(SoulMovementController soulMovementController)
+    {
+        int index = _soulsAttracted.IndexOf(soulMovementController);
+        if (index != -1)
+        {
+            List<SoulMovementController> attackedSouls = _soulsAttracted.GetRange(index, _soulsAttracted.Count - index);
+            foreach (SoulMovementController soul in attackedSouls)
+            {
+                soul.IsAttracted = false;
+                soul.GetComponent<SoulTypeController>().SoulType = SoulType.LOST;
+            }
+            _soulsAttracted.RemoveRange(index, _soulsAttracted.Count - index);
+        }
+
+    }
+
+    public void SubmitSoul()
+    {
+        foreach(SoulMovementController soul in _soulsAttracted)
+        {
+            if (soul.GetComponent<SoulTypeController>().SoulType == SoulType.PURE)
+            {
+                soul.IsAttracted = false;
+                soul.gameObject.SetActive(false);
+                _playerMovement.MovementSpeed += SlowingSpeed;
+                GameManager.Instance.SubmitSoul();
+            }
+            else
+            {
+                return;
+            }
+        }
+        
         _soulsAttracted.Clear();
     }
     
@@ -91,5 +136,18 @@ public class PlayerSoulGuidance : MonoBehaviour
             _soulsAttracted[i].TargetPosition = targetPosition;
             targetPosition = _soulsAttracted[i].transform.position;
         }
+    }
+
+    private void AddOutline(Collider other)
+    {
+        var outline = other.GetComponent<Outline>() ? other.GetComponent<Outline>() : other.AddComponent<Outline>();
+        outline.enabled = true;
+        outline.OutlineWidth = 7f;
+    }
+
+    private void RemoveOutline(Collider other)
+    {
+        var outline = other.GetComponent<Outline>() ? other.GetComponent<Outline>() : other.AddComponent<Outline>();
+        outline.enabled = false;
     }
 }

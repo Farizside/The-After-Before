@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoulSpawner : MonoBehaviour
 {
     [SerializeField] private float _spawnRate = 5f;
-    [SerializeField] private GameObject _soulGO;
+    [SerializeField] private List<GameObject> _soulGOList;
     [SerializeField] private GameEvent _onSoulSpawned;
     public int MaxSouls = 5;
     [SerializeField] private List<GameObject> _souls;
@@ -13,13 +13,20 @@ public class SoulSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MaxSouls = WaveManager.Instance.CurWaveMaxSouls;
+        _spawnRate = WaveManager.Instance.CurWaveInterval;
         for (int i = 0; i < MaxSouls; i++)
         {
-            GameObject soul = Instantiate(_soulGO, transform.position, Quaternion.identity);
+            GameObject soulGO = _soulGOList[Random.Range(0, _soulGOList.Count)];
+            GameObject soul = Instantiate(soulGO, transform.position, Quaternion.identity);
             _souls.Add(soul);
             soul.SetActive(false);
         }
-        Spawn();
+        int initialSoul = WaveManager.Instance.CurWaveInitialSoul;
+        for(int i=0; i<initialSoul; i++)
+        {
+            Spawn();
+        }
     }
 
     // Update is called once per frame
@@ -35,6 +42,8 @@ public class SoulSpawner : MonoBehaviour
             if (!soul.activeSelf)
             {
                 soul.SetActive(true);
+                soul.transform.position = transform.position;
+                soul.GetComponent<SoulTypeController>().SoulType = SoulType.LOST;
                 _onSoulSpawned.Raise(this, soul);
                 return;
             }
@@ -48,5 +57,10 @@ public class SoulSpawner : MonoBehaviour
         yield return new WaitForSeconds(_spawnRate);
         canSpawn = true;
         Spawn();
+    }
+
+    public void onSubmitSoul(Component sender, object data)
+    {
+        canSpawn = true;
     }
 }
