@@ -14,8 +14,6 @@ public class UIManager : MonoBehaviour
     public Canvas Lose;
     public Canvas Win;
     public Canvas Upgrade;
-    public Canvas Tutorial1;
-    public Canvas Tutorial2;
 
     public List<Sprite> UpgradeCard;
     public GameObject PrefabCard;
@@ -114,18 +112,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void Tutorial1Canvas()
-    {
-        HideAllCanvases();
-        Tutorial1.enabled = true;
-    }
-
-    public void Tutorial2Canvas()
-    {
-        HideAllCanvases();
-        Tutorial2.enabled = true;
-    }
-
     void HideAllCanvases()
     {
         PauseUI.enabled = false;
@@ -133,8 +119,6 @@ public class UIManager : MonoBehaviour
         Lose.enabled = false;
         Win.enabled = false;
         Upgrade.enabled = false;
-        Tutorial1.enabled = false;
-        Tutorial2.enabled = false;
     }
 
     public void ShowUIText()
