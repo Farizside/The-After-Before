@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 240720285537513572}
   - component: {fileID: 548868659765061687}
   - component: {fileID: 8063544488563165685}
-  - component: {fileID: 5742175119400325369}
+  - component: {fileID: 8754158439409457395}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -102,7 +102,7 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 8b28706439554da499b5bce419f3ab79, type: 3}
   - TrackName: GamePlay
     Clip: {fileID: 8300000, guid: 5f0b0c366d97b8c4e9111deec3d30d1d, type: 3}
---- !u!114 &5742175119400325369
+--- !u!114 &8754158439409457395
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -292,7 +292,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 8812211533202607700, guid: d46fb3b3e1de4934684a7634a404ddf4, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
