@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private InputManager _input;
+    [SerializeField] private GameObject _tutorial;
     
     private WaveManager _wave;
     private UIManager _ui;
@@ -82,8 +83,8 @@ public class GameManager : MonoBehaviour
 
     private void HandleTutorial()
     {
-        _ui.Tutorial1Canvas();
-        InputManager.SetUI();
+        _tutorial.SetActive(true);
+        InputManager.SetTutorial();
         Time.timeScale = 0;
     }
     
