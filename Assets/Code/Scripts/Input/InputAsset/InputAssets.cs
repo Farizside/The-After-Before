@@ -62,6 +62,15 @@ public partial class @InputAssets: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""6bb3ff8f-8177-4935-b874-bb3a8e52bff6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -194,6 +203,17 @@ public partial class @InputAssets: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Deattract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e3146adf-54c6-4844-8aba-af40adf8beb6"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -755,6 +775,7 @@ public partial class @InputAssets: IInputActionCollection2, IDisposable
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         m_Gameplay_Attract = m_Gameplay.FindAction("Attract", throwIfNotFound: true);
         m_Gameplay_Deattract = m_Gameplay.FindAction("Deattract", throwIfNotFound: true);
+        m_Gameplay_Dash = m_Gameplay.FindAction("Dash", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Resume = m_UI.FindAction("Resume", throwIfNotFound: true);
@@ -833,6 +854,7 @@ public partial class @InputAssets: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Pause;
     private readonly InputAction m_Gameplay_Attract;
     private readonly InputAction m_Gameplay_Deattract;
+    private readonly InputAction m_Gameplay_Dash;
     public struct GameplayActions
     {
         private @InputAssets m_Wrapper;
@@ -841,6 +863,7 @@ public partial class @InputAssets: IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputAction @Attract => m_Wrapper.m_Gameplay_Attract;
         public InputAction @Deattract => m_Wrapper.m_Gameplay_Deattract;
+        public InputAction @Dash => m_Wrapper.m_Gameplay_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -862,6 +885,9 @@ public partial class @InputAssets: IInputActionCollection2, IDisposable
             @Deattract.started += instance.OnDeattract;
             @Deattract.performed += instance.OnDeattract;
             @Deattract.canceled += instance.OnDeattract;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -878,6 +904,9 @@ public partial class @InputAssets: IInputActionCollection2, IDisposable
             @Deattract.started -= instance.OnDeattract;
             @Deattract.performed -= instance.OnDeattract;
             @Deattract.canceled -= instance.OnDeattract;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -1027,6 +1056,7 @@ public partial class @InputAssets: IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnAttract(InputAction.CallbackContext context);
         void OnDeattract(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

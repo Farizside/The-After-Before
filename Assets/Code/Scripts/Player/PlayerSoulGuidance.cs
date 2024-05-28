@@ -19,16 +19,27 @@ public class PlayerSoulGuidance : MonoBehaviour
 
     private PlayerMovement _playerMovement;
     private SoulMovementController _currSoul;
+    private Animator _animator;
+
+    private int _isAttractHash;
+    private int _isDeattractHash;
 
     public float SlowingSpeed;
     private void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
+        _animator = GetComponent<Animator>();
+        
+        _isAttractHash = Animator.StringToHash("isAttract");
+        _isDeattractHash = Animator.StringToHash("isDeattract");
+        
         _input.DeattractEvent += DeattractSoul;
     }
 
     private void Attract()
     {
+        _animator.SetTrigger(_isAttractHash);
+        
         if (!_currSoul.IsAttracted)
         {
             if(_soulsAttracted.Count == 0)
@@ -83,6 +94,8 @@ public class PlayerSoulGuidance : MonoBehaviour
     [ContextMenu("Deattract All Soul")]
     private void DeattractSoul()
     {
+        _animator.SetTrigger(_isDeattractHash);
+        
         foreach(SoulMovementController soul in _soulsAttracted)
         {
             soul.IsAttracted = false;

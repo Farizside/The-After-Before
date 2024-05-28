@@ -33,6 +33,8 @@ public class InputManager : ScriptableObject, InputAssets.IGameplayActions, Inpu
     }
     
     public event Action<Vector2> MoveEvent;
+
+    public event Action DashEvent; 
     public event Action AttractEvent;
     public event Action DeattractEvent;
     public event Action PauseEvent;
@@ -42,6 +44,14 @@ public class InputManager : ScriptableObject, InputAssets.IGameplayActions, Inpu
     public void OnMove(InputAction.CallbackContext context)
     {
         MoveEvent?.Invoke(context.ReadValue<Vector2>());
+    }
+    
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            DashEvent?.Invoke();
+        }
     }
 
     public void OnAttract(InputAction.CallbackContext context)

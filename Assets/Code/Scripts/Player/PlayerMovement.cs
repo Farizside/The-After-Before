@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _movemenentSpeed;
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private float _movementSpeedLimit;
+    [SerializeField] private float _dashSpeed;
+    [SerializeField] private float _dashTime;
+    [SerializeField] private float _dashCooldown;
 
     public float MovementSpeed
     {
@@ -24,6 +27,10 @@ public class PlayerMovement : MonoBehaviour
     private int _isWalkingHash;
     private Vector3 _currentMovement;
     private bool _isMovementPressed;
+    private Vector3 _faceTransform;
+    private bool _isDashCooldown = false;
+    private float _dashCurrentCooldown;
+    private int _isDashingHash;
 
     private void Awake()
     {
@@ -31,8 +38,12 @@ public class PlayerMovement : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         
         _isWalkingHash = Animator.StringToHash("isWalking");
+        _isDashingHash = Animator.StringToHash("isDash");
         
         _input.MoveEvent += HandleMove;
+        _input.DashEvent += HandleDash;
+
+        _dashCurrentCooldown = _dashCooldown;
     }
 
     private void Update()
@@ -40,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
         HandleAnimation();
         HandleRotation();
         HandleGravity();
+        HandleDirection();
+        HandleCooldown();
         Move();
     }
 
@@ -101,5 +114,48 @@ public class PlayerMovement : MonoBehaviour
             float gravity = -9.8f;
             _currentMovement.y += gravity;
         }
+    }
+
+    private void HandleDirection()
+    {
+        if (_isMovementPressed)
+        {
+            _faceTransform = _currentMovement;
+        }
+    }
+
+    private void HandleCooldown()
+    {
+        if (!_isDashCooldown) return;
+        if (_dashCurrentCooldown > 0)
+        {
+            _dashCurrentCooldown -= Time.deltaTime;
+        }
+        else
+        {
+            _dashCurrentCooldown = _dashCooldown;
+            _isDashCooldown = false;
+        }
+    }
+
+    private void HandleDash()
+    {
+        if (_isDashCooldown) return;
+        StartCoroutine(Dash());
+        _isDashCooldown = true;
+    }
+    
+    private IEnumerator Dash()
+    {
+        _animator.SetTrigger(_isDashingHash);
+        float startTime = Time.time;
+
+        while (Time.time < startTime + _dashTime)
+        {
+            _characterController.Move(_faceTransform * ((_movemenentSpeed * _dashSpeed) * Time.deltaTime));
+
+            yield return null;
+        }
+        
     }
 }
