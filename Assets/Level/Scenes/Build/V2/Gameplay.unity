@@ -5282,6 +5282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _input: {fileID: 11400000, guid: 4cb132790b2b4824da141100eb3db2e2, type: 2}
+  _tutorial: {fileID: 2101323829}
   State: 0
 --- !u!4 &1309705805
 Transform:

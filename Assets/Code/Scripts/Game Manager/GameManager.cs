@@ -38,11 +38,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
         _input.PauseEvent += HandlePause;
         _input.ResumeEvent += HandleResume;
+    }
 
+    private void OnDisable()
+    {
+        _input.PauseEvent -= HandlePause;
+        _input.ResumeEvent -= HandleResume;
+    }
+
+    private void Start()
+    {
         _wave = WaveManager.Instance;
         _ui = UIManager.Instance;
         _upgrade = UpgradeManager.Instance;

@@ -36,6 +36,12 @@ public class PlayerSoulGuidance : MonoBehaviour
         _input.DeattractEvent += DeattractSoul;
     }
 
+    private void OnDisable()
+    {
+        _input.DeattractEvent -= DeattractSoul;
+        _input.AttractEvent -= Attract;
+    }
+
     private void Attract()
     {
         _animator.SetTrigger(_isAttractHash);

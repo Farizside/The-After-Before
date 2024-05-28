@@ -46,6 +46,12 @@ public class PlayerMovement : MonoBehaviour
         _dashCurrentCooldown = _dashCooldown;
     }
 
+    private void OnDisable()
+    {
+        _input.MoveEvent -= HandleMove;
+        _input.DashEvent -= HandleDash;
+    }
+
     private void Update()
     {
         HandleAnimation();

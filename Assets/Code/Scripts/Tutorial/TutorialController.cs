@@ -14,13 +14,20 @@ public class TutorialController : MonoBehaviour
 
     private int _tutorialIndex = 0;
 
-    private void Start()
+    private void OnEnable()
     {
         _input.NextEvent += NextTutorial;
         _input.BackEvent += BackTutorial;
         _input.SkipEvent += SkipTutorial;
         
         ShowTutorial();
+    }
+
+    private void OnDisable()
+    {
+        _input.NextEvent -= NextTutorial;
+        _input.BackEvent -= BackTutorial;
+        _input.SkipEvent -= SkipTutorial;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,11 +44,11 @@ public class TutorialController : MonoBehaviour
         {
             if (i == _tutorialIndex)
             {
-                _tutorialPrefabs[i].SetActive(true);
+                _tutorialPrefabs[i]?.SetActive(true);
             }
             else
             {
-                _tutorialPrefabs[i].SetActive(false);
+                _tutorialPrefabs[i]?.SetActive(false);
             }
         }
         
