@@ -1,63 +1,178 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private InputManager _input;
-    [SerializeField] private GameObject _uiCanvas;
-    [SerializeField] private TMP_Text _soulCollectedText;
+    [SerializeField] private GameObject _tutorial;
+    
+    private WaveManager _wave;
+    private UIManager _ui;
+    private UpgradeManager _upgrade;
+    public static event Action<GameState> OnGameStateChanged; 
+    
+    public GameState State;
+    
+    private int _soulCollected = 0;
 
-    private bool _isPaused = false;
-    private int _soulCollected { get; set; } = 0;
+    public int SoulCollected => _soulCollected;
 
-    public int SoulCollected
+    public static GameManager Instance;
+
+    private void Awake()
     {
-        get => _soulCollected;
-        set
+        if (Instance == null)
         {
-            _soulCollected = value;
-            Debug.Log(_soulCollected);
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
-    public static GameManager Instance { get; set; }
-
-    private void Awake() 
-    { 
-        if (Instance != null && Instance != this) 
-        { 
-            Destroy(this); 
-        } 
-        else 
-        { 
-            Instance = this; 
-        } 
-    }
-
-    private void Start()
+    private void OnEnable()
     {
         _input.PauseEvent += HandlePause;
         _input.ResumeEvent += HandleResume;
     }
 
-    private void HandlePause()
+    private void OnDisable()
     {
-        if (_uiCanvas != null) _uiCanvas.SetActive(true);
+        _input.PauseEvent -= HandlePause;
+        _input.ResumeEvent -= HandleResume;
+    }
+
+    private void Start()
+    {
+        _wave = WaveManager.Instance;
+        _ui = UIManager.Instance;
+        _upgrade = UpgradeManager.Instance;
+        
+        UpdateGameState(GameState.Tutorial);
+    }
+
+    public void UpdateGameState(GameState newState)
+    {
+        State = newState;
+
+        switch (newState)
+        {
+            case GameState.Gameplay:
+                HandleGameplay();
+                break;
+            case GameState.UI:
+                HandleUI();
+                break;
+            case GameState.Upgrade:
+                HandleUpgrade();
+                break;
+            case GameState.Victory:
+                HandleVictory();
+                break;
+            case GameState.Lose:
+                HandleLose();
+                break;
+            case GameState.Tutorial:
+                HandleTutorial();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
+        }
+        
+        OnGameStateChanged?.Invoke(newState);
+    }
+
+    private void HandleTutorial()
+    {
+        _tutorial.SetActive(true);
+        InputManager.SetTutorial();
         Time.timeScale = 0;
+    }
+    
+    private void HandleLose()
+    {
+        _ui.LoseCanvas();
+        InputManager.SetUI();
+        Time.timeScale = 0;
+    }
+    
+    private void HandleVictory()
+    {
+        _ui.WinCanvas();
+        InputManager.SetUI();
+        Time.timeScale = 0;
+    }
+    
+    private void HandleUpgrade()
+    {
+        _ui.UpgradeCanvas();
+        InputManager.SetUI();
+        Time.timeScale = 0;
+    }
+
+    private void HandleGameplay()
+    {
+        _ui.HUDCanvas();
+        Time.timeScale = 1;
+    }
+
+    private void HandleUI()
+    {
+        _ui.PauseCanvas();
+        Time.timeScale = 0;
+    }
+
+    public void HandlePause()
+    {
+        UpdateGameState(GameState.UI);
+        InputManager.SetUI();
     }
 
     public void HandleResume()
     {
-        if (_uiCanvas != null) _uiCanvas.SetActive(false);
-        Time.timeScale = 1;
+        if (State == GameState.Upgrade || State == GameState.Tutorial) return;
+        UpdateGameState(GameState.Gameplay);
+        InputManager.SetGameplay();
     }
 
     public void SubmitSoul()
     {
         _soulCollected += 1;
-        _soulCollectedText.text = _soulCollected.ToString();
     }
+
+    public void OnNextWaveClicked()
+    {
+        _soulCollected = 0;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        InputManager.SetGameplay();
+        UpdateGameState(GameState.Gameplay);
+        _upgrade.StartWave();
+        _wave.SetCurrentData();
+    }
+
+    public void OnTutorialFinished()
+    {
+        UpdateGameState(GameState.Gameplay);
+        InputManager.SetGameplay();
+        _ui.HUDCanvas();
+        Time.timeScale = 1;
+    }
+}
+
+public enum GameState
+{
+    Gameplay,
+    UI,
+    Upgrade,
+    Victory,
+    Lose,
+    Tutorial
 }

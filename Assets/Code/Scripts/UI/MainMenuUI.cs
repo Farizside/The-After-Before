@@ -8,11 +8,9 @@ public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private InputManager _input;
     public Button BtnGamePlay;
-    public Button BtnSetting;
     public Button BtnAbout;
     public Button BtnExit;
     public GameObject CanvasMenu;
-    public GameObject CanvasSetting;
     public GameObject CanvasAbout;
 
     public BackToMenu setting;
@@ -21,7 +19,6 @@ public class MainMenuUI : MonoBehaviour
     {
         _input.BackEvent += setting.Back;
         BtnGamePlay.onClick.AddListener(GamePlay);
-        BtnSetting.onClick.AddListener(Setting);
         BtnAbout.onClick.AddListener(About);
         BtnExit.onClick.AddListener(Exit);
     }
@@ -34,14 +31,8 @@ public class MainMenuUI : MonoBehaviour
 
     private void GamePlay()
     {
-        _input.SetGameplay();
-        SceneManager.LoadScene("Gameplay");
-    }
-
-    private void Setting()
-    {
-        CanvasMenu.SetActive(false);
-        CanvasSetting.SetActive(true);
+        // _input.SetGameplay();
+        SceneManager.LoadScene(1);
     }
 
     private void About()

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Art/Models/Player/Character/Materials.meta
+guid: 10a406daaa1c00541b1bbfad00d81ac3
+========
 guid: 4d914a90d88c3174a87a62e578c271a0
+>>>>>>>> dev:Assets/Art/Models/Map/Materials.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
