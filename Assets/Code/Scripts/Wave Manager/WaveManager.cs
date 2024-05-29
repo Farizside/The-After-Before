@@ -41,6 +41,8 @@ public class WaveManager : MonoBehaviour
     
     public float ExtraWaveTime;
 
+    public int CurPowerUps;
+
     private void Awake()
     {
         if (Instance == null)
