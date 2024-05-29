@@ -5,34 +5,19 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] _powersUpPrefabs;
     [SerializeField] private Transform[] _spawnPoints;
-    [SerializeField] private int _curPowersUp;
-    public int CurPowersUp
-    {
-        get { return _curPowersUp; } set { _curPowersUp = value;}
-    }
+    private WaveManager _waveManager;
 
     private List<int> _selectedSpawnPointIndexes = new List<int>();
 
-    private void Start()
-    {
-        InitializeSelectedSpawnPoints();
-        //SpawnPowersUpForWave();
+    private void Awake() {
+        _waveManager = FindObjectOfType<WaveManager>();
     }
 
-    private void OnEnable()
+    private void Start() 
     {
-        GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
-    }
-
-    private void OnDisable()
-    {
-        GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
-    }
-
-    private void GameManagerOnGameStateChanged(GameState state)
-    {
-        if (state == GameState.Gameplay)
+        if (_waveManager.CurWaveId >= 5)
         {
+            InitializeSelectedSpawnPoints();
             SpawnPowersUpForWave();
         }
     }
@@ -44,7 +29,7 @@ public class Spawner : MonoBehaviour
 
     private void SpawnPowersUpForWave()
     {
-        for (int i = 0; i < _curPowersUp; i++)
+        for (int i = 0; i < _waveManager.CurPowerUps; i++)
         {
             int randomIndex;
 
