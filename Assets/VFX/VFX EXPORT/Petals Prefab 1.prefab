@@ -205,7 +205,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.058490515, b: 0.6256422, a: 1}
+      maxColor: {r: 0.74213827, g: 0.3197262, b: 0.5749334, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.42745098, g: 1, b: 0, a: 1}
@@ -618,7 +618,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 30, y: 1, z: 20}
+    m_Scale: {x: 30, y: 1, z: 15}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -816,7 +816,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 18
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1437,7 +1437,7 @@ ParticleSystem:
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -1494,7 +1494,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: -2
       minScalar: 0
       maxCurve:
         serializedVersion: 2
