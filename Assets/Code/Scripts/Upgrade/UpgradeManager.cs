@@ -37,7 +37,6 @@ public class UpgradeManager : MonoBehaviour
     public List<UpgradeData> UpgradesToChoose;
 
     [Header("Dependent Objects")]
-    private Spawner _powerUpSpawner;
     private WaveManager _waveManager;
     private PlayerMovement _playerMovement;
     private PlayerSoulGuidance _playerSoulGuidance;
@@ -54,7 +53,6 @@ public class UpgradeManager : MonoBehaviour
             Destroy(gameObject);
         }
         
-        _powerUpSpawner = FindAnyObjectByType<Spawner>();
         _playerSoulGuidance = FindAnyObjectByType<PlayerSoulGuidance>();
         _playerMovement = FindAnyObjectByType<PlayerMovement>();
         _waveManager = FindAnyObjectByType<WaveManager>();
@@ -123,7 +121,7 @@ public class UpgradeManager : MonoBehaviour
                         _playerSoulGuidance.SlowingSpeed += effect.value * n;
                         break;
                     case UpgradeEffectType.AddPowerUps:
-                        _powerUpSpawner.CurPowersUp = (int)effect.value * n;
+                        _waveManager.CurPowerUps = (int)effect.value * n;
                         break;
                     default:
                         break;
