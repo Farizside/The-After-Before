@@ -29,7 +29,7 @@ public class BackToMenu : MonoBehaviour
     private void Menu()
     {
         GameManager.Instance.HandleResume();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(2);
     }
 
     public void Back()
