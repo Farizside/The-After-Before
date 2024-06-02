@@ -9,11 +9,11 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public Button BtnPause, BtnResume;
-    public Canvas PauseUI;
-    public Canvas HUD;
-    public Canvas Lose;
-    public Canvas Win;
-    public Canvas Upgrade;
+    public GameObject PauseUI;
+    public GameObject HUD;
+    public GameObject Lose;
+    public GameObject Win;
+    public GameObject Upgrade;
 
     public List<Sprite> UpgradeCard;
     public GameObject PrefabCard;
@@ -72,33 +72,33 @@ public class UIManager : MonoBehaviour
     public void PauseCanvas()
     {
         HideAllCanvases();
-        HUD.enabled = true;
-        PauseUI.enabled = true;
+        HUD.SetActive(true);
+        PauseUI.SetActive(true);
     }
 
     public void HUDCanvas()
     {
         HideAllCanvases();
-        HUD.enabled = true;
+        HUD.SetActive(true);
     }
 
     public void LoseCanvas()
     {
         HideAllCanvases();
-        Lose.enabled = true;
+        Lose.SetActive(true);
     }
 
     public void WinCanvas()
     {
         HideAllCanvases();
-        Win.enabled = true;
+        Win.SetActive(true);
     }
 
     public void UpgradeCanvas()
     {
         HideAllCanvases();
-        HUD.enabled = true;
-        Upgrade.enabled = true;
+        HUD.SetActive(true);
+        Upgrade.SetActive(true);
         _upgrade.SetUpgradeOptions(3);
         for(int i=0; i< _upgrade.UpgradesToChoose.Count; i++)
         {
@@ -114,11 +114,11 @@ public class UIManager : MonoBehaviour
 
     void HideAllCanvases()
     {
-        PauseUI.enabled = false;
-        HUD.enabled = false;
-        Lose.enabled = false;
-        Win.enabled = false;
-        Upgrade.enabled = false;
+        PauseUI.SetActive(false);
+        HUD.SetActive(false);
+        Lose.SetActive(false);
+        Win.SetActive(false);
+        Upgrade.SetActive(false);
     }
 
     public void ShowUIText()
