@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private InputManager _input;
@@ -151,6 +152,7 @@ public class GameManager : MonoBehaviour
     {
         UpdateGameState(GameState.UI);
         InputManager.SetUI();
+        AudioManager.Instance.PauseAudio(); //AudioManager
     }
 
     public void HandleResume()
@@ -158,6 +160,8 @@ public class GameManager : MonoBehaviour
         if (State == GameState.Upgrade || State == GameState.Tutorial) return;
         UpdateGameState(GameState.Gameplay);
         InputManager.SetGameplay();
+        AudioManager.Instance.ResumeAudio(); //AudioManager
+
     }
 
     public void SubmitSoul()

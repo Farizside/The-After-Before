@@ -21,6 +21,8 @@ public class MainMenuUI : MonoBehaviour
         BtnGamePlay.onClick.AddListener(GamePlay);
         BtnAbout.onClick.AddListener(About);
         BtnExit.onClick.AddListener(Exit);
+        AudioManager.Instance.PlayMusic("MainMenu"); //BGM
+
     }
 
     // Update is called once per frame
@@ -33,6 +35,7 @@ public class MainMenuUI : MonoBehaviour
     {
         // _input.SetGameplay();
         SceneManager.LoadScene(3);
+        AudioManager.Instance.PlayMusic("GamePlay", 1f);//BGM
     }
 
     private void About()

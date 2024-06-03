@@ -8,20 +8,47 @@ public class MixerLevel : MonoBehaviour
 {
     public AudioMixer MasterMixer;
     public Slider MasterSlider;
+    private bool _isMuted = false;
 
-    public void SetMaster(float MasterLvl)
+    public void Start()
     {
-        MasterMixer.SetFloat("MasterVol", MasterLvl);
+        if (PlayerPrefs.HasKey("MasterVol"))
+        { 
+            LoadVolume(); 
+        }
+        else
+        {
+            SetMaster();
+        }
+
+        
     }
-    public void SaveVolume()
+    public void SetMaster()
     {
-        MasterMixer.GetFloat("MasterVol", out float MasterLvl);
-        PlayerPrefs.SetFloat("MasterVol", MasterLvl);
+        float volume = MasterSlider.value;
+        MasterMixer.SetFloat("MasterVol", Mathf.Log10(volume)*20);
+        PlayerPrefs.SetFloat("MasterVol", volume);
     }
+    
 
     public void LoadVolume()
     {
         MasterSlider.value = PlayerPrefs.GetFloat("MasterVol");
- 
+
+        SetMaster();
+        
+    }
+    public void ToggleMaster() 
+    {
+        _isMuted = !_isMuted;
+
+        if (_isMuted)
+        {
+            MasterMixer.SetFloat("MasterVol", -80f); 
+        }
+        else
+        {
+            MasterMixer.SetFloat("MasterVol", PlayerPrefs.GetFloat("MasterVol")); 
+        }
     }
 }
