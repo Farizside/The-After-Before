@@ -92,12 +92,28 @@ public class AudioManager : MonoBehaviour
       Debug.LogError("Sound library not assigned to AudioManager!");
     }
   }
+    public void PlaySound2D(string soundName)
+    {
+        if (_soundLibrary != null)
+        {
+            AudioClip clip = GetClipFromLibrary(soundName, _soundLibrary);
+            if (clip != null)
+            {
+                _soundEffectSource.clip = clip;
+                _soundEffectSource.Play();
+            }
+        }
+        else
+        {
+            Debug.LogError("Sound library not assigned to AudioManager!");
+        }
+    }
 
-  #endregion
+    #endregion
 
-  #region Music (Optional)
+    #region Music (Optional)
 
-  public void PlayMusic(string trackName, float fadeDuration = 0.5f)
+    public void PlayMusic(string trackName, float fadeDuration = 0.5f)
   {
     if (_musicLibrary != null)
     {

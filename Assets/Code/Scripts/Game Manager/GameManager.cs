@@ -120,6 +120,7 @@ public class GameManager : MonoBehaviour
         _ui.LoseCanvas();
         InputManager.SetUI();
         Time.timeScale = 0;
+        AudioManager.Instance.PlaySound2D("Defeat");
     }
     
     private void HandleVictory()
@@ -127,6 +128,7 @@ public class GameManager : MonoBehaviour
         _ui.WinCanvas();
         InputManager.SetUI();
         Time.timeScale = 0;
+        AudioManager.Instance.PlaySound2D("Victory");//audio
     }
     
     private void HandleUpgrade()
@@ -134,6 +136,7 @@ public class GameManager : MonoBehaviour
         _ui.UpgradeCanvas();
         InputManager.SetUI();
         Time.timeScale = 0;
+        AudioManager.Instance.PlaySound2D("Upgrade");//audio
     }
 
     private void HandleGameplay()

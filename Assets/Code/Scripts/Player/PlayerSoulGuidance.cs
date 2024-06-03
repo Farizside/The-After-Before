@@ -96,6 +96,7 @@ public class PlayerSoulGuidance : MonoBehaviour
             {
                 _playerMovement.MovementSpeed -= SlowingSpeed;
             }
+            AudioManager.Instance.PlaySound3D("Attract", soul.transform.position);//audio
         }
     }
 
@@ -107,6 +108,7 @@ public class PlayerSoulGuidance : MonoBehaviour
         foreach(SoulMovementController soul in _soulsAttracted)
         {
             soul.IsAttracted = false;
+            AudioManager.Instance.PlaySound3D("Deattract", soul.transform.position);//audio
         }
 
         _playerMovement.MovementSpeed += _soulsAttracted.Count * SlowingSpeed;
@@ -123,6 +125,7 @@ public class PlayerSoulGuidance : MonoBehaviour
             {
                 soul.IsAttracted = false;
                 soul.GetComponent<SoulTypeController>().SoulType = SoulType.LOST;
+                AudioManager.Instance.PlaySound3D("EnemyTouch", soul.transform.position);//audio
             }
             _soulsAttracted.RemoveRange(index, _soulsAttracted.Count - index);
         }
@@ -139,6 +142,8 @@ public class PlayerSoulGuidance : MonoBehaviour
                 soul.gameObject.SetActive(false);
                 _playerMovement.MovementSpeed += SlowingSpeed;
                 GameManager.Instance.SubmitSoul();
+                AudioManager.Instance.PlaySound3D("Submit", soul.transform.position);//audio
+
             }
             else
             {
