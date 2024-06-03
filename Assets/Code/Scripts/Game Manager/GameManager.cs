@@ -143,8 +143,8 @@ public class GameManager : MonoBehaviour
         _soulCollected = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         InputManager.SetGameplay();
-        UpdateGameState(GameState.Gameplay);
         _upgrade.StartWave();
+        UpdateGameState(GameState.Gameplay);
         _wave.SetCurrentData();
     }
 
