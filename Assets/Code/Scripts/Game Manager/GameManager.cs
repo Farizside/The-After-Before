@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private InputManager _input;
+    [SerializeField] private GameObject _tutorial;
     
     private WaveManager _wave;
     private UIManager _ui;
@@ -37,11 +38,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
         _input.PauseEvent += HandlePause;
         _input.ResumeEvent += HandleResume;
+    }
 
+    private void OnDisable()
+    {
+        _input.PauseEvent -= HandlePause;
+        _input.ResumeEvent -= HandleResume;
+    }
+
+    private void Start()
+    {
         _wave = WaveManager.Instance;
         _ui = UIManager.Instance;
         _upgrade = UpgradeManager.Instance;
@@ -82,8 +92,8 @@ public class GameManager : MonoBehaviour
 
     private void HandleTutorial()
     {
-        _ui.Tutorial1Canvas();
-        InputManager.SetUI();
+        _tutorial.SetActive(true);
+        InputManager.SetTutorial();
         Time.timeScale = 0;
     }
     
