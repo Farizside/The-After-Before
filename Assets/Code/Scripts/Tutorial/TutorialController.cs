@@ -10,7 +10,6 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private List<GameObject> _tutorialPrefabs;
     [SerializeField] private GameObject _nextButton;
     [SerializeField] private GameObject _backButton;
-    [SerializeField] private GameObject _skipButton;
 
     private int _tutorialIndex = 0;
 
@@ -56,19 +55,16 @@ public class TutorialController : MonoBehaviour
         {
             _nextButton.SetActive(true);
             _backButton.SetActive(false);
-            _skipButton.SetActive(true);
         }
         else if(_tutorialIndex == _tutorialPrefabs.Count - 1)
         {
             _nextButton.SetActive(false);
             _backButton.SetActive(true);
-            _skipButton.SetActive(true);
         }
         else
         {
             _nextButton.SetActive(true);
             _backButton.SetActive(true);
-            _skipButton.SetActive(true);
         }
     }
 

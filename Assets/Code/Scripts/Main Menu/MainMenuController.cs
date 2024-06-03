@@ -10,5 +10,6 @@ public class MainMenuController : MonoBehaviour
         Destroy(GameObject.Find("Wave Manager"));
         Destroy(GameObject.Find("UI Manager"));
         Destroy(GameObject.Find("Upgrade Manager"));
+        Destroy(GameObject.Find("Event System"));
     }
 }

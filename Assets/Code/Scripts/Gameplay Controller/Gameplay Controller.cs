@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameplayController : MonoBehaviour
 {
     private UpgradeManager _upgrade;
     private WaveManager _wave;
-    void Start()
+    private EventSystem _eventSystem;
+    void Awake()
     {
-        _upgrade = UpgradeManager.Instance;
-        
-        _upgrade.StartWave();
+        _eventSystem = FindFirstObjectByType<EventSystem>();
+        _eventSystem.firstSelectedGameObject = GameObject.FindGameObjectWithTag("Resume");
+        // Debug.Log(GameObject.FindAnyObjectByTag("Resume"));
     }
 }

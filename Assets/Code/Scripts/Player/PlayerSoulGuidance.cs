@@ -34,6 +34,7 @@ public class PlayerSoulGuidance : MonoBehaviour
         _isDeattractHash = Animator.StringToHash("isDeattract");
         
         _input.DeattractEvent += DeattractSoul;
+        _input.AttractEvent += Attract;
     }
 
     private void OnDisable()
@@ -44,6 +45,8 @@ public class PlayerSoulGuidance : MonoBehaviour
 
     private void Attract()
     {
+        if (!_currSoul) return;
+        
         _animator.SetTrigger(_isAttractHash);
         
         if (!_currSoul.IsAttracted)
@@ -61,7 +64,7 @@ public class PlayerSoulGuidance : MonoBehaviour
         if (other.CompareTag("Soul"))
         {
             _currSoul = other.GetComponent<SoulMovementController>();
-            _input.AttractEvent += Attract;
+            
             if (!_currSoul.IsAttracted)
             {
                 AddOutline(other);   
@@ -74,7 +77,6 @@ public class PlayerSoulGuidance : MonoBehaviour
         if (other.CompareTag("Soul"))
         {
             _currSoul = null;
-            _input.AttractEvent -= Attract;
             RemoveOutline(other);
         }
     }

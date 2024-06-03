@@ -10,7 +10,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private InputManager _input;
-    [SerializeField] private GameObject _tutorial;
+    [SerializeField] private GameObject _tutorial1;
+    [SerializeField] private GameObject _tutorial2;
+    
+    private GameObject _tutorial;
     
     private WaveManager _wave;
     private UIManager _ui;
@@ -55,8 +58,21 @@ public class GameManager : MonoBehaviour
         _wave = WaveManager.Instance;
         _ui = UIManager.Instance;
         _upgrade = UpgradeManager.Instance;
+
+        if (_wave.CurWaveId == 0)
+        {
+            _tutorial = _tutorial1;
+            UpdateGameState(GameState.Tutorial);
+        }else if (_wave.CurWaveId == 4)
+        {
+            _tutorial = _tutorial2;
+            UpdateGameState(GameState.Tutorial);
+        }
+        else
+        {
+            UpdateGameState(GameState.Gameplay);
+        }
         
-        UpdateGameState(GameState.Tutorial);
     }
 
     public void UpdateGameState(GameState newState)
@@ -92,6 +108,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleTutorial()
     {
+        _ui.HideAllCanvases();
         _tutorial.SetActive(true);
         InputManager.SetTutorial();
         Time.timeScale = 0;
