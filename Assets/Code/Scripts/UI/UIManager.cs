@@ -28,6 +28,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text _timerText;
     [SerializeField] private TMP_Text _soulText;
     [SerializeField] private TMP_Text _waveText;
+    [SerializeField] private TMP_Text _soulText2;
+    [SerializeField] private TMP_Text _waveText2;
+    [SerializeField] private TMP_Text _soulText3;
+    [SerializeField] private TMP_Text _waveText3;
     [SerializeField] private List<GameObject> _upgradeButtons;
 
     private int _time;
@@ -153,6 +157,10 @@ public class UIManager : MonoBehaviour
         _timerText.text = $"{minutes:00} : {seconds:00}";
         _soulText.text = $"{_soul}/{_target}";
         _waveText.text = $"{_curWave}/{_waveLength}";
+        _soulText2.text = $"{_soul}/{_target}";
+        _waveText2.text = $"{_curWave}/{_waveLength}";
+        _soulText3.text = $"{_soul}/{_target}";
+        _waveText3.text = $"{_curWave}/{_waveLength}";
     }
 
     IEnumerator PlayCounterAnimation()

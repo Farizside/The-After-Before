@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class slider : MonoBehaviour
 {
     public Button VolumeBtn; 
-    public GameObject VolumeSlider; 
+    public GameObject VolumeSlider;
     private CanvasGroup _sliderCanvasGroup;
 
     // Start is called before the first frame update

@@ -5,10 +5,11 @@ using UnityEngine;
 public class HomeExterior : MonoBehaviour
 {
     public GameObject targetObject;
+    public GameObject Home;
     // Start is called before the first frame update
     void Start()
     {
-        
+        HomeExternal();
     }
 
     // Update is called once per frame
@@ -21,7 +22,7 @@ public class HomeExterior : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            targetObject.SetActive(!targetObject.activeSelf); // Toggle status aktif
+            targetObject.SetActive(!targetObject.activeSelf); 
             
         }
     }
@@ -29,6 +30,11 @@ public class HomeExterior : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
-            targetObject.SetActive(!targetObject.activeSelf); // Toggle status aktif
+            targetObject.SetActive(!targetObject.activeSelf); 
+    }
+
+     private void HomeExternal()
+    {
+        Home.SetActive(true);
     }
 }
