@@ -20,6 +20,8 @@ public class UIManager : MonoBehaviour
     public GameObject LoseButton;
     public GameObject WinButton;
 
+    public GameObject Counter;
+
     public List<Sprite> UpgradeCard;
     public GameObject PrefabCard;
 
@@ -79,7 +81,9 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         _curWave = _wave.CurWaveId + 1;
+        
         _time = (int)Math.Floor(_wave.CurWaveTime);
+        
         _soul = _gm.SoulCollected;
         _target = _wave.CurWaveTarget;
         ShowUIText();
@@ -96,7 +100,7 @@ public class UIManager : MonoBehaviour
     public void HUDCanvas()
     {
         HideAllCanvases();
-        HUD.SetActive(true);
+        StartCoroutine(PlayCounterAnimation());
     }
 
     public void LoseCanvas()
@@ -143,8 +147,22 @@ public class UIManager : MonoBehaviour
 
     public void ShowUIText()
     {
-        _timerText.text = $"{_time}";
+        var minutes = _time / 60;
+        var seconds = _time % 60;
+        
+        _timerText.text = $"{minutes:00} : {seconds:00}";
         _soulText.text = $"{_soul}/{_target}";
         _waveText.text = $"{_curWave}/{_waveLength}";
+    }
+
+    IEnumerator PlayCounterAnimation()
+    {
+        Counter.SetActive(true);
+
+        yield return new WaitForSeconds(5f);
+        
+        InputManager.SetGameplay();
+        HUD.SetActive(true);
+        Counter.SetActive(false);
     }
 }

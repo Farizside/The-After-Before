@@ -34,9 +34,11 @@ public class MainMenuUI : MonoBehaviour
     private void GamePlay()
     {
         // _input.SetGameplay();
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(1);
         AudioManager.Instance.PlayMusic("GamePlay", 1f);//BGM
     }
+    
+    
 
     private void About()
     {

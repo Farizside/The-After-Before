@@ -40,6 +40,7 @@ public class UpgradeManager : MonoBehaviour
     private WaveManager _waveManager;
     private PlayerMovement _playerMovement;
     private PlayerSoulGuidance _playerSoulGuidance;
+    private Spawner _powerUpSpawner;
 
     private void Awake()
     {

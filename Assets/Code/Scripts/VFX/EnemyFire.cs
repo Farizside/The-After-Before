@@ -23,11 +23,11 @@ public class EnemyFire : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log("Character Position: " + transform.position);
+        // Debug.Log("Character Position: " + transform.position);
 
         if (_fireObject != null)
         {
-            Debug.Log("VFX Position: " + _fireObject.transform.position);
+            // Debug.Log("VFX Position: " + _fireObject.transform.position);
 
             // Modify particle system settings to limit initial vertical movement
             ParticleSystem.MainModule mainModule = _fireObject.GetComponent<ParticleSystem>().main;

@@ -162,7 +162,8 @@ public class GameManager : MonoBehaviour
     {
         if (State == GameState.Upgrade || State == GameState.Tutorial) return;
         UpdateGameState(GameState.Gameplay);
-        InputManager.SetGameplay();
+        _wave.CurWaveTime += 5f;
+        // InputManager.SetGameplay();
         AudioManager.Instance.ResumeAudio(); //AudioManager
 
     }
@@ -176,18 +177,9 @@ public class GameManager : MonoBehaviour
     {
         _soulCollected = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        InputManager.SetGameplay();
         _upgrade.StartWave();
         UpdateGameState(GameState.Gameplay);
         _wave.SetCurrentData();
-    }
-
-    public void OnTutorialFinished()
-    {
-        UpdateGameState(GameState.Gameplay);
-        InputManager.SetGameplay();
-        _ui.HUDCanvas();
-        Time.timeScale = 1;
     }
 }
 

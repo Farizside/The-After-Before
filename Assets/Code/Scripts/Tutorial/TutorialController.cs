@@ -85,7 +85,6 @@ public class TutorialController : MonoBehaviour
     public void SkipTutorial()
     {
         GameManager.Instance.UpdateGameState(GameState.Gameplay);
-        InputManager.SetGameplay();
         
         gameObject.SetActive(false);
     }
