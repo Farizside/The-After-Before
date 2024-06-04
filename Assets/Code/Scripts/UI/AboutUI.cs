@@ -26,7 +26,6 @@ public class AboutUI : MonoBehaviour
 
     void ShowNextPage()
     {
-        Debug.Log("Next button clicked");
         if (_currPageIndex < AboutMenu.Length - 1)
         {
             AboutMenu[_currPageIndex].SetActive(false);
@@ -34,26 +33,16 @@ public class AboutUI : MonoBehaviour
             AboutMenu[_currPageIndex].SetActive(true);
             UpdateButtonStatus();
         }
-        else
-        {
-            Debug.Log("Next ga bisa di last page");
-        }
     }
 
     void ShowPrevPage()
     {
-        Debug.Log("Prev button clicked");
         if (_currPageIndex > 0)
         {
             AboutMenu[_currPageIndex].SetActive(false);
             _currPageIndex--;
             AboutMenu[_currPageIndex].SetActive(true);
-            Debug.Log("Current page index: " + _currPageIndex);
             UpdateButtonStatus();
-        }
-        else
-        {
-            Debug.Log("Prev ga bisa di first page");
         }
     }
 

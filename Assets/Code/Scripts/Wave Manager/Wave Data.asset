@@ -15,7 +15,7 @@ MonoBehaviour:
   wavesData:
   - id: 1
     target: 3
-    time: 145
+    time: 170
     initialSoul: 1
     interval: 5
     pureRate: 0

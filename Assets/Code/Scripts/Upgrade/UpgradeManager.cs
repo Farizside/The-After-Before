@@ -156,7 +156,7 @@ public class UpgradeManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        _powerUpSpawner = FindAnyObjectByType<Spawner>();
+        //_powerUpSpawner = FindAnyObjectByType<Spawner>();
         StartWave();
     }
 }
