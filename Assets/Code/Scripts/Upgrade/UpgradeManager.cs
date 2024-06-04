@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -70,6 +70,17 @@ public class UpgradeManager : MonoBehaviour
                 _upgradeable.Add(i);
             }
         }
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public void SetUpgradeOptions(int numberOfOptions)
@@ -140,5 +151,11 @@ public class UpgradeManager : MonoBehaviour
     public void GetFirstUpgrade()
     {
         ChooseUpgrade(UpgradesToChoose[0]);
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        _powerUpSpawner = FindAnyObjectByType<Spawner>();
+        StartWave();
     }
 }
