@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -362,6 +362,8 @@ GameObject:
   - component: {fileID: 61938033}
   - component: {fileID: 61938032}
   - component: {fileID: 61938034}
+  - component: {fileID: 61938035}
+  - component: {fileID: 61938036}
   m_Layer: 5
   m_Name: ExitBtn
   m_TagString: Untagged
@@ -431,7 +433,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 61938034}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 61938036}
+        m_TargetAssemblyTypeName: SfxButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &61938033
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -470,6 +484,47 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &61938035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61938029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 61938036}
+          m_TargetAssemblyTypeName: SfxButton, Assembly-CSharp
+          m_MethodName: OnHoverEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &61938036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61938029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d81036d6619f04e93e8512eec0bdfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &82263124
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,6 +1300,8 @@ GameObject:
   - component: {fileID: 270085738}
   - component: {fileID: 270085737}
   - component: {fileID: 270085736}
+  - component: {fileID: 270085739}
+  - component: {fileID: 270085740}
   m_Layer: 5
   m_Name: AboutBtn
   m_TagString: Untagged
@@ -1315,7 +1372,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 270085737}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 270085740}
+        m_TargetAssemblyTypeName: SfxButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &270085737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1354,6 +1423,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270085734}
   m_CullTransparentMesh: 1
+--- !u!114 &270085739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270085734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 270085740}
+          m_TargetAssemblyTypeName: SfxButton, Assembly-CSharp
+          m_MethodName: OnHoverEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &270085740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270085734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d81036d6619f04e93e8512eec0bdfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &275484490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1366,6 +1476,8 @@ GameObject:
   - component: {fileID: 275484494}
   - component: {fileID: 275484493}
   - component: {fileID: 275484492}
+  - component: {fileID: 275484495}
+  - component: {fileID: 275484496}
   m_Layer: 5
   m_Name: next
   m_TagString: Untagged
@@ -1435,7 +1547,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 275484493}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 275484496}
+        m_TargetAssemblyTypeName: SfxButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &275484493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1474,6 +1598,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275484490}
   m_CullTransparentMesh: 1
+--- !u!114 &275484495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275484490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 275484496}
+          m_TargetAssemblyTypeName: SfxButton, Assembly-CSharp
+          m_MethodName: OnHoverEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &275484496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275484490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d81036d6619f04e93e8512eec0bdfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &297013494
 GameObject:
   m_ObjectHideFlags: 0
@@ -3358,6 +3523,8 @@ GameObject:
   - component: {fileID: 655125241}
   - component: {fileID: 655125240}
   - component: {fileID: 655125239}
+  - component: {fileID: 655125242}
+  - component: {fileID: 655125243}
   m_Layer: 5
   m_Name: SettingBtn
   m_TagString: Untagged
@@ -3428,7 +3595,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 655125240}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 655125243}
+        m_TargetAssemblyTypeName: SfxButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &655125240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3467,6 +3646,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655125237}
   m_CullTransparentMesh: 1
+--- !u!114 &655125242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655125237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 655125243}
+          m_TargetAssemblyTypeName: SfxButton, Assembly-CSharp
+          m_MethodName: OnHoverEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &655125243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655125237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d81036d6619f04e93e8512eec0bdfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &676406492
 GameObject:
   m_ObjectHideFlags: 0
@@ -3992,6 +4212,8 @@ GameObject:
   - component: {fileID: 858762611}
   - component: {fileID: 858762610}
   - component: {fileID: 858762609}
+  - component: {fileID: 858762612}
+  - component: {fileID: 858762613}
   m_Layer: 5
   m_Name: prev
   m_TagString: Untagged
@@ -4061,7 +4283,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 858762610}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 858762613}
+        m_TargetAssemblyTypeName: SfxButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &858762610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4100,6 +4334,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858762607}
   m_CullTransparentMesh: 1
+--- !u!114 &858762612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858762607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 858762613}
+          m_TargetAssemblyTypeName: SfxButton, Assembly-CSharp
+          m_MethodName: OnHoverEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &858762613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858762607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d81036d6619f04e93e8512eec0bdfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &870726097
 GameObject:
   m_ObjectHideFlags: 0
@@ -4234,63 +4509,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 870726097}
   m_CullTransparentMesh: 1
---- !u!1001 &891549067
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 240720285537513572, guid: 5895da15bbd6d6b4d87f64f8e934be5e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 201.24661
-      objectReference: {fileID: 0}
-    - target: {fileID: 240720285537513572, guid: 5895da15bbd6d6b4d87f64f8e934be5e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 158.27959
-      objectReference: {fileID: 0}
-    - target: {fileID: 240720285537513572, guid: 5895da15bbd6d6b4d87f64f8e934be5e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.368977
-      objectReference: {fileID: 0}
-    - target: {fileID: 240720285537513572, guid: 5895da15bbd6d6b4d87f64f8e934be5e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 240720285537513572, guid: 5895da15bbd6d6b4d87f64f8e934be5e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 240720285537513572, guid: 5895da15bbd6d6b4d87f64f8e934be5e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 240720285537513572, guid: 5895da15bbd6d6b4d87f64f8e934be5e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 240720285537513572, guid: 5895da15bbd6d6b4d87f64f8e934be5e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 240720285537513572, guid: 5895da15bbd6d6b4d87f64f8e934be5e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 240720285537513572, guid: 5895da15bbd6d6b4d87f64f8e934be5e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1482484269169857117, guid: 5895da15bbd6d6b4d87f64f8e934be5e, type: 3}
-      propertyPath: m_Name
-      value: AudioManager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5895da15bbd6d6b4d87f64f8e934be5e, type: 3}
 --- !u!1 &975764021
 GameObject:
   m_ObjectHideFlags: 0
@@ -5834,7 +6052,9 @@ GameObject:
   - component: {fileID: 1216833209}
   - component: {fileID: 1216833212}
   - component: {fileID: 1216833210}
+  - component: {fileID: 1216833214}
   - component: {fileID: 1216833213}
+  - component: {fileID: 1216833215}
   m_Layer: 5
   m_Name: StartBtn
   m_TagString: Untagged
@@ -5905,7 +6125,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1216833213}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1216833215}
+        m_TargetAssemblyTypeName: SfxButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1216833212
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5944,6 +6176,47 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1216833214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216833208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1216833215}
+          m_TargetAssemblyTypeName: SfxButton, Assembly-CSharp
+          m_MethodName: OnHoverEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1216833215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216833208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d81036d6619f04e93e8512eec0bdfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1225610749
 GameObject:
   m_ObjectHideFlags: 0
@@ -6268,6 +6541,8 @@ GameObject:
   - component: {fileID: 1368532336}
   - component: {fileID: 1368532335}
   - component: {fileID: 1368532334}
+  - component: {fileID: 1368532337}
+  - component: {fileID: 1368532338}
   m_Layer: 5
   m_Name: SoudBtn
   m_TagString: Untagged
@@ -6351,6 +6626,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1368532338}
+        m_TargetAssemblyTypeName: SfxButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1368532335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6389,6 +6676,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1368532332}
   m_CullTransparentMesh: 1
+--- !u!114 &1368532337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368532332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1368532338}
+          m_TargetAssemblyTypeName: SfxButton, Assembly-CSharp
+          m_MethodName: OnHoverEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1368532338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368532332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d81036d6619f04e93e8512eec0bdfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1369545223
 GameObject:
   m_ObjectHideFlags: 0
@@ -6440,6 +6768,8 @@ GameObject:
   - component: {fileID: 1378543932}
   - component: {fileID: 1378543931}
   - component: {fileID: 1378543930}
+  - component: {fileID: 1378543934}
+  - component: {fileID: 1378543935}
   m_Layer: 5
   m_Name: MenutBtn
   m_TagString: Untagged
@@ -6490,7 +6820,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1378543931}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1378543935}
+        m_TargetAssemblyTypeName: SfxButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1378543931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6548,6 +6890,47 @@ RectTransform:
   m_AnchoredPosition: {x: -885, y: 0.42729}
   m_SizeDelta: {x: 87.4066, y: 84.0556}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1378543934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378543929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1378543935}
+          m_TargetAssemblyTypeName: SfxButton, Assembly-CSharp
+          m_MethodName: OnHoverEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1378543935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378543929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d81036d6619f04e93e8512eec0bdfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1416916474
 GameObject:
   m_ObjectHideFlags: 0
@@ -8887,6 +9270,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2117511400}
   m_CullTransparentMesh: 1
+--- !u!1001 &8025430305299479894
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2091341307426376749, guid: a05ee42cbeb0da34cb7f19d3b1dd05b0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 201.24661
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091341307426376749, guid: a05ee42cbeb0da34cb7f19d3b1dd05b0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 158.27959
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091341307426376749, guid: a05ee42cbeb0da34cb7f19d3b1dd05b0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.368977
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091341307426376749, guid: a05ee42cbeb0da34cb7f19d3b1dd05b0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091341307426376749, guid: a05ee42cbeb0da34cb7f19d3b1dd05b0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091341307426376749, guid: a05ee42cbeb0da34cb7f19d3b1dd05b0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091341307426376749, guid: a05ee42cbeb0da34cb7f19d3b1dd05b0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091341307426376749, guid: a05ee42cbeb0da34cb7f19d3b1dd05b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091341307426376749, guid: a05ee42cbeb0da34cb7f19d3b1dd05b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091341307426376749, guid: a05ee42cbeb0da34cb7f19d3b1dd05b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280720187859162472, guid: a05ee42cbeb0da34cb7f19d3b1dd05b0, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a05ee42cbeb0da34cb7f19d3b1dd05b0, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -8898,4 +9338,4 @@ SceneRoots:
   - {fileID: 130315872}
   - {fileID: 744463638}
   - {fileID: 362574797}
-  - {fileID: 891549067}
+  - {fileID: 8025430305299479894}
