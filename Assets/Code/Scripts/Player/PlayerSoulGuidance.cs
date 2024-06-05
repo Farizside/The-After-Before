@@ -1,7 +1,9 @@
+using Autodesk.Fbx;
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerSoulGuidance : MonoBehaviour
 {
@@ -25,6 +27,7 @@ public class PlayerSoulGuidance : MonoBehaviour
     private int _isDeattractHash;
 
     public float SlowingSpeed;
+
 
     private void Awake()
     {
@@ -156,7 +159,29 @@ public class PlayerSoulGuidance : MonoBehaviour
                 soul.IsAttracted = false;
                 soul.GetComponent<SoulTypeController>().SoulType = SoulType.LOST;
                 AudioManager.Instance.PlaySound3D("EnemyTouch", soul.transform.position);//audio
+                SoulVFX vfxScript = soul.GetComponent<SoulVFX>();
+                if (vfxScript != null)
+                {
+                    vfxScript.StopVFX();
+                    Debug.Log("Stopping VFX for deattracted soul.");
+                }
+                else
+                {
+                    Debug.LogError("SoulVFX component not found on the soul.");
+                }
+
+                HitVFX hitScript = soul.GetComponent<HitVFX>();
+                if (hitScript != null)
+                {
+                    hitScript.PlayHitVFX();
+                    Debug.Log("Playing VFX for hit soul.");
+                }
+                else
+                {
+                    Debug.LogError("HitVFX component not found on the soul.");
+                }
             }
+
             _soulsAttracted.RemoveRange(index, _soulsAttracted.Count - index);
         }
 
@@ -173,6 +198,17 @@ public class PlayerSoulGuidance : MonoBehaviour
                 _playerMovement.MovementSpeed += SlowingSpeed;
                 GameManager.Instance.SubmitSoul();
                 AudioManager.Instance.PlaySound3D("Submit", soul.transform.position);//audio
+
+                OfudaVFX ofudaScript = soul.GetComponent<OfudaVFX>();
+                if (ofudaScript != null)
+                {
+                    ofudaScript.PlayOfudaVFX();
+                    Debug.Log("Playing VFX for submit soul.");
+                }
+                else
+                {
+                    Debug.LogError("SubmitlVFX component not found on the soul.");
+                }
 
             }
             else

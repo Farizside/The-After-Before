@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class OfudaVFX : MonoBehaviour
 {
-    public GameObject VFXPrefab;
-    public Transform VFXPosition;
+    public GameObject VFXOfudaPrefab;
+    public Transform VFXOfudaPosition;
 
-    public void PlayVFX()
+    private GameObject spawnedVFX;
+
+    public void PlayOfudaVFX()
     {
-        if (VFXPrefab != null && VFXPosition != null)
+        if (VFXOfudaPrefab != null && VFXOfudaPosition != null)
         {
-            Instantiate(VFXPrefab, VFXPosition.position, VFXPosition.rotation);
-            Debug.Log("VFX spawned at: " + VFXPosition.position);
+            spawnedVFX = Instantiate(VFXOfudaPrefab, VFXOfudaPosition.position, VFXOfudaPosition.rotation);
+            spawnedVFX.transform.parent = VFXOfudaPosition;
+            Debug.Log("VFX spawned at: " + VFXOfudaPosition.position);
         }
         else
         {

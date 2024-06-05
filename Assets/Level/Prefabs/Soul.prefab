@@ -16144,6 +16144,7 @@ GameObject:
   - component: {fileID: 4724947651532835063}
   - component: {fileID: 6567130876345037889}
   - component: {fileID: 7462686238863858932}
+  - component: {fileID: 6785178695349794674}
   - component: {fileID: 8260212701393625719}
   m_Layer: 0
   m_Name: Soul
@@ -16267,6 +16268,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6585ab46087aa488b6f831bfccb604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6785178695349794674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6601205454832783462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d16370b3b32173a4abb5d2ac346f8a56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VFXPrefab: {fileID: 1758473627833946668, guid: 9b21333b068a5084ba09535839bee3c8, type: 3}
+  VFXPosition: {fileID: 1267687590117907578}
 --- !u!114 &8260212701393625719
 MonoBehaviour:
   m_ObjectHideFlags: 0
