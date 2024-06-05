@@ -7395,6 +7395,7 @@ GameObject:
   - component: {fileID: 5603942740251015293}
   - component: {fileID: 4724947651532835063}
   - component: {fileID: 6722935463488404969}
+  - component: {fileID: -6955436623909401484}
   m_Layer: 0
   m_Name: Soul 1
   m_TagString: Soul
@@ -7433,10 +7434,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 250817666db2b444a926c138ef7eca04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetPosition: {x: 0, y: 0, z: 0}
   IsAttracted: 0
   _minDist: 2
   _speed: 5
+  playerOffset: 0.75
+  IsFirst: 0
   _rangeDist: 5
   Velocity: 0
 --- !u!114 &4724947651532835063
@@ -7451,6 +7453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b556e174ee7f1d408762bb085568372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Animator: {fileID: 0}
   _soulType: 0
   _timeToLost: 5
 --- !u!136 &6722935463488404969
@@ -7476,6 +7479,33 @@ CapsuleCollider:
   m_Height: 3.4865112
   m_Direction: 1
   m_Center: {x: 0, y: 1.2432556, z: 0.15339303}
+--- !u!54 &-6955436623909401484
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6601205454832783462}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &6607885408205302600
 GameObject:
   m_ObjectHideFlags: 0

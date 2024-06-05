@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoulSpawner : MonoBehaviour
 {
     [SerializeField] private float _spawnRate = 5f;
-    [SerializeField] private GameObject _soulGO;
+    [SerializeField] private List<GameObject> _soulGOList;
     [SerializeField] private GameEvent _onSoulSpawned;
     public int MaxSouls = 5;
     [SerializeField] private List<GameObject> _souls;
@@ -13,24 +13,31 @@ public class SoulSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MaxSouls = WaveManager.Instance.CurWaveMaxSouls;
+        _spawnRate = WaveManager.Instance.CurWaveInterval;
         for (int i = 0; i < MaxSouls; i++)
         {
-            GameObject soul = Instantiate(_soulGO, transform.position, Quaternion.identity);
+            GameObject soulGO = _soulGOList[Random.Range(0, _soulGOList.Count)];
+            GameObject soul = Instantiate(soulGO, transform.position, Quaternion.identity);
             _souls.Add(soul);
             soul.SetActive(false);
         }
-        Spawn();
+        int initialSoul = WaveManager.Instance.CurWaveInitialSoul;
+        for (int i = 0; i < initialSoul; i++)
+        {
+            Spawn();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(canSpawn) StartCoroutine(Spawner());
+        if (canSpawn) StartCoroutine(Spawner());
     }
 
     void Spawn()
     {
-        foreach(GameObject soul in _souls)
+        foreach (GameObject soul in _souls)
         {
             if (!soul.activeSelf)
             {
@@ -38,6 +45,14 @@ public class SoulSpawner : MonoBehaviour
                 soul.transform.position = transform.position;
                 soul.GetComponent<SoulTypeController>().SoulType = SoulType.LOST;
                 _onSoulSpawned.Raise(this, soul);
+
+                // Reset the VFX state if needed
+                SoulVFX vfxScript = soul.GetComponent<SoulVFX>();
+                if (vfxScript != null)
+                {
+                    vfxScript.StopVFX(); // Ensure VFX is reset
+                }
+
                 return;
             }
         }

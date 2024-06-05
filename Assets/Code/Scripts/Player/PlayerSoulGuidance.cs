@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class PlayerSoulGuidance : MonoBehaviour
 {
     [SerializeField] private InputManager _input;
-    
+
     [Header("Soul Management")]
     [SerializeField] private List<SoulMovementController> _soulsAttracted;
 
@@ -18,17 +19,47 @@ public class PlayerSoulGuidance : MonoBehaviour
 
     private PlayerMovement _playerMovement;
     private SoulMovementController _currSoul;
+    private Animator _animator;
+
+    private int _isAttractHash;
+    private int _isDeattractHash;
+
+    public float SlowingSpeed;
 
     private void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
+        _animator = GetComponent<Animator>();
+
+        _isAttractHash = Animator.StringToHash("isAttract");
+        _isDeattractHash = Animator.StringToHash("isDeattract");
+
         _input.DeattractEvent += DeattractSoul;
+        _input.AttractEvent += Attract;
+    }
+
+    private void OnDisable()
+    {
+        _input.DeattractEvent -= DeattractSoul;
+        _input.AttractEvent -= Attract;
     }
 
     private void Attract()
     {
+        if (_currSoul == null)
+        {
+            Debug.LogWarning("No current soul to attract.");
+            return;
+        }
+
+        _animator.SetTrigger(_isAttractHash);
+
         if (!_currSoul.IsAttracted)
         {
+            if (_soulsAttracted.Count == 0)
+            {
+                _currSoul.IsFirst = true;
+            }
             AttractSoul(_currSoul);
         }
     }
@@ -38,10 +69,10 @@ public class PlayerSoulGuidance : MonoBehaviour
         if (other.CompareTag("Soul"))
         {
             _currSoul = other.GetComponent<SoulMovementController>();
-            _input.AttractEvent += Attract;
+
             if (!_currSoul.IsAttracted)
             {
-                AddOutline(other);   
+                AddOutline(other);
             }
         }
     }
@@ -51,7 +82,6 @@ public class PlayerSoulGuidance : MonoBehaviour
         if (other.CompareTag("Soul"))
         {
             _currSoul = null;
-            _input.AttractEvent -= Attract;
             RemoveOutline(other);
         }
     }
@@ -63,27 +93,73 @@ public class PlayerSoulGuidance : MonoBehaviour
 
     private void AttractSoul(SoulMovementController soul)
     {
-        if(!_soulsAttracted.Contains(soul))
+        if (!_soulsAttracted.Contains(soul))
         {
             soul.IsAttracted = true;
             _soulsAttracted.Add(soul);
+
+            // Play VFX when attracting a soul
+            SoulVFX vfxScript = soul.GetComponent<SoulVFX>();
+            if (vfxScript != null)
+            {
+                vfxScript.PlayVFX();
+                Debug.Log("Playing VFX for attracted soul.");
+            }
+            else
+            {
+                Debug.LogError("SoulVFX component not found on the soul.");
+            }
+
             if (_playerMovement.MovementSpeed > _playerMovement.MovementSpeedLimit)
             {
-                _playerMovement.MovementSpeed -= 1;
+                _playerMovement.MovementSpeed -= SlowingSpeed;
             }
+            AudioManager.Instance.PlaySound3D("Attract", soul.transform.position); //audio
         }
     }
 
     [ContextMenu("Deattract All Soul")]
     private void DeattractSoul()
     {
-        foreach(SoulMovementController soul in _soulsAttracted)
+        _animator.SetTrigger(_isDeattractHash);
+
+        foreach (SoulMovementController soul in _soulsAttracted)
         {
             soul.IsAttracted = false;
+            AudioManager.Instance.PlaySound3D("Deattract", soul.transform.position); //audio
+
+            SoulVFX vfxScript = soul.GetComponent<SoulVFX>();
+            if (vfxScript != null)
+            {
+                vfxScript.StopVFX();
+                Debug.Log("Stopping VFX for deattracted soul.");
+            }
+            else
+            {
+                Debug.LogError("SoulVFX component not found on the soul.");
+            }
         }
 
-        _playerMovement.MovementSpeed += _soulsAttracted.Count;
+        _playerMovement.MovementSpeed += _soulsAttracted.Count * SlowingSpeed;
         _soulsAttracted.Clear();
+    }
+
+
+    public void AttackSoul(SoulMovementController soulMovementController)
+    {
+        int index = _soulsAttracted.IndexOf(soulMovementController);
+        if (index != -1)
+        {
+            List<SoulMovementController> attackedSouls = _soulsAttracted.GetRange(index, _soulsAttracted.Count - index);
+            foreach (SoulMovementController soul in attackedSouls)
+            {
+                soul.IsAttracted = false;
+                soul.GetComponent<SoulTypeController>().SoulType = SoulType.LOST;
+                AudioManager.Instance.PlaySound3D("EnemyTouch", soul.transform.position);//audio
+            }
+            _soulsAttracted.RemoveRange(index, _soulsAttracted.Count - index);
+        }
+
     }
 
     public void SubmitSoul()
@@ -94,8 +170,10 @@ public class PlayerSoulGuidance : MonoBehaviour
             {
                 soul.IsAttracted = false;
                 soul.gameObject.SetActive(false);
-                _playerMovement.MovementSpeed += 1;
+                _playerMovement.MovementSpeed += SlowingSpeed;
                 GameManager.Instance.SubmitSoul();
+                AudioManager.Instance.PlaySound3D("Submit", soul.transform.position);//audio
+
             }
             else
             {

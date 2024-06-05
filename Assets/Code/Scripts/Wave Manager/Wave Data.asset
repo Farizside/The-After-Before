@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ef6ea4b665caf4dad85c77933560b9, type: 3}
+  m_Name: Wave Data
+  m_EditorClassIdentifier: 
+  wavesData:
+  - id: 1
+    target: 3
+    time: 175
+    initialSoul: 1
+    interval: 5
+    pureRate: 0
+    maxSouls: 3
+  - id: 2
+    target: 4
+    time: 150
+    initialSoul: 1
+    interval: 5
+    pureRate: 0
+    maxSouls: 4
+  - id: 3
+    target: 5
+    time: 155
+    initialSoul: 1
+    interval: 5
+    pureRate: 0
+    maxSouls: 4
+  - id: 4
+    target: 6
+    time: 160
+    initialSoul: 1
+    interval: 5
+    pureRate: 0
+    maxSouls: 4
+  - id: 5
+    target: 10
+    time: 170
+    initialSoul: 2
+    interval: 4
+    pureRate: 0
+    maxSouls: 5
+  - id: 6
+    target: 5
+    time: 100
+    initialSoul: 1
+    interval: 4.5
+    pureRate: 0
+    maxSouls: 4
+  - id: 7
+    target: 7
+    time: 110
+    initialSoul: 1
+    interval: 4.5
+    pureRate: 0
+    maxSouls: 4
+  - id: 8
+    target: 9
+    time: 120
+    initialSoul: 1
+    interval: 4.5
+    pureRate: 0
+    maxSouls: 5
+  - id: 9
+    target: 11
+    time: 130
+    initialSoul: 2
+    interval: 4.5
+    pureRate: 0
+    maxSouls: 5
+  - id: 10
+    target: 14
+    time: 140
+    initialSoul: 3
+    interval: 3.5
+    pureRate: 0
+    maxSouls: 6
+  - id: 11
+    target: 7
+    time: 80
+    initialSoul: 1
+    interval: 4
+    pureRate: 0
+    maxSouls: 5
+  - id: 12
+    target: 9
+    time: 85
+    initialSoul: 1
+    interval: 4
+    pureRate: 0
+    maxSouls: 5
+  - id: 13
+    target: 12
+    time: 90
+    initialSoul: 2
+    interval: 4
+    pureRate: 0
+    maxSouls: 6
+  - id: 14
+    target: 15
+    time: 95
+    initialSoul: 3
+    interval: 4
+    pureRate: 0
+    maxSouls: 7
+  - id: 15
+    target: 20
+    time: 100
+    initialSoul: 4
+    interval: 3
+    pureRate: 0
+    maxSouls: 8

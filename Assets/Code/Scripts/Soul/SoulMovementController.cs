@@ -7,11 +7,13 @@ public class SoulMovementController : MonoBehaviour
 {
     const float EPS = 1e-4f;
     private Vector3 _targetPosition;
-    public Vector3 TargetPosition {
+    public Vector3 TargetPosition
+    {
         get => _targetPosition;
-        set {
+        set
+        {
             _targetPosition = value;
-            if(Vector3.Distance(value, transform.position) > EPS)
+            if (Vector3.Distance(value, transform.position) > EPS)
             {
                 transform.LookAt(value);
             }
@@ -24,6 +26,8 @@ public class SoulMovementController : MonoBehaviour
     [Header("Attracted soul variables")]
     [SerializeField] private float _minDist = 1.5f;
     [SerializeField] private float _speed = 5.0f;
+    [SerializeField] private float playerOffset = 0.75f;
+    public bool IsFirst = false;
 
     [Header("Unattracted soul variables")]
     [SerializeField] private float _rangeDist = 5.0f;
@@ -35,11 +39,40 @@ public class SoulMovementController : MonoBehaviour
 
     public float Velocity = 0f;
 
+    // Reference to the SoulVFX component
+    private SoulVFX _vfxScript;
+
+    private void Awake()
+    {
+        // Get the SoulVFX component
+        _vfxScript = GetComponent<SoulVFX>();
+        if (_vfxScript == null)
+        {
+            Debug.LogError("SoulVFX script not found on soul.");
+        }
+    }
+
     private void Start()
     {
         float angleDirection = Random.Range(0.0f, 2 * Mathf.PI);
         TargetPosition = transform.position + new Vector3(Mathf.Sin(angleDirection), 0.0f, Mathf.Cos(angleDirection)) * Random.Range(0.0f, _rangeDist);
     }
+    private void OnEnable()
+    {
+        if (_vfxScript != null && IsAttracted)
+        {
+            _vfxScript.PlayVFX();
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (_vfxScript != null)
+        {
+            _vfxScript.StopVFX();
+        }
+    }
+
 
     private void Update()
     {
@@ -56,11 +89,11 @@ public class SoulMovementController : MonoBehaviour
     {
         Animator animator = GetComponent<SoulTypeController>().Animator;
         float dist = Vector3.Distance(transform.position, TargetPosition);
-        if (dist > _minDist)
+        if (dist > _minDist + (IsFirst ? 1 : 0) * playerOffset)
         {
             float step = (dist - _minDist + 0.1f) * _speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, TargetPosition, step);
-            animator.SetBool("isMoving", true);
+            animator.SetBool("isMoving", dist - _minDist > EPS);
         }
         else
         {
@@ -77,7 +110,7 @@ public class SoulMovementController : MonoBehaviour
             Vector3 stepPosition = Vector3.MoveTowards(transform.position, TargetPosition, _randomMoveSpeed * Time.deltaTime);
             Velocity = Vector3.Distance(stepPosition, transform.position);
             transform.position = stepPosition;
-            if(Vector3.Distance(transform.position, TargetPosition) < EPS)
+            if (Vector3.Distance(transform.position, TargetPosition) < EPS)
             {
                 _isTargetReached = true;
                 _isLookingForTarget = false;
