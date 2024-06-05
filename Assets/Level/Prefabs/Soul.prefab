@@ -3847,6 +3847,37 @@ Transform:
   - {fileID: 7548585045189002996}
   m_Father: {fileID: 954435384643217077}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1583883389051275672
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1267687590117907578}
+  m_Layer: 0
+  m_Name: VFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1267687590117907578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583883389051275672}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.009, y: 0.974, z: 0.082}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3857585854018705228}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1591126671781051527
 GameObject:
   m_ObjectHideFlags: 0
@@ -16113,6 +16144,7 @@ GameObject:
   - component: {fileID: 4724947651532835063}
   - component: {fileID: 6567130876345037889}
   - component: {fileID: 7462686238863858932}
+  - component: {fileID: 8260212701393625719}
   m_Layer: 0
   m_Name: Soul
   m_TagString: Soul
@@ -16136,6 +16168,7 @@ Transform:
   - {fileID: 4056542528593853166}
   - {fileID: 3826414633193709705}
   - {fileID: 506358885207688358}
+  - {fileID: 1267687590117907578}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5603942740251015293
@@ -16234,6 +16267,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6585ab46087aa488b6f831bfccb604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8260212701393625719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6601205454832783462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d929e9dad74761644be33e970636df14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VFXPrefab: {fileID: 122498, guid: 5f20420a36c817f4f8328369cb4883a8, type: 3}
+  VFXPosition: {fileID: 1267687590117907578}
 --- !u!1 &6610741318484311489
 GameObject:
   m_ObjectHideFlags: 0

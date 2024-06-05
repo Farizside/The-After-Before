@@ -23,7 +23,7 @@ public class SoulSpawner : MonoBehaviour
             soul.SetActive(false);
         }
         int initialSoul = WaveManager.Instance.CurWaveInitialSoul;
-        for(int i=0; i<initialSoul; i++)
+        for (int i = 0; i < initialSoul; i++)
         {
             Spawn();
         }
@@ -32,12 +32,12 @@ public class SoulSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canSpawn) StartCoroutine(Spawner());
+        if (canSpawn) StartCoroutine(Spawner());
     }
 
     void Spawn()
     {
-        foreach(GameObject soul in _souls)
+        foreach (GameObject soul in _souls)
         {
             if (!soul.activeSelf)
             {
@@ -45,6 +45,14 @@ public class SoulSpawner : MonoBehaviour
                 soul.transform.position = transform.position;
                 soul.GetComponent<SoulTypeController>().SoulType = SoulType.LOST;
                 _onSoulSpawned.Raise(this, soul);
+
+                // Reset the VFX state if needed
+                SoulVFX vfxScript = soul.GetComponent<SoulVFX>();
+                if (vfxScript != null)
+                {
+                    vfxScript.StopVFX(); // Ensure VFX is reset
+                }
+
                 return;
             }
         }
