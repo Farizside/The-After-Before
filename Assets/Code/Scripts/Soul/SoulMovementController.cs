@@ -20,8 +20,17 @@ public class SoulMovementController : MonoBehaviour
         }
     }
 
+    private Light _light;
     [Header("Soul status")]
-    public bool IsAttracted = false;
+    private bool _isAttracted = false;
+    public bool IsAttracted { 
+        get => _isAttracted; 
+        set 
+        { 
+            _isAttracted = value;
+            _light.enabled = _isAttracted;
+        } 
+    }
 
     [Header("Attracted soul variables")]
     [SerializeField] private float _minDist = 1.5f;
@@ -46,9 +55,14 @@ public class SoulMovementController : MonoBehaviour
     {
         // Get the SoulVFX component
         _vfxScript = GetComponent<SoulVFX>();
+        _light = GetComponentInChildren<Light>();
         if (_vfxScript == null)
         {
             Debug.LogError("SoulVFX script not found on soul.");
+        }
+        if (_light == null)
+        {
+            Debug.LogError("Light not found on soul.");
         }
     }
 
