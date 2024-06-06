@@ -6,35 +6,56 @@ public class HomeExterior : MonoBehaviour
 {
     public GameObject targetObject;
     public GameObject Home;
-    // Start is called before the first frame update
+
+    [SerializeField] private HomeVFX _homeVFX;
+
     void Start()
     {
         HomeExternal();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            targetObject.SetActive(!targetObject.activeSelf); 
-            
+            Debug.Log("Player entered trigger");
+            targetObject.SetActive(!targetObject.activeSelf);
+
+            if (_homeVFX != null)
+            {
+                Debug.Log("Calling StopHomeVFX");
+                _homeVFX.StopHomeVFX();
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
-            targetObject.SetActive(!targetObject.activeSelf); 
+        {
+            Debug.Log("Player exited trigger");
+            targetObject.SetActive(!targetObject.activeSelf);
+
+            if (_homeVFX != null)
+            {
+                Debug.Log("Calling PlayHomeVFX");
+                _homeVFX.PlayHomeVFX();
+            }
+        }
     }
 
-     private void HomeExternal()
+    private void HomeExternal()
     {
         Home.SetActive(true);
+        if (_homeVFX != null)
+        {
+            Debug.Log("Calling PlayHomeVFX");
+            _homeVFX.PlayHomeVFX();
+        }
     }
 }

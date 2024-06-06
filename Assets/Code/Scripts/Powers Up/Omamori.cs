@@ -13,6 +13,13 @@ public class Omamori : MonoBehaviour
     private void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player")){
             enemyAIMovement.Stunned(true, _stunTime);
+            AudioManager.Instance.PlaySound3D("PUStun", other.transform.position);
+
+            PowerUVFX powerUVFX = GetComponent<PowerUVFX>();
+            if (powerUVFX != null)
+            {
+                powerUVFX.StopPUVFX();
+            }
 
             Debug.Log("Enemy Stunned");
             Destroy(gameObject);

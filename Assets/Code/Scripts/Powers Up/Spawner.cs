@@ -49,7 +49,13 @@ public class Spawner : MonoBehaviour
             GameObject powerUpPrefab = _powersUpPrefabs[Random.Range(0, _powersUpPrefabs.Length)];
             Transform spawnPoint = _spawnPoints[randomIndex];
 
-            Instantiate(powerUpPrefab, spawnPoint.position, Quaternion.identity);
+            GameObject spawnedPowerUp = Instantiate(powerUpPrefab, spawnPoint.position, Quaternion.identity);
+
+            PowerUVFX powerUVFX = spawnedPowerUp.GetComponent<PowerUVFX>();
+            if (powerUVFX != null)
+            {
+                powerUVFX.PlayPUVFX();
+            }
         }
     }
 }

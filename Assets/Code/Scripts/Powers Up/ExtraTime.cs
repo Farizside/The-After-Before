@@ -15,6 +15,14 @@ public class ExtraTime : MonoBehaviour
             if (waveManager != null)
             {
                 waveManager.AddExtraTime(_extraTimeAmount);
+                
+            }
+            AudioManager.Instance.PlaySound3D("PUTimes", other.transform.position);
+
+            PowerUVFX powerUVFX = GetComponent<PowerUVFX>();
+            if (powerUVFX != null)
+            {
+                powerUVFX.StopPUVFX();
             }
 
             Debug.Log("Wave Time is Increased");
