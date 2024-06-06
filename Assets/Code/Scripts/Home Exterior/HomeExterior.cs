@@ -14,21 +14,14 @@ public class HomeExterior : MonoBehaviour
         HomeExternal();
     }
 
-    void Update()
-    {
-
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player entered trigger");
             targetObject.SetActive(!targetObject.activeSelf);
 
             if (_homeVFX != null)
             {
-                Debug.Log("Calling StopHomeVFX");
                 _homeVFX.StopHomeVFX();
             }
         }
@@ -38,12 +31,10 @@ public class HomeExterior : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player exited trigger");
             targetObject.SetActive(!targetObject.activeSelf);
 
             if (_homeVFX != null)
             {
-                Debug.Log("Calling PlayHomeVFX");
                 _homeVFX.PlayHomeVFX();
             }
         }
@@ -54,7 +45,6 @@ public class HomeExterior : MonoBehaviour
         Home.SetActive(true);
         if (_homeVFX != null)
         {
-            Debug.Log("Calling PlayHomeVFX");
             _homeVFX.PlayHomeVFX();
         }
     }

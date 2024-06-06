@@ -15,11 +15,6 @@ public class HomeVFX : MonoBehaviour
         {
             spawnedVFX = Instantiate(VFXHomePrefab, VFXHomePosition.position, VFXHomePosition.rotation);
             spawnedVFX.transform.parent = VFXHomePosition;
-            Debug.Log("VFX spawned at: " + VFXHomePosition.position);
-        }
-        else
-        {
-            Debug.LogError("VFX Prefab atau VFX Position tidak diatur dengan benar.");
         }
     }
 
@@ -29,11 +24,6 @@ public class HomeVFX : MonoBehaviour
         {
             Destroy(spawnedVFX);
             spawnedVFX = null;
-            Debug.Log("VFX stopped.");
-        }
-        else
-        {
-            Debug.LogWarning("No VFX currently playing to stop.");
         }
     }
 }
