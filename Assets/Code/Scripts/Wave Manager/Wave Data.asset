@@ -14,42 +14,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wavesData:
   - id: 1
-    target: 3
+    target: 1
     time: 175
     initialSoul: 1
     interval: 5
     pureRate: 0
     maxSouls: 3
   - id: 2
-    target: 4
+    target: 1
     time: 150
     initialSoul: 1
     interval: 5
     pureRate: 0
     maxSouls: 4
   - id: 3
-    target: 5
+    target: 1
     time: 155
     initialSoul: 1
     interval: 5
     pureRate: 0
     maxSouls: 4
   - id: 4
-    target: 6
+    target: 1
     time: 160
     initialSoul: 1
     interval: 5
     pureRate: 0
     maxSouls: 4
   - id: 5
-    target: 10
+    target: 1
     time: 170
     initialSoul: 2
     interval: 4
     pureRate: 0
     maxSouls: 5
   - id: 6
-    target: 5
+    target: 1
     time: 100
     initialSoul: 1
     interval: 4.5
