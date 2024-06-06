@@ -210,7 +210,8 @@ public class PlayerSoulGuidance : MonoBehaviour
             }
             else
             {
-                return;
+                soul.IsAttracted = false;
+                _playerMovement.MovementSpeed += SlowingSpeed;
             }
         }
         

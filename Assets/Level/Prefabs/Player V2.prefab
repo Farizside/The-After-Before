@@ -3264,7 +3264,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3320,6 +3320,9 @@ MonoBehaviour:
   _dashSpeed: 2
   _dashTime: 0.5
   _dashCooldown: 3
+  dashVFXPrefab: {fileID: 0}
+  dashVFXPoint: {fileID: 0}
+  _poolSize: 10
 --- !u!114 &7581545609442270157
 MonoBehaviour:
   m_ObjectHideFlags: 0

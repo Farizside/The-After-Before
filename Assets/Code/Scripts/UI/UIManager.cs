@@ -47,6 +47,12 @@ public class UIManager : MonoBehaviour
     
     public static UIManager Instance;
 
+    [Header("Dash")]
+    public Image dashImg;
+    public float cooldown = 3;
+    bool isCooldown = false;
+    public KeyCode dash;
+
     private void Awake() 
     { 
         if (Instance == null)
@@ -81,6 +87,8 @@ public class UIManager : MonoBehaviour
         LoseButton.GetComponent<Button>().onClick.AddListener(_gm.HandleRestart);
         
         _waveLength = _wave.WaveData.wavesData.Count;
+
+        dashImg.fillAmount = 0;
     }
 
     private void Update()
@@ -92,6 +100,7 @@ public class UIManager : MonoBehaviour
         _soul = _gm.SoulCollected;
         _target = _wave.CurWaveTarget;
         ShowUIText();
+        Dash();
     }
 
     public void PauseCanvas()
@@ -173,5 +182,24 @@ public class UIManager : MonoBehaviour
         InputManager.SetGameplay();
         HUD.SetActive(true);
         Counter.SetActive(false);
+    }
+
+    void Dash ()
+    {
+        if(Input.GetKey(dash) && isCooldown == false)
+        {
+            isCooldown = true;
+            dashImg.fillAmount = 1;
+        }
+
+        if(isCooldown)
+        {
+            dashImg.fillAmount -= 1 / cooldown * Time.deltaTime;
+            if(dashImg.fillAmount <= 0)
+            {
+                dashImg.fillAmount = 0;
+                isCooldown = false;
+            }
+        }
     }
 }
