@@ -34,7 +34,7 @@ public class SoulMovementController : MonoBehaviour
 
     [Header("Attracted soul variables")]
     [SerializeField] private float _minDist = 1.5f;
-    [SerializeField] private float _speed = 5.0f;
+    [SerializeField] private float _speed = 5f;
     [SerializeField] private float playerOffset = 0.75f;
     public bool IsFirst = false;
 
@@ -107,7 +107,8 @@ public class SoulMovementController : MonoBehaviour
         {
             float step = (dist - _minDist + 0.1f) * _speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, TargetPosition, step);
-            animator.SetBool("isMoving", dist - _minDist > EPS);
+            if (step > 0.27) animator.SetTrigger("Dash");
+            else animator.SetBool("isMoving", dist - _minDist > EPS);
         }
         else
         {
