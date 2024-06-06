@@ -74,7 +74,7 @@ public class EnemyAIMovement : MonoBehaviour
     {
         _isStunned = stun;
         IsStopped(stun);
-        if(_isStunned)
+        if(_isStunned  && gameObject.activeInHierarchy)
         {
             StartCoroutine(StunnedDuration(duration));
         }
@@ -106,7 +106,10 @@ public class EnemyAIMovement : MonoBehaviour
 
     public void IsStopped(bool stop)
     {
-        EnemyAgent.isStopped = stop;
+        if(EnemyAgent != null && EnemyAgent.isOnNavMesh)
+        {
+            EnemyAgent.isStopped = stop;
+        }
     }
 
     public bool IsStunned()

@@ -4,48 +4,54 @@ using UnityEngine;
 
 public class EnemyWaveController : MonoBehaviour
 {
-    public GameObject enemy1;
-    public GameObject enemy2;
-    public GameObject enemy3;
+    public GameObject[] enemies;
 
     private WaveManager _waveManager;
+
     void Start()
     {
         _waveManager = FindObjectOfType<WaveManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (_waveManager.CurWaveId >= 1 &&_waveManager.CurWaveId <=15)
+        if (_waveManager.CurWaveId >= 1 && _waveManager.CurWaveId <= 15)
         {
-            enemy1.SetActive(true);
-            // enemy2.SetActive(false);
-            // enemy3.SetActive(false);
-        }
-
-        if (_waveManager.CurWaveId >= 4 && _waveManager.CurWaveId <= 15 )
-        {
-            enemy2.SetActive(true);
-            // enemy3.SetActive(false);
+            enemies[0].SetActive(true);
         }
         else
         {
-            enemy2.SetActive(false);
-            // enemy3.SetActive(true);
+            enemies[0].SetActive(false);
         }
 
-         if (_waveManager.CurWaveId >= 9 && _waveManager.CurWaveId <= 15 )
+        if (_waveManager.CurWaveId >= 4 && _waveManager.CurWaveId <= 15)
         {
-            // enemy2.SetActive(true);
-            enemy3.SetActive(true);
+            enemies[1].SetActive(true);
         }
         else
         {
-            // enemy2.SetActive(false);
-            enemy3.SetActive(false);
+            enemies[1].SetActive(false);
         }
-        
 
+        if (_waveManager.CurWaveId >= 9 && _waveManager.CurWaveId <= 15)
+        {
+            enemies[2].SetActive(true);
+        }
+        else
+        {
+            enemies[2].SetActive(false);
+        }
+    }
+
+    public void StunAllEnemies(float stunDuration)
+    {
+        foreach (GameObject enemy in enemies)
+        {
+            EnemyAIMovement enemyAI = enemy.GetComponent<EnemyAIMovement>();
+            if (enemyAI != null)
+            {
+                enemyAI.Stunned(true, stunDuration);
+            }
+        }
     }
 }
