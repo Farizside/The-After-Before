@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private InputManager _input;
     [SerializeField] private GameObject _tutorial1;
     [SerializeField] private GameObject _tutorial2;
+    private GameObject _loadingScreen;
     
     private GameObject _tutorial;
     
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
         {
             _tutorial = _tutorial1;
             UpdateGameState(GameState.Tutorial);
-        }else if (_wave.CurWaveId == 4)
+        }else if (_wave.CurWaveId == 1)
         {
             _tutorial = _tutorial2;
             UpdateGameState(GameState.Tutorial);
@@ -181,9 +182,19 @@ public class GameManager : MonoBehaviour
     public void OnNextWaveClicked()
     {
         _soulCollected = 0;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        _loadingScreen = GameObject.Find("Loading Screen");
+        _loadingScreen.GetComponent<SceneLoader>().LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (_wave.CurWaveId == 1)
+        {
+            _tutorial = _tutorial2;
+            UpdateGameState(GameState.Tutorial);
+        }
+        else
+        {
+            UpdateGameState(GameState.Gameplay);
+        }
         _upgrade.StartWave();
-        UpdateGameState(GameState.Gameplay);
         _wave.SetCurrentData();
     }
 }

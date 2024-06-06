@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,8 +9,8 @@ public class TutorialController : MonoBehaviour
 {
     [SerializeField] private InputManager _input;
     [SerializeField] private List<GameObject> _tutorialPrefabs;
-    [SerializeField] private GameObject _nextButton;
-    [SerializeField] private GameObject _backButton;
+    [SerializeField] [CanBeNull] private GameObject _nextButton;
+    [SerializeField] [CanBeNull] private GameObject _backButton;
 
     private int _tutorialIndex = 0;
 
@@ -53,23 +54,24 @@ public class TutorialController : MonoBehaviour
         
         if (_tutorialIndex == 0)
         {
-            _nextButton.SetActive(true);
-            _backButton.SetActive(false);
+            if (_nextButton != null) _nextButton.SetActive(true);
+            if (_backButton != null) _backButton.SetActive(false);
         }
         else if(_tutorialIndex == _tutorialPrefabs.Count - 1)
         {
-            _nextButton.SetActive(false);
-            _backButton.SetActive(true);
+            if (_nextButton != null) _nextButton.SetActive(false);
+            if (_backButton != null) _backButton.SetActive(true);
         }
         else
         {
-            _nextButton.SetActive(true);
-            _backButton.SetActive(true);
+            if (_nextButton != null) _nextButton.SetActive(true);
+            if (_backButton != null) _backButton.SetActive(true);
         }
     }
 
     public void NextTutorial()
     {
+        if (!_nextButton) return;
         if (_tutorialIndex == _tutorialPrefabs.Count - 1) return;
         _tutorialIndex++;
         ShowTutorial();
@@ -77,6 +79,7 @@ public class TutorialController : MonoBehaviour
 
     public void BackTutorial()
     {
+        if (!_backButton) return;
         if (_tutorialIndex == 0) return;
         _tutorialIndex--;
         ShowTutorial();

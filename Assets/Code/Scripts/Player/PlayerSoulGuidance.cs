@@ -1,9 +1,6 @@
-using Autodesk.Fbx;
-using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.VFX;
 
 public class PlayerSoulGuidance : MonoBehaviour
 {
