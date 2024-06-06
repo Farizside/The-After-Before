@@ -78,6 +78,7 @@ public class UIManager : MonoBehaviour
         _upgrade = UpgradeManager.Instance;
         BtnPause.GetComponent<Button>().onClick.AddListener(_gm.HandlePause);
         BtnResume.GetComponent<Button>().onClick.AddListener(_gm.HandleResume);
+        LoseButton.GetComponent<Button>().onClick.AddListener(_gm.HandleRestart);
         
         _waveLength = _wave.WaveData.wavesData.Count;
     }

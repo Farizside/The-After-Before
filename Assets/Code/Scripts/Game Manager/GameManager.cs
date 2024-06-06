@@ -73,7 +73,6 @@ public class GameManager : MonoBehaviour
         {
             UpdateGameState(GameState.Gameplay);
         }
-        
     }
 
     public void UpdateGameState(GameState newState)
@@ -119,7 +118,7 @@ public class GameManager : MonoBehaviour
     {
         _ui.LoseCanvas();
         InputManager.SetUI();
-        Time.timeScale = 0;
+        // Time.timeScale = 0;
         AudioManager.Instance.PlaySound2D("Defeat");
     }
     
@@ -165,7 +164,13 @@ public class GameManager : MonoBehaviour
         _wave.CurWaveTime += 5f;
         // InputManager.SetGameplay();
         AudioManager.Instance.ResumeAudio(); //AudioManager
+    }
 
+    public void HandleRestart()
+    {
+        _ui.Lose.SetActive(false);
+        UpdateGameState(GameState.Gameplay);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void SubmitSoul()

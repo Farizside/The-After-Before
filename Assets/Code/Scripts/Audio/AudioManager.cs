@@ -114,16 +114,22 @@ public class AudioManager : MonoBehaviour
     public void PlayTimesUpSFX()
     {
         if (_timesUpClip != null)
-        {
-            _soundEffectSource.PlayOneShot(_timesUpClip);
+        { 
+            _soundEffectSource.clip = _timesUpClip;
+            _soundEffectSource.Play();
+            Debug.Log("Play timesup");
         }
         else
-        {
+        { 
             Debug.LogError("TimesUp audio clip is not assigned in the AudioManager!");
         }
     }
 
-
+    public void StopTimesUpSFX()
+    {
+        _soundEffectSource = null;
+        if (_soundEffectSource != null) _soundEffectSource.Stop();
+    }
 
     #region Music (Optional)
 

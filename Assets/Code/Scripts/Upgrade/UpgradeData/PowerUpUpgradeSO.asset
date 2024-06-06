@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PowerUpUpgradeSO
   m_EditorClassIdentifier: 
   id: 5
-  image: {fileID: 21300000, guid: 0af58abaf0fe8ca40a4782dbd10e22c1, type: 3}
+  image: {fileID: 21300000, guid: f18ec2e7eedb81c4684958b008e91066, type: 3}
   name: Celestial Blessing
   description: The number of power ups on the map increased by 1
   upgradeEffects:

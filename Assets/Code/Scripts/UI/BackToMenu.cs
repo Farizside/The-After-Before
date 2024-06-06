@@ -11,6 +11,7 @@ public class BackToMenu : MonoBehaviour
     [SerializeField] private InputManager _input;
     [SerializeField] [CanBeNull] private GameObject _currCanvas;
     [SerializeField] [CanBeNull] private GameObject _mainMenuCanvas;
+    [SerializeField] private GameObject _loadingScreen;
     
     public Button BtnMenu;
     // Start is called before the first frame update
@@ -28,8 +29,11 @@ public class BackToMenu : MonoBehaviour
     }
     private void Menu()
     {
+        _loadingScreen = Instantiate(_loadingScreen);
+        WaveManager.Instance.CurWaveTime = 100;
+        _loadingScreen = Instantiate(_loadingScreen);
         GameManager.Instance.HandleResume();
-        SceneManager.LoadScene(0);
+        _loadingScreen.GetComponent<SceneLoader>().LoadScene(0);
     }
 
     public void Back()

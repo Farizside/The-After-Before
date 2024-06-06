@@ -82,9 +82,9 @@ public class WaveManager : MonoBehaviour
         {
             CurWaveTime -= Time.deltaTime;
 
-            if (CurWaveTime <= 11.0f && !_vfxShown) //vfx
+            if (CurWaveTime <= 11.0f && !_vfxShown)
             {
-                AudioManager.Instance.PlayTimesUpSFX();
+                AudioManager.Instance.PlaySound2D("TimesUp");
                 StartCoroutine(FlashVFX());
                 _vfxShown = true;
             }
@@ -114,6 +114,7 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator FlashVFX() //vfx
     {
+        // Instantiate(vfx10Seconds);
         float flashDuration = 0.5f;
         int flashCount = 10;
 

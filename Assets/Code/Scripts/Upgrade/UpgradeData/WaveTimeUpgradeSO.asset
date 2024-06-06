@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaveTimeUpgradeSO
   m_EditorClassIdentifier: 
   id: 1
-  image: {fileID: 21300000, guid: a4d497f910115ae4cb68da322aa8ab61, type: 3}
+  image: {fileID: 21300000, guid: 3971931de4ad9d5469bbf6c9291b9c82, type: 3}
   name: Eternal Tranquility
   description: Add Wave Time by 5 seconds
   upgradeEffects:

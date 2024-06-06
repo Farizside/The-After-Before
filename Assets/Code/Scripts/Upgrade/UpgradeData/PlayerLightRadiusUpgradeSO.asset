@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerLightRadiusUpgradeSO
   m_EditorClassIdentifier: 
   id: 3
-  image: {fileID: 21300000, guid: 4abe14e0b5fb0a348aac7c7ec1e482a8, type: 3}
+  image: {fileID: 21300000, guid: 8c20a112b0c85ea47b6125da794c7fc7, type: 3}
   name: Luminous Lantern
   description: 'Increase the radius of the player''s light radius by 0.5 '
   upgradeEffects:

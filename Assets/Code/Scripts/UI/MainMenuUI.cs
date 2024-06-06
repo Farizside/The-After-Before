@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private InputManager _input;
+    [SerializeField] private SceneLoader _sceneLoader;
     public Button BtnGamePlay;
     public Button BtnAbout;
     public Button BtnExit;
@@ -33,8 +34,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void GamePlay()
     {
-        // _input.SetGameplay();
-        SceneManager.LoadScene(1);
+        _sceneLoader.LoadScene(1);
         AudioManager.Instance.PlayMusic("GamePlay", 1f);//BGM
     }
     
