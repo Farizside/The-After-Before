@@ -11,11 +11,8 @@ public class EnemyWaveController : MonoBehaviour
     void Start()
     {
         _waveManager = FindObjectOfType<WaveManager>();
-    }
-
-    void Update()
-    {
-        if (_waveManager.CurWaveId >= 1 && _waveManager.CurWaveId <= 15)
+        
+        if (_waveManager.CurWaveId >= 0 && _waveManager.CurWaveId <= 15)
         {
             enemies[0].SetActive(true);
         }
@@ -41,6 +38,11 @@ public class EnemyWaveController : MonoBehaviour
         {
             enemies[2].SetActive(false);
         }
+    }
+
+    void Update()
+    {
+        
     }
 
     public void StunAllEnemies(float stunDuration)

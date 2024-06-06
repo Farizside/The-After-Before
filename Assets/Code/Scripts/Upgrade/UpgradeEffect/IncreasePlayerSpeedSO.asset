@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: IncreasePlayerSpeedSO
   m_EditorClassIdentifier: 
   EffectType: 1
-  value: 0.03
+  value: 0.09

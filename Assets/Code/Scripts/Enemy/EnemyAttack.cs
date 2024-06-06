@@ -26,7 +26,7 @@ public class EnemyAttack : MonoBehaviour
             {
                 SoulMovementController soulMovement = other.GetComponent<SoulMovementController>();
                 SoulTypeController soulType = other.GetComponent<SoulTypeController>();
-               EnemyAIMovement enemyAIMovement = GetComponentInParent<EnemyAIMovement>();
+                EnemyAIMovement enemyAIMovement = GetComponentInParent<EnemyAIMovement>();
 
                 if (soulMovement.IsAttracted && soulType.SoulType == SoulType.PURE)
                 {  

@@ -61,19 +61,10 @@ public class GameManager : MonoBehaviour
         _ui = UIManager.Instance;
         _upgrade = UpgradeManager.Instance;
 
-        if (_wave.CurWaveId == 0)
-        {
-            _tutorial = _tutorial1;
-            UpdateGameState(GameState.Tutorial);
-        }else if (_wave.CurWaveId == 1)
-        {
-            _tutorial = _tutorial2;
-            UpdateGameState(GameState.Tutorial);
-        }
-        else
-        {
-            UpdateGameState(GameState.Gameplay);
-        }
+        
+        _tutorial = _tutorial1;
+        UpdateGameState(GameState.Tutorial);
+        
     }
 
     public void UpdateGameState(GameState newState)
@@ -185,7 +176,7 @@ public class GameManager : MonoBehaviour
         // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         _loadingScreen = GameObject.Find("Loading Screen");
         _loadingScreen.GetComponent<SceneLoader>().LoadScene(SceneManager.GetActiveScene().buildIndex);
-        if (_wave.CurWaveId == 1)
+        if (_wave.CurWaveId == 4)
         {
             _tutorial = _tutorial2;
             UpdateGameState(GameState.Tutorial);

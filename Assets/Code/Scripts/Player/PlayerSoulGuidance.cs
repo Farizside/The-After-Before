@@ -160,23 +160,14 @@ public class PlayerSoulGuidance : MonoBehaviour
                 if (vfxScript != null)
                 {
                     vfxScript.StopVFX();
-                    Debug.Log("Stopping VFX for deattracted soul.");
-                }
-                else
-                {
-                    Debug.LogError("SoulVFX component not found on the soul.");
                 }
 
                 HitVFX hitScript = soul.GetComponent<HitVFX>();
                 if (hitScript != null)
                 {
                     hitScript.PlayHitVFX();
-                    Debug.Log("Playing VFX for hit soul.");
                 }
-                else
-                {
-                    Debug.LogError("HitVFX component not found on the soul.");
-                }
+                _playerMovement.MovementSpeed += 1 * SlowingSpeed;
             }
 
             _soulsAttracted.RemoveRange(index, _soulsAttracted.Count - index);

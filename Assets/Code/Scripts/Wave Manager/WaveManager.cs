@@ -91,7 +91,7 @@ public class WaveManager : MonoBehaviour
 
             if (GameManager.Instance.SoulCollected >= CurWaveTarget)
             {
-                if (CurWaveId == _waveData.wavesData.Count)
+                if (CurWaveId == _waveData.wavesData.Count - 1)
                 {
                     GameManager.Instance.UpdateGameState(GameState.Victory);
                     _ui.WinCanvas();
