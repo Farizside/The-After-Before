@@ -14,106 +14,106 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wavesData:
   - id: 1
-    target: 1
+    target: 3
     time: 145
     initialSoul: 1
     interval: 5
     pureRate: 0
     maxSouls: 3
   - id: 2
-    target: 1
+    target: 4
     time: 150
     initialSoul: 1
     interval: 5
     pureRate: 0
     maxSouls: 4
   - id: 3
-    target: 1
+    target: 5
     time: 155
     initialSoul: 1
     interval: 5
     pureRate: 0
     maxSouls: 4
   - id: 4
-    target: 1
+    target: 6
     time: 160
     initialSoul: 1
     interval: 5
     pureRate: 0
     maxSouls: 4
   - id: 5
-    target: 1
+    target: 8
     time: 170
     initialSoul: 2
     interval: 4
     pureRate: 0
     maxSouls: 5
   - id: 6
-    target: 1
-    time: 100
+    target: 4
+    time: 145
     initialSoul: 1
     interval: 4.5
     pureRate: 0
     maxSouls: 4
   - id: 7
-    target: 7
-    time: 110
+    target: 5
+    time: 150
     initialSoul: 1
     interval: 4.5
     pureRate: 0
     maxSouls: 4
   - id: 8
-    target: 9
-    time: 120
+    target: 6
+    time: 155
     initialSoul: 1
     interval: 4.5
     pureRate: 0
     maxSouls: 5
   - id: 9
-    target: 11
-    time: 130
+    target: 8
+    time: 160
     initialSoul: 2
     interval: 4.5
     pureRate: 0
     maxSouls: 5
   - id: 10
-    target: 14
-    time: 140
+    target: 10
+    time: 170
     initialSoul: 3
     interval: 3.5
     pureRate: 0
     maxSouls: 6
   - id: 11
-    target: 7
-    time: 80
+    target: 5
+    time: 145
     initialSoul: 1
     interval: 4
     pureRate: 0
     maxSouls: 5
   - id: 12
-    target: 9
-    time: 85
+    target: 6
+    time: 150
     initialSoul: 1
     interval: 4
     pureRate: 0
     maxSouls: 5
   - id: 13
-    target: 12
-    time: 90
+    target: 8
+    time: 160
     initialSoul: 2
     interval: 4
     pureRate: 0
     maxSouls: 6
   - id: 14
-    target: 15
-    time: 95
+    target: 10
+    time: 165
     initialSoul: 3
     interval: 4
     pureRate: 0
     maxSouls: 7
   - id: 15
-    target: 20
-    time: 100
+    target: 12
+    time: 170
     initialSoul: 4
     interval: 3
     pureRate: 0
